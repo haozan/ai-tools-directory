@@ -1,0 +1,167 @@
+<% content_for :title, @tool.name %>
+
+<!-- Breadcrumb -->
+<div class="bg-surface border-b border-border py-3 px-4">
+  <div class="container-lg mx-auto">
+    <nav class="flex items-center gap-2 text-sm">
+      <%= link_to "首页", root_path, class: "text-muted hover:text-primary transition-colors" %>
+      <%= lucide_icon "chevron-right", class: "w-4 h-4 text-muted" %>
+      <%= link_to "工具", tools_path, class: "text-muted hover:text-primary transition-colors" %>
+      <%= lucide_icon "chevron-right", class: "w-4 h-4 text-muted" %>
+      <span class="text-primary font-medium"><%= @tool.name %></span>
+    </nav>
+  </div>
+</div>
+
+<!-- Tool Header -->
+<section class="gradient-surface py-12 px-4">
+  <div class="container-lg mx-auto">
+    <div class="flex flex-col md:flex-row gap-8 items-start">
+      <!-- Logo -->
+      <div class="w-24 h-24 rounded-2xl overflow-hidden border-2 border-primary/30 neon-glow-blue flex-shrink-0">
+        <% if @tool.logo_url.present? %>
+          <img src="<%= @tool.logo_url %>" alt="<%= @tool.name %>" class="w-full h-full object-cover" />
+        <% else %>
+          <div class="w-full h-full flex items-center justify-center gradient-primary">
+            <%= lucide_icon "sparkles", class: "w-12 h-12 text-surface-elevated" %>
+          </div>
+        <% end %>
+      </div>
+      
+      <!-- Info -->
+      <div class="flex-1 space-y-4">
+        <div class="flex flex-wrap items-start gap-4 justify-between">
+          <div>
+            <h1 class="font-heading text-4xl font-bold text-primary mb-2">
+              <%= @tool.name %>
+            </h1>
+            <p class="text-xl text-secondary">
+              <%= @tool.short_description %>
+            </p>
+          </div>
+          
+          <span class="badge-<%= @tool.pricing_type == 'Free' ? 'success' : @tool.pricing_type == 'Freemium' ? 'info' : 'warning' %> px-4 py-2 text-sm font-semibold rounded-lg">
+            <%= @tool.pricing_type %>
+          </span>
+        </div>
+        
+        <!-- Categories -->
+        <div class="flex flex-wrap gap-2">
+          <% @tool.categories.each do |category| %>
+            <%= link_to category_path(category), class: "inline-flex items-center gap-1 px-3 py-1 bg-primary/10 border border-primary/30 rounded-full text-sm text-primary hover:bg-primary/20 transition-colors" do %>
+              <%= lucide_icon "tag", class: "w-4 h-4" %>
+              <%= category.name %>
+            <% end %>
+          <% end %>
+        </div>
+        
+        <!-- CTA Button -->
+        <%= link_to @tool.website_url, target: "_blank", rel: "noopener", class: "btn-primary btn-lg inline-flex items-center gap-2 neon-glow-blue" do %>
+          <%= lucide_icon "external-link", class: "w-5 h-5" %>
+          访问网站
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tool Details -->
+<section class="py-12 px-4 bg-surface">
+  <div class="container-lg mx-auto">
+    <div class="grid lg:grid-cols-3 gap-8">
+      <!-- Main Content -->
+      <div class="lg:col-span-2 space-y-8">
+        <!-- Description -->
+        <div class="card bg-surface-elevated border border-border rounded-xl p-6">
+          <h2 class="font-heading text-2xl font-bold text-primary mb-4">关于 <%= @tool.name %></h2>
+          <div class="prose prose-invert max-w-none">
+            <p class="text-secondary leading-relaxed">
+              <%= simple_format(@tool.long_description.presence || @tool.short_description) %>
+            </p>
+          </div>
+        </div>
+        
+        <!-- Key Features (if available) -->
+        <% if @tool.categories.any? %>
+          <div class="card bg-surface-elevated border border-border rounded-xl p-6">
+            <h2 class="font-heading text-2xl font-bold text-primary mb-4">主要特性</h2>
+            <div class="grid md:grid-cols-2 gap-4">
+              <% @tool.categories.each do |category| %>
+                <div class="flex items-start gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/30 flex items-center justify-center flex-shrink-0">
+                    <%= lucide_icon "check", class: "w-5 h-5 text-primary" %>
+                  </div>
+                  <div>
+                    <h4 class="font-semibold text-primary mb-1"><%= category.name %> 能力</h4>
+                    <p class="text-sm text-secondary">由AI驱动的高级 <%= category.name.downcase %> 功能</p>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      
+      <!-- Sidebar -->
+      <div class="space-y-6">
+        <!-- Stats -->
+        <div class="card bg-surface-elevated border border-border rounded-xl p-6">
+          <h3 class="font-heading text-lg font-bold text-primary mb-4">工具统计</h3>
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-secondary">浏览次数</span>
+              <span class="font-semibold text-primary"><%= @tool.view_count %></span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-secondary">价格</span>
+              <span class="font-semibold text-<%= @tool.pricing_type == 'Free' ? 'success' : 'primary' %>"><%= @tool.pricing_type %></span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-secondary">添加于</span>
+              <span class="font-semibold text-primary"><%= time_ago_in_words(@tool.created_at) %> 前</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Share -->
+        <div class="card bg-surface-elevated border border-border rounded-xl p-6">
+          <h3 class="font-heading text-lg font-bold text-primary mb-4">分享</h3>
+          <div class="flex gap-2">
+            <%= lucide_icon "twitter", class: "w-8 h-8 p-2 bg-primary/10 border border-primary/30 rounded-lg text-primary hover:bg-primary/20 cursor-pointer transition-colors" %>
+            <%= lucide_icon "facebook", class: "w-8 h-8 p-2 bg-primary/10 border border-primary/30 rounded-lg text-primary hover:bg-primary/20 cursor-pointer transition-colors" %>
+            <%= lucide_icon "linkedin", class: "w-8 h-8 p-2 bg-primary/10 border border-primary/30 rounded-lg text-primary hover:bg-primary/20 cursor-pointer transition-colors" %>
+            <%= lucide_icon "link", class: "w-8 h-8 p-2 bg-primary/10 border border-primary/30 rounded-lg text-primary hover:bg-primary/20 cursor-pointer transition-colors" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Related Tools -->
+<% if @related_tools.any? %>
+  <section class="py-12 px-4 bg-surface-elevated border-t border-border">
+    <div class="container-lg mx-auto">
+      <h2 class="font-heading text-3xl font-bold text-primary mb-8">你可能也喜欢</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <% @related_tools.each do |tool| %>
+          <%= link_to tool_path(tool), class: "tool-card card bg-surface border border-border rounded-xl overflow-hidden block" do %>
+            <div class="aspect-video relative overflow-hidden bg-surface">
+              <% if tool.logo_url.present? %>
+                <img src="<%= tool.logo_url %>" alt="<%= tool.name %>" class="w-full h-full object-cover" />
+              <% else %>
+                <div class="w-full h-full flex items-center justify-center gradient-primary">
+                  <%= lucide_icon "sparkles", class: "w-8 h-8 text-surface-elevated" %>
+                </div>
+              <% end %>
+            </div>
+            <div class="p-4">
+              <h3 class="font-semibold text-primary mb-2"><%= tool.name %></h3>
+              <p class="text-sm text-secondary line-clamp-2"><%= tool.short_description %></p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </section>
+<% end %>

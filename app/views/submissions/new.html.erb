@@ -1,0 +1,139 @@
+<% content_for :title, "提交工具" %>
+
+<section class="py-12 px-4 bg-surface min-h-screen">
+  <div class="container-md mx-auto">
+    <div class="text-center mb-8">
+      <h1 class="font-heading text-4xl font-bold text-primary mb-4">
+        提交新的法律AI工具
+      </h1>
+      <p class="text-lg text-secondary">
+        与同行分享一个优秀的法律AI工具
+      </p>
+    </div>
+    
+    <div class="card bg-surface-elevated border border-border rounded-xl p-8">
+      <%= form_with model: @tool, url: submissions_path, class: "space-y-6" do |f| %>
+        <% if @tool.errors.any? %>
+          <div class="alert-danger rounded-xl p-4">
+            <h3 class="font-semibold mb-2"><%= pluralize(@tool.errors.count, "个错误") %> 阻止了工具的保存:</h3>
+            <ul class="list-disc list-inside space-y-1">
+              <% @tool.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        
+        <!-- Tool Name -->
+        <div>
+          <%= f.label :name, "工具名称 *", class: "form-label" %>
+          <%= f.text_field :name, 
+              placeholder: "例如：法律智能AI", 
+              class: "form-input w-full", 
+              required: true %>
+          <p class="form-help">请填写AI工具的正式名称</p>
+        </div>
+        
+        <!-- Website URL -->
+        <div>
+          <%= f.label :website_url, "网站地址 *", class: "form-label" %>
+          <%= f.url_field :website_url, 
+              placeholder: "https://example.com", 
+              class: "form-input w-full", 
+              required: true %>
+          <p class="form-help">请填写工具的官方网站</p>
+        </div>
+        
+        <!-- Short Description -->
+        <div>
+          <%= f.label :short_description, "简短描述 *", class: "form-label" %>
+          <%= f.text_field :short_description, 
+              placeholder: "用一句话描述该工具（最多150字符）", 
+              maxlength: 150,
+              class: "form-input w-full", 
+              required: true %>
+          <p class="form-help">请保持简洁和吸引力</p>
+        </div>
+        
+        <!-- Long Description -->
+        <div>
+          <%= f.label :long_description, "详细描述", class: "form-label" %>
+          <%= f.text_area :long_description, 
+              placeholder: "提供关于该工具功能和特点的更多详情", 
+              rows: 6,
+              class: "form-textarea w-full" %>
+          <p class="form-help">可选：添加关于该工具的更多信息</p>
+        </div>
+        
+        <!-- Logo URL -->
+        <div>
+          <%= f.label :logo_url, "Logo地址", class: "form-label" %>
+          <%= f.url_field :logo_url, 
+              placeholder: "https://example.com/logo.png", 
+              class: "form-input w-full" %>
+          <p class="form-help">可选：该工具Logo图片的直接链接</p>
+        </div>
+        
+        <!-- Pricing Type -->
+        <div>
+          <%= f.label :pricing_type, "价格类型 *", class: "form-label" %>
+          <%= f.select :pricing_type, 
+              options_for_select([['免费', 'Free'], ['部分免费', 'Freemium'], ['付费', 'Paid']], @tool.pricing_type),
+              {},
+              class: "form-select w-full", 
+              required: true %>
+          <p class="form-help">选择价格模式</p>
+        </div>
+        
+        <!-- Categories -->
+        <div>
+          <%= f.label :category_ids, "分类 *", class: "form-label" %>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+            <% @categories.each do |category| %>
+              <label class="flex items-center gap-2 p-3 bg-surface border border-border rounded-lg cursor-pointer hover:border-primary transition-colors">
+                <%= f.check_box :category_ids, 
+                    { multiple: true, class: "form-checkbox text-primary focus:ring-primary" }, 
+                    category.id, 
+                    nil %>
+                <span class="text-sm text-secondary"><%= category.name %></span>
+              </label>
+            <% end %>
+          </div>
+          <p class="form-help">选择一个或多个适合该工具的分类</p>
+        </div>
+        
+        <!-- Submit Button -->
+        <div class="flex gap-4 pt-4">
+          <%= f.submit "提交工具", class: "btn-primary btn-lg flex-1" %>
+          <%= link_to "取消", tools_path, class: "btn-outline px-6 py-3 rounded-lg" %>
+        </div>
+      <% end %>
+    </div>
+    
+    <!-- Guidelines -->
+    <div class="mt-8 card bg-surface-elevated border border-border rounded-xl p-6">
+      <h3 class="font-heading text-lg font-bold text-primary mb-4 flex items-center gap-2">
+        <%= lucide_icon "info", class: "w-5 h-5" %>
+        提交指南
+      </h3>
+      <ul class="space-y-2 text-secondary">
+        <li class="flex items-start gap-2">
+          <%= lucide_icon "check", class: "w-5 h-5 text-success flex-shrink-0 mt-0.5" %>
+          <span>确保该工具是AI驱动的或与AI相关</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <%= lucide_icon "check", class: "w-5 h-5 text-success flex-shrink-0 mt-0.5" %>
+          <span>提供准确和最新的信息</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <%= lucide_icon "check", class: "w-5 h-5 text-success flex-shrink-0 mt-0.5" %>
+          <span>使用清晰和专业的描述</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <%= lucide_icon "check", class: "w-5 h-5 text-success flex-shrink-0 mt-0.5" %>
+          <span>所有提交将在发布前进行审核</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

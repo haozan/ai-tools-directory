@@ -1,0 +1,92 @@
+<% content_for :title, "#{@category.name} 法律AI工具" %>
+
+<!-- Category Hero -->
+<section class="gradient-surface py-12 px-4">
+  <div class="container-xl mx-auto text-center">
+    <h1 class="font-heading text-4xl lg:text-5xl font-bold text-primary mb-4">
+      <%= @category.name %>
+    </h1>
+    <p class="text-lg text-secondary max-w-2xl mx-auto">
+      <%= @category.description.presence || "探索 #{@category.name} 分类中的 #{@category.tools_count} 个法律AI工具" %>
+    </p>
+    <div class="mt-6">
+      <span class="inline-flex items-center gap-2 px-4 py-2 bg-surface-elevated border border-border rounded-full text-secondary">
+        <%= lucide_icon "layers", class: "w-4 h-4" %>
+        <%= pluralize(@category.tools_count, 'tool') %>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- Tools Grid -->
+<section class="py-12 px-4 bg-surface min-h-screen">
+  <div class="container-xl mx-auto">
+    <% if @tools.any? %>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
+        <% @tools.each do |tool| %>
+          <%= link_to tool_path(tool), class: "tool-card card bg-surface-elevated border border-border rounded-xl overflow-hidden block" do %>
+            <div class="aspect-video relative overflow-hidden bg-surface">
+              <% if tool.logo_url.present? %>
+                <img src="<%= tool.logo_url %>" alt="<%= tool.name %>" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+              <% else %>
+                <div class="w-full h-full flex items-center justify-center gradient-primary">
+                  <%= lucide_icon "sparkles", class: "w-12 h-12 text-surface-elevated" %>
+                </div>
+              <% end %>
+              
+              <div class="absolute top-3 right-3">
+                <span class="badge-<%= tool.pricing_type == 'Free' ? 'success' : tool.pricing_type == 'Freemium' ? 'info' : 'warning' %> badge-glow px-3 py-1 text-xs font-semibold rounded-full">
+                  <%= tool.pricing_type %>
+                </span>
+              </div>
+            </div>
+            
+            <div class="p-4 space-y-3">
+              <div class="flex items-start justify-between gap-2">
+                <h3 class="font-heading text-lg font-semibold text-primary group-hover:text-primary-light transition-colors">
+                  <%= tool.name %>
+                </h3>
+                <%= lucide_icon "external-link", class: "w-4 h-4 text-muted flex-shrink-0" %>
+              </div>
+              
+              <p class="text-sm text-secondary line-clamp-2">
+                <%= tool.short_description %>
+              </p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      
+      <!-- Pagination -->
+      <div class="flex justify-center">
+        <%= paginate @tools, theme: 'tailwind' %>
+      </div>
+    <% else %>
+      <div class="text-center py-20">
+        <div class="inline-flex items-center justify-center w-16 h-16 bg-surface-elevated border border-border rounded-full mb-4">
+          <%= lucide_icon "inbox", class: "w-8 h-8 text-muted" %>
+        </div>
+        <h3 class="font-heading text-xl font-semibold text-primary mb-2">暂无工具</h3>
+        <p class="text-secondary mb-6">成为第一个在该分类中提交工具的人</p>
+        <%= link_to "提交工具", new_submission_path, class: "btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</section>
+
+<!-- Other Categories -->
+<% if @all_categories.any? %>
+  <section class="py-12 px-4 bg-surface-elevated border-t border-border">
+    <div class="container-xl mx-auto">
+      <h2 class="font-heading text-2xl font-bold text-primary mb-6">探索其他分类</h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <% @all_categories.each do |category| %>
+          <%= link_to category_path(category), class: "card bg-surface border border-border rounded-xl p-4 text-center hover:border-primary transition-all" do %>
+            <h3 class="font-semibold text-primary mb-1"><%= category.name %></h3>
+            <p class="text-xs text-muted"><%= pluralize(category.tools_count, 'tool') %></p>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </section>
+<% end %>

@@ -1,0 +1,220 @@
+<% content_for :title, "发现最佳法律AI工具" %>
+
+<!-- Hero Section -->
+<section class="gradient-surface py-20 px-4">
+  <div class="container-xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      <!-- Left: Text Content -->
+      <div class="space-y-6">
+        <h1 class="font-heading text-5xl lg:text-6xl font-bold text-primary leading-tight">
+          发现最佳法律AI工具
+        </h1>
+        <p class="text-xl text-secondary leading-relaxed">
+          探索最强大的法律AI工具，提升你的工作效率。从法律文书撰写到案例分析，为你的法律工作找到最合适的AI助手。
+        </p>
+        
+        <!-- Search Box -->
+        <%= form_with url: tools_path, method: :get, class: "relative" do |f| %>
+          <%= lucide_icon "search", class: "absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted" %>
+          <%= f.text_field :q, 
+              placeholder: "搜索法律AI工具...", 
+              class: "search-box w-full pl-12 pr-4 py-4 bg-surface-elevated border border-border rounded-xl text-primary focus:outline-none focus:border-primary transition-all" %>
+        <% end %>
+        
+        <!-- Trending Tags -->
+        <div class="flex flex-wrap gap-2">
+          <span class="text-sm text-muted">热门标签:</span>
+          <% ["法律文书生成", "案例检索", "合同审查", "法律咨询", "判决预测"].each do |tag| %>
+            <%= link_to tools_path(q: tag), class: "px-3 py-1 bg-surface-elevated border border-primary/30 rounded-full text-sm text-primary hover:bg-primary/10 cursor-pointer transition-colors" do %>
+              <%= tag %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      
+      <!-- Right: Hero Image -->
+      <div class="relative">
+        <div class="aspect-square rounded-2xl overflow-hidden neon-glow-blue">
+          <img 
+            src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&auto=format&fit=crop" 
+            alt="AI Technology" 
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <!-- Floating Stats -->
+        <div class="absolute -bottom-6 -left-6 bg-surface-elevated border border-border rounded-xl p-4 shadow-xl">
+          <div class="text-3xl font-bold text-primary"><%= @tools_count %>+</div>
+          <div class="text-sm text-muted">AI工具</div>
+        </div>
+        <div class="absolute -top-6 -right-6 bg-surface-elevated border border-border rounded-xl p-4 shadow-xl">
+          <div class="text-3xl font-bold text-secondary"><%= @categories_count %>+</div>
+          <div class="text-sm text-muted">分类</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tools Grid -->
+<section class="py-16 px-4 bg-surface">
+  <div class="container-xl mx-auto">
+    <div class="flex justify-between items-center mb-8">
+      <h2 class="font-heading text-3xl font-bold text-primary">精选工具</h2>
+      <%= link_to tools_path, class: "btn-outline text-primary hover:bg-primary/10" do %>
+        查看全部
+        <%= lucide_icon "arrow-right", class: "w-4 h-4" %>
+      <% end %>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <% @tools.each do |tool| %>
+        <%= link_to tool_path(tool), class: "tool-card card bg-surface-elevated border border-border rounded-xl overflow-hidden block" do %>
+          <!-- Tool Image -->
+          <div class="aspect-video relative overflow-hidden bg-surface">
+            <% if tool.logo_url.present? %>
+              <img src="<%= tool.logo_url %>" alt="<%= tool.name %>" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+            <% else %>
+              <div class="w-full h-full flex items-center justify-center gradient-primary">
+                <%= lucide_icon "sparkles", class: "w-12 h-12 text-surface-elevated" %>
+              </div>
+            <% end %>
+            
+            <!-- Price Badge -->
+            <div class="absolute top-3 right-3">
+              <span class="badge-<%= tool.pricing_type == 'Free' ? 'success' : tool.pricing_type == 'Freemium' ? 'info' : 'warning' %> badge-glow px-3 py-1 text-xs font-semibold rounded-full">
+                <%= tool.pricing_type %>
+              </span>
+            </div>
+          </div>
+          
+          <!-- Tool Info -->
+          <div class="p-4 space-y-3">
+            <div class="flex items-start justify-between gap-2">
+              <h3 class="font-heading text-lg font-semibold text-primary group-hover:text-primary-light transition-colors">
+                <%= tool.name %>
+              </h3>
+              <%= lucide_icon "heart", class: "w-5 h-5 text-muted hover:text-danger cursor-pointer transition-colors" %>
+            </div>
+            
+            <p class="text-sm text-secondary line-clamp-2">
+              <%= tool.short_description %>
+            </p>
+            
+            <div class="flex items-center justify-between pt-2">
+              <% if tool.categories.any? %>
+                <span class="inline-flex items-center gap-1 px-2 py-1 bg-primary/10 border border-primary/30 rounded text-xs text-primary">
+                  <%= lucide_icon "tag", class: "w-3 h-3" %>
+                  <%= tool.categories.first.name %>
+                </span>
+              <% end %>
+              
+              <%= lucide_icon "external-link", class: "w-5 h-5 text-muted" %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<!-- Categories Showcase -->
+<section class="py-16 px-4 bg-surface-elevated border-t border-border">
+  <div class="container-xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="font-heading text-4xl font-bold text-primary mb-4">
+        按分类探索
+      </h2>
+      <p class="text-xl text-secondary">
+        为你的法律工作找到最合适的AI工具
+      </p>
+    </div>
+    
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      <% @categories.each do |category| %>
+        <%= link_to category_path(category), class: "card bg-surface border border-border rounded-xl p-6 text-center hover:border-primary cursor-pointer transition-all group" do %>
+          <div class="inline-flex items-center justify-center w-12 h-12 bg-primary/10 border border-primary/30 rounded-xl mb-3 group-hover:bg-primary/20 transition-colors">
+            <%= lucide_icon "folder", class: "w-6 h-6 text-primary" %>
+          </div>
+          <h3 class="font-semibold text-primary mb-1"><%= category.name %></h3>
+          <p class="text-xs text-muted"><%= pluralize(category.tools_count, 'tool') %></p>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-surface border-t border-border py-12 px-4">
+  <div class="container-xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      <!-- Brand -->
+      <div class="space-y-4">
+        <h3 class="font-heading text-2xl font-bold gradient-primary bg-clip-text text-transparent">
+          SofindAI
+        </h3>
+        <p class="text-sm text-secondary">
+          发现和探索最佳的法律AI工具，助力你的法律工作效率和专业能力提升。
+        </p>
+        <div class="flex gap-3">
+          <%= lucide_icon "twitter", class: "w-5 h-5 text-muted hover:text-primary cursor-pointer transition-colors" %>
+          <%= lucide_icon "github", class: "w-5 h-5 text-muted hover:text-primary cursor-pointer transition-colors" %>
+          <%= lucide_icon "linkedin", class: "w-5 h-5 text-muted hover:text-primary cursor-pointer transition-colors" %>
+        </div>
+      </div>
+      
+      <!-- Categories -->
+      <div>
+        <h4 class="font-semibold text-primary mb-4">分类</h4>
+        <ul class="space-y-2">
+          <% Category.limit(5).each do |cat| %>
+            <li>
+              <%= link_to cat.name, category_path(cat), class: "text-sm text-secondary hover:text-primary transition-colors" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      
+      <!-- Resources -->
+      <div>
+        <h4 class="font-semibold text-primary mb-4">资源</h4>
+        <ul class="space-y-2">
+          <li>
+            <%= link_to "全部工具", tools_path, class: "text-sm text-secondary hover:text-primary transition-colors" %>
+          </li>
+          <li>
+            <%= link_to "提交工具", new_submission_path, class: "text-sm text-secondary hover:text-primary transition-colors" %>
+          </li>
+          <li>
+            <span class="text-sm text-secondary">关于我们</span>
+          </li>
+          <li>
+            <span class="text-sm text-secondary">联系我们</span>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- Legal -->
+      <div>
+        <h4 class="font-semibold text-primary mb-4">法律条款</h4>
+        <ul class="space-y-2">
+          <li>
+            <span class="text-sm text-secondary">隐私政策</span>
+          </li>
+          <li>
+            <span class="text-sm text-secondary">服务条款</span>
+          </li>
+          <li>
+            <span class="text-sm text-secondary">Cookie政策</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- Bottom Bar -->
+    <div class="pt-8 border-t border-border text-center">
+      <p class="text-sm text-muted">
+        © <%= Time.current.year %> SofindAI. 保留所有权利。专为法律人打造 <%= lucide_icon "heart", class: "inline w-4 h-4 text-danger" %>。
+      </p>
+    </div>
+  </div>
+</footer>

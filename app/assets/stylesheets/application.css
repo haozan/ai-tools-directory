@@ -1,0 +1,182 @@
+/*
+ * AI MUST READ - AVAILABLE COMPONENTS (DO NOT RECREATE THESE)
+ *
+ * Buttons: .btn-primary, .btn-secondary, .btn-success, .btn-warning, .btn-danger, .btn-ghost, .btn-outline, .btn-outline-primary
+ *          Sizes: .btn-xs, .btn-sm, .btn-md, .btn-lg, .btn-xl
+ * Cards: .card, .card-elevated, .card-flat + .card-header, .card-body, .card-footer
+ * Alerts: .alert-success, .alert-warning, .alert-danger, .alert-info
+ * Badges: .badge-primary, .badge-secondary, .badge-success, .badge-warning, .badge-danger, .badge-neutral
+ * Forms: .form-input, .form-textarea, .form-select, .form-label, .form-error, .form-help
+ * Enhanced Forms: Tom Select (searchable select), Flatpickr (date/time picker)
+ * Tables: .table, .table-header, .table-row, .table-cell, .table-header-cell
+ * Containers: .container-sm (login), .container-md (forms), .container-lg (detail), .container-xl (lists)
+ * Utils: .loading-spinner, .skeleton, .text-balance, .transition-default, .focus-ring
+ *
+ * All components defined in components.css - READ ONLY, DO NOT MODIFY
+ * Custom components go in "CUSTOM COMPONENTS" section at bottom of this file
+ */
+/* Import design system components - DO NOT MODIFY components.css */
+@import "components";
+
+/* Import third-party CSS libraries */
+@import "tom-select/dist/css/tom-select.css";
+@import "flatpickr/dist/flatpickr.css";
+@import "vendors"; /* Custom themes for third-party libraries */
+
+@tailwind base;
+@tailwind components;
+@layer components {
+
+  /*
+   * Design System Variables
+   *
+   * Usage:
+   * - Text: text-primary/secondary/muted
+   * - Surface: surface/surface-elevated
+   * - Brand: primary/secondary
+   * - Status: success/warning/danger/info
+   *
+   * NEVER use direct colors: text-white, bg-white, text-black, bg-black, etc.
+   * Use semantic variables only for maintainability and theme consistency.
+   */
+  :root {
+    /* Vibrant Blue - Primary brand color */
+    --color-primary: 220 90% 55%;
+    --color-primary-light: 218 90% 65%;
+    --color-primary-dark: 222 85% 45%;
+
+    /* Vibrant Purple - Secondary brand color */
+    --color-secondary: 280 75% 55%;
+    --color-secondary-light: 275 80% 65%;
+    --color-secondary-dark: 285 70% 45%;
+
+    /* Text colors - optimized for light mode */
+    --color-text-primary: 0 0% 15%;    /* Dark gray, optimal contrast */
+    --color-text-secondary: 0 0% 35%;  /* Secondary text */
+    --color-text-muted: 0 0% 55%;      /* Muted text */
+
+    /* Surface colors - light theme */
+    --color-surface: 0 0% 98%;          /* Nearly white background */
+    --color-surface-elevated: 0 0% 100%; /* Pure white for cards */
+    --color-border: 220 15% 90%;        /* Subtle borders */
+
+    /* Neutral color */
+    --color-neutral: 0 0% 50%;
+
+    /* Status colors - softer for light mode */
+    --color-success: 145 65% 45%;
+    --color-warning: 45 90% 50%;
+    --color-danger: 0 75% 55%;
+    --color-info: 200 85% 50%;
+
+    --color-success-bg: 145 65% 45% / 0.1;
+    --color-warning-bg: 45 90% 50% / 0.1;
+    --color-danger-bg: 0 75% 55% / 0.1;
+    --color-info-bg: 200 85% 50% / 0.1;
+
+    --font-family-sans: 'Rubik', 'Inter', 'Helvetica Neue', 'Arial', sans-serif;
+    --font-family-heading: 'Outfit', 'Rubik', sans-serif;
+    --font-family-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+
+    --border-radius-sm: 0;
+    --border-radius: 0;
+    --border-radius-md: 0;
+    --border-radius-lg: 0;
+    --border-radius-xl: 0;
+
+    --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  }
+
+  /*
+   * Dark Mode - Comprehensive optimization for contrast and visual effects
+   * Follows WCAG AA standards with minimum 4.5:1 text contrast ratio
+   */
+  .dark {
+    /* Same as :root for pure dark mode - no light theme needed */
+    --color-primary: 220 100% 65%;
+    --color-primary-light: 218 100% 75%;
+    --color-primary-dark: 222 90% 55%;
+
+    --color-secondary: 280 85% 65%;
+    --color-secondary-light: 275 90% 75%;
+    --color-secondary-dark: 285 80% 55%;
+
+    --color-text-primary: 0 0% 95%;
+    --color-text-secondary: 0 0% 75%;
+    --color-text-muted: 0 0% 55%;
+
+    --color-surface: 240 10% 8%;
+    --color-surface-elevated: 240 8% 12%;
+    --color-border: 240 6% 20%;
+
+    --color-success: 145 80% 50%;
+    --color-warning: 45 95% 60%;
+    --color-danger: 0 85% 65%;
+    --color-info: 200 95% 55%;
+
+    --color-success-bg: 145 80% 50% / 0.15;
+    --color-warning-bg: 45 95% 60% / 0.15;
+    --color-danger-bg: 0 85% 65% / 0.15;
+    --color-info-bg: 200 95% 55% / 0.15;
+
+    --color-neutral: 0 0% 70%;
+
+    /* Glow shadows for neon effect */
+    --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.4);
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.5), 0 1px 2px -1px rgb(0 0 0 / 0.5);
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
+    --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.5);
+    --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.5), 0 8px 10px -6px rgb(0 0 0 / 0.5);
+    --shadow-xl: 0 25px 50px -12px rgb(0 0 0 / 0.7);
+    --shadow-neon-blue: 0 0 20px hsl(220 100% 65% / 0.5);
+    --shadow-neon-purple: 0 0 20px hsl(280 85% 65% / 0.5);
+  }
+
+  /* Custom components for SofindAI */
+  
+  /* Neon glow effects */
+  .neon-glow-blue {
+    box-shadow: 0 0 20px hsl(220 100% 65% / 0.5), 0 0 40px hsl(220 100% 65% / 0.3);
+  }
+  
+  .neon-glow-purple {
+    box-shadow: 0 0 20px hsl(280 85% 65% / 0.5), 0 0 40px hsl(280 85% 65% / 0.3);
+  }
+  
+  /* Gradient backgrounds */
+  .gradient-primary {
+    background: linear-gradient(135deg, hsl(220 100% 65%) 0%, hsl(280 85% 65%) 100%);
+  }
+  
+  .gradient-surface {
+    background: linear-gradient(180deg, hsl(240 10% 10%) 0%, hsl(240 10% 8%) 100%);
+  }
+  
+  /* Tool card hover effect */
+  .tool-card {
+    @apply transition-all duration-300;
+  }
+  
+  .tool-card:hover {
+    @apply -translate-y-1;
+    box-shadow: 0 8px 24px hsl(220 100% 65% / 0.2), 0 0 20px hsl(220 100% 65% / 0.1);
+  }
+  
+  /* Search box with neon focus */
+  .search-box:focus {
+    box-shadow: 0 0 0 3px hsl(220 100% 65% / 0.3), 0 0 20px hsl(220 100% 65% / 0.4);
+  }
+  
+  /* Badge with glow */
+  .badge-glow {
+    box-shadow: 0 0 10px currentColor;
+  }
+
+} /* End of @layer components */
+
+@tailwind utilities;

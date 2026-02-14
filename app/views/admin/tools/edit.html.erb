@@ -1,0 +1,75 @@
+<% content_for :title, "Edit Tool" %>
+
+<div class="container-md">
+  <div class="flex items-center space-x-4">
+    <%= link_to admin_tools_path, class: "btn-ghost text-sm py-1 px-3" do %>
+      <%= lucide_icon "arrow-left", class: "w-4 h-4 mr-2" %>
+      Back to Tools
+    <% end %>
+  </div>
+
+  <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-50 mt-4 mb-8">Edit Tool</h1>
+
+  <!-- Form -->
+  <div class="card bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700">
+    <div class="card-body">
+      <%= form_with model: [:admin, @tool], local: true, class: "space-y-6" do |form| %>
+        <!-- Name -->
+        <div class="form-group">
+          <%= form.label :name %>
+          <%= form.text_field :name, placeholder: "Enter name..." %>
+        </div>
+
+        <!-- Website url -->
+        <div class="form-group">
+          <%= form.label :website_url %>
+          <%= form.text_field :website_url, placeholder: "Enter website url..." %>
+        </div>
+
+        <!-- Short description -->
+        <div class="form-group">
+          <%= form.label :short_description %>
+          <%= form.text_field :short_description, placeholder: "Enter short description..." %>
+        </div>
+
+        <!-- Long description -->
+        <div class="form-group">
+          <%= form.label :long_description %>
+          <%= form.text_area :long_description, rows: 5, placeholder: "Enter long description..." %>
+        </div>
+
+        <!-- Logo url -->
+        <div class="form-group">
+          <%= form.label :logo_url %>
+          <%= form.text_field :logo_url, placeholder: "Enter logo url..." %>
+        </div>
+
+        <!-- Pricing type -->
+        <div class="form-group">
+          <%= form.label :pricing_type %>
+          <%= form.text_field :pricing_type, placeholder: "Enter pricing type..." %>
+        </div>
+
+        <!-- Slug -->
+        <div class="form-group">
+          <%= form.label :slug %>
+          <%= form.text_field :slug, placeholder: "Enter slug..." %>
+        </div>
+
+        <!-- View count -->
+        <div class="form-group">
+          <%= form.label :view_count %>
+          <%= form.number_field :view_count, placeholder: "Enter view count..." %>
+        </div>
+
+        <!-- Form Actions -->
+        <div class="flex justify-end space-x-3">
+          <%= link_to admin_tool_path(@tool.id), class: "btn-ghost" do %>
+            Cancel
+          <% end %>
+          <%= form.submit "Update Tool", class: "btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
