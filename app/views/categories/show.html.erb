@@ -19,7 +19,7 @@
 </section>
 
 <!-- Tools Grid -->
-<section class="py-12 px-4 bg-surface min-h-screen">
+<section class="py-12 px-4 bg-surface">
   <div class="container-xl mx-auto">
     <% if @tools.any? %>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-8">
@@ -58,7 +58,7 @@
       </div>
       
       <!-- Pagination -->
-      <div class="flex justify-center">
+      <div class="flex justify-center mb-16">
         <%= paginate @tools, theme: 'tailwind' %>
       </div>
     <% else %>
@@ -73,20 +73,3 @@
     <% end %>
   </div>
 </section>
-
-<!-- Other Categories -->
-<% if @all_categories.any? %>
-  <section class="py-12 px-4 bg-surface-elevated border-t border-border">
-    <div class="container-xl mx-auto">
-      <h2 class="font-heading text-2xl font-bold text-primary mb-6">探索其他分类</h2>
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-        <% @all_categories.each do |category| %>
-          <%= link_to category_path(category), class: "card bg-surface border border-border rounded-xl p-4 text-center hover:border-primary transition-all" do %>
-            <h3 class="font-semibold text-primary mb-1"><%= category.name %></h3>
-            <p class="text-xs text-muted"><%= pluralize(category.tools_count, 'tool') %></p>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
-  </section>
-<% end %>

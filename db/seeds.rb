@@ -174,3 +174,156 @@ puts "📊 Summary:"
 puts "  - #{Category.count} categories"
 puts "  - #{Tool.count} tools"
 puts "  - #{Administrator.count} administrators"
+
+# Create Resources
+resources_data = [
+  # Video Tutorials
+  {
+    title: "AI Fundamentals for Beginners",
+    description: "A comprehensive introduction to artificial intelligence concepts, machine learning basics, and practical applications.",
+    url: "https://youtube.com/watch?v=example1",
+    category: "video",
+    logo_url: "https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&auto=format&fit=crop",
+    view_count: 15234
+  },
+  {
+    title: "Deep Learning with PyTorch",
+    description: "Learn how to build neural networks from scratch using PyTorch framework. Covers CNNs, RNNs, and transformers.",
+    url: "https://youtube.com/watch?v=example2",
+    category: "video",
+    logo_url: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&auto=format&fit=crop",
+    view_count: 23456
+  },
+  {
+    title: "Prompt Engineering Masterclass",
+    description: "Master the art of writing effective prompts for ChatGPT, Claude, and other large language models.",
+    url: "https://youtube.com/watch?v=example3",
+    category: "video",
+    logo_url: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&auto=format&fit=crop",
+    view_count: 34567
+  },
+  
+  # Document Resources
+  {
+    title: "OpenAI API Documentation",
+    description: "Official documentation for OpenAI's GPT models, DALL-E, Whisper, and other AI APIs with code examples.",
+    url: "https://platform.openai.com/docs",
+    category: "document",
+    view_count: 45678
+  },
+  {
+    title: "Hugging Face Transformers Guide",
+    description: "Complete guide to using Hugging Face's transformers library for NLP tasks, model training, and deployment.",
+    url: "https://huggingface.co/docs/transformers",
+    category: "document",
+    view_count: 23456
+  },
+  {
+    title: "LangChain Handbook",
+    description: "Comprehensive handbook for building LLM-powered applications using LangChain framework with Python examples.",
+    url: "https://python.langchain.com/docs",
+    category: "document",
+    view_count: 34567
+  },
+  {
+    title: "Stable Diffusion Guide",
+    description: "In-depth guide to using Stable Diffusion for image generation, including parameter tuning and model fine-tuning.",
+    url: "https://stability.ai/docs",
+    category: "document",
+    view_count: 28901
+  },
+  {
+    title: "AI Ethics & Safety Guidelines",
+    description: "Best practices and ethical considerations for developing and deploying AI systems responsibly.",
+    url: "https://ethics.ai/guidelines",
+    category: "document",
+    view_count: 12345
+  },
+  
+  # AI Media/Creators
+  {
+    title: "Andrej Karpathy",
+    description: "Renowned AI expert, former Tesla AI Director and OpenAI founding member. Shares educational content about AI, deep learning, and programming.",
+    url: "https://youtube.com/@AndrejKarpathy",
+    category: "media",
+    logo_url: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&auto=format&fit=crop",
+    subscribers_count: "1.15M",
+    view_count: 89012
+  },
+  {
+    title: "Two Minute Papers",
+    description: "Breaking down cutting-edge AI research papers into digestible 2-minute videos. Covers latest developments in machine learning and computer graphics.",
+    url: "https://youtube.com/@TwoMinutePapers",
+    category: "media",
+    logo_url: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&auto=format&fit=crop",
+    subscribers_count: "1.45M",
+    view_count: 67890
+  },
+  {
+    title: "Lex Fridman",
+    description: "AI researcher at MIT hosting in-depth conversations with leading experts in AI, robotics, physics, and philosophy.",
+    url: "https://youtube.com/@lexfridman",
+    category: "media",
+    logo_url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop",
+    subscribers_count: "3.2M",
+    view_count: 123456
+  },
+  {
+    title: "Yannic Kilcher",
+    description: "Deep dives into AI research papers with clear explanations. Covers NLP, computer vision, reinforcement learning, and more.",
+    url: "https://youtube.com/@YannicKilcher",
+    category: "media",
+    logo_url: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&auto=format&fit=crop",
+    subscribers_count: "428K",
+    view_count: 45678
+  },
+  {
+    title: "AI Explained",
+    description: "Simplified explanations of complex AI concepts and latest AI news. Perfect for staying updated on AI developments.",
+    url: "https://youtube.com/@aiexplained-official",
+    category: "media",
+    logo_url: "https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=400&auto=format&fit=crop",
+    subscribers_count: "234K",
+    view_count: 34567
+  },
+  {
+    title: "Sam Witteveen",
+    description: "Practical tutorials on building LLM applications, prompt engineering, and AI automation tools.",
+    url: "https://youtube.com/@samwitteveenai",
+    category: "media",
+    logo_url: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&auto=format&fit=crop",
+    subscribers_count: "156K",
+    view_count: 28901
+  },
+  {
+    title: "Matt Wolfe",
+    description: "Weekly AI news roundup and reviews of the latest AI tools. Helps you stay ahead of AI trends and discover new tools.",
+    url: "https://youtube.com/@mreflow",
+    category: "media",
+    logo_url: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&auto=format&fit=crop",
+    subscribers_count: "687K",
+    view_count: 56789
+  },
+  {
+    title: "The AI Advantage",
+    description: "Practical AI tutorials focused on productivity and automation. Learn how to use AI tools effectively in your workflow.",
+    url: "https://youtube.com/@aiadvantage",
+    category: "media",
+    logo_url: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&auto=format&fit=crop",
+    subscribers_count: "245K",
+    view_count: 23456
+  }
+]
+
+puts "\nCreating resources..."
+resources_data.each do |resource_data|
+  resource = Resource.find_or_create_by!(title: resource_data[:title]) do |r|
+    r.assign_attributes(resource_data)
+  end
+  puts "  Created: #{resource.title}"
+end
+
+puts "Created #{Resource.count} resources"
+puts "  - #{Resource.by_category('video').count} video tutorials"
+puts "  - #{Resource.by_category('document').count} documents"
+puts "  - #{Resource.by_category('media').count} media creators"

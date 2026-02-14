@@ -117,31 +117,7 @@
   </div>
 </section>
 
-<!-- Categories Showcase -->
-<section class="py-16 px-4 bg-surface-elevated border-t border-border">
-  <div class="container-xl mx-auto">
-    <div class="text-center mb-12">
-      <h2 class="font-heading text-4xl font-bold text-primary mb-4">
-        按分类探索
-      </h2>
-      <p class="text-xl text-secondary">
-        为你的法律工作找到最合适的AI工具
-      </p>
-    </div>
-    
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-      <% @categories.each do |category| %>
-        <%= link_to category_path(category), class: "card bg-surface border border-border rounded-xl p-6 text-center hover:border-primary cursor-pointer transition-all group" do %>
-          <div class="inline-flex items-center justify-center w-12 h-12 bg-primary/10 border border-primary/30 rounded-xl mb-3 group-hover:bg-primary/20 transition-colors">
-            <%= lucide_icon "folder", class: "w-6 h-6 text-primary" %>
-          </div>
-          <h3 class="font-semibold text-primary mb-1"><%= category.name %></h3>
-          <p class="text-xs text-muted"><%= pluralize(category.tools_count, 'tool') %></p>
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-</section>
+
 
 <!-- Footer -->
 <footer class="bg-surface border-t border-border py-12 px-4">

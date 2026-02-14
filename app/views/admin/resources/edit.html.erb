@@ -1,0 +1,78 @@
+<% content_for :title, "Edit Resource" %>
+
+<div class="container-md">
+  <div class="flex items-center space-x-4">
+    <%= link_to admin_resources_path, class: "btn-ghost text-sm py-1 px-3" do %>
+      <%= lucide_icon "arrow-left", class: "w-4 h-4 mr-2" %>
+      Back to Resources
+    <% end %>
+  </div>
+
+  <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-50 mt-4 mb-8">Edit Resource</h1>
+
+  <!-- Form -->
+  <div class="card bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700">
+    <div class="card-body">
+      <%= form_with model: [:admin, @resource], local: true, class: "space-y-6" do |form| %>
+        <!-- Title -->
+        <div class="form-group">
+          <%= form.label :title %>
+          <%= form.text_field :title, placeholder: "Enter title..." %>
+        </div>
+
+        <!-- Description -->
+        <div class="form-group">
+          <%= form.label :description %>
+          <%= form.text_area :description, rows: 5, placeholder: "Enter description..." %>
+        </div>
+
+        <!-- Url -->
+        <div class="form-group">
+          <%= form.label :url %>
+          <%= form.text_field :url, placeholder: "Enter url..." %>
+        </div>
+
+        <!-- Category -->
+        <div class="form-group">
+          <%= form.label :category %>
+          <%= form.text_field :category, placeholder: "Enter category..." %>
+        </div>
+
+        <!-- Subscribers count -->
+        <div class="form-group">
+          <%= form.label :subscribers_count %>
+          <%= form.text_field :subscribers_count, placeholder: "Enter subscribers count..." %>
+        </div>
+
+        <!-- Logo url -->
+        <div class="form-group">
+          <%= form.label :logo_url %>
+          <%= form.text_field :logo_url, placeholder: "Enter logo url..." %>
+        </div>
+
+        <!-- Featured -->
+        <div class="form-group">
+          <label class="flex items-center cursor-pointer">
+            <%= form.check_box :featured,
+                  class: "mr-3 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 dark:border-gray-600 rounded dark:bg-gray-700" %>
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Featured</span>
+          </label>
+        </div>
+
+        <!-- View count -->
+        <div class="form-group">
+          <%= form.label :view_count %>
+          <%= form.number_field :view_count, placeholder: "Enter view count..." %>
+        </div>
+
+        <!-- Form Actions -->
+        <div class="flex justify-end space-x-3">
+          <%= link_to admin_resource_path(@resource.id), class: "btn-ghost" do %>
+            Cancel
+          <% end %>
+          <%= form.submit "Update Resource", class: "btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

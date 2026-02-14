@@ -1,0 +1,161 @@
+<% content_for :title, "AI Learning Resources" %>
+
+<div class="min-h-screen bg-surface py-12">
+  <div class="container-xl mx-auto px-4">
+    
+    <!-- Page Header -->
+    <div class="text-center mb-16">
+      <h1 class="font-heading text-4xl lg:text-5xl font-bold text-primary mb-4">
+        AI Learning Resources
+      </h1>
+      <p class="text-lg text-secondary max-w-3xl mx-auto">
+        Curated collection of AI tutorials, case studies, and documentation. Covering prompt engineering, model usage, and industry practices to inspire your creativity and learning.
+      </p>
+    </div>
+
+    <!-- Video Tutorials Section -->
+    <% if @videos.any? %>
+      <section class="mb-16">
+        <div class="flex items-center justify-between mb-8">
+          <div class="flex items-center gap-3">
+            <%= lucide_icon "video", class: "w-6 h-6 text-primary" %>
+            <h2 class="font-heading text-2xl font-bold text-primary">Video Tutorials</h2>
+            <span class="px-3 py-1 bg-primary/10 text-primary text-sm font-medium">
+              <%= @videos.count %> Videos
+            </span>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <% @videos.each do |video| %>
+            <%= link_to video.url, target: "_blank", rel: "noopener", class: "group" do %>
+              <div class="card bg-surface-elevated border border-border hover:border-primary transition-all duration-300 overflow-hidden h-full">
+                <% if video.logo_url.present? %>
+                  <div class="aspect-video overflow-hidden bg-surface">
+                    <img src="<%= video.logo_url %>" 
+                         alt="<%= video.title %>" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                  </div>
+                <% end %>
+                <div class="card-body p-6">
+                  <h3 class="font-heading text-lg font-bold text-primary mb-2 group-hover:text-primary-light transition-colors">
+                    <%= video.title %>
+                  </h3>
+                  <% if video.description.present? %>
+                    <p class="text-secondary text-sm line-clamp-3 mb-3">
+                      <%= video.description %>
+                    </p>
+                  <% end %>
+                  <div class="flex items-center gap-2 text-muted text-xs">
+                    <%= lucide_icon "play-circle", class: "w-4 h-4" %>
+                    <span><%= video.view_count %> views</span>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </section>
+    <% end %>
+
+    <!-- Document Resources Section -->
+    <% if @documents.any? %>
+      <section class="mb-16">
+        <div class="flex items-center justify-between mb-8">
+          <div class="flex items-center gap-3">
+            <%= lucide_icon "file-text", class: "w-6 h-6 text-primary" %>
+            <h2 class="font-heading text-2xl font-bold text-primary">Document Resources</h2>
+            <span class="px-3 py-1 bg-primary/10 text-primary text-sm font-medium">
+              <%= @documents.count %> Documents
+            </span>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <% @documents.each do |doc| %>
+            <%= link_to doc.url, target: "_blank", rel: "noopener", class: "group" do %>
+              <div class="card bg-surface-elevated border border-border hover:border-primary transition-all duration-300 h-full">
+                <div class="card-body p-6">
+                  <div class="flex items-start gap-4">
+                    <div class="flex-shrink-0 w-12 h-12 bg-primary/10 flex items-center justify-center">
+                      <%= lucide_icon "file-text", class: "w-6 h-6 text-primary" %>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <h3 class="font-heading text-lg font-bold text-primary mb-2 group-hover:text-primary-light transition-colors">
+                        <%= doc.title %>
+                      </h3>
+                      <% if doc.description.present? %>
+                        <p class="text-secondary text-sm line-clamp-2">
+                          <%= doc.description %>
+                        </p>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </section>
+    <% end %>
+
+    <!-- AI Media/Creators Section -->
+    <% if @media.any? %>
+      <section class="mb-16">
+        <div class="flex items-center justify-between mb-8">
+          <div class="flex items-center gap-3">
+            <%= lucide_icon "users", class: "w-6 h-6 text-primary" %>
+            <h2 class="font-heading text-2xl font-bold text-primary">AI Creators & Media</h2>
+            <span class="px-3 py-1 bg-primary/10 text-primary text-sm font-medium">
+              <%= @media.count %> Creators
+            </span>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <% @media.each do |creator| %>
+            <%= link_to creator.url, target: "_blank", rel: "noopener", class: "group" do %>
+              <div class="card bg-surface-elevated border border-border hover:border-primary transition-all duration-300 overflow-hidden h-full">
+                <% if creator.logo_url.present? %>
+                  <div class="aspect-square overflow-hidden bg-surface">
+                    <img src="<%= creator.logo_url %>" 
+                         alt="<%= creator.title %>" 
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                  </div>
+                <% end %>
+                <div class="card-body p-5">
+                  <h3 class="font-heading text-base font-bold text-primary mb-2 group-hover:text-primary-light transition-colors">
+                    <%= creator.title %>
+                  </h3>
+                  <% if creator.subscribers_count.present? %>
+                    <div class="flex items-center gap-2 text-muted text-sm mb-3">
+                      <%= lucide_icon "users", class: "w-4 h-4" %>
+                      <span><%= creator.subscribers_count %></span>
+                    </div>
+                  <% end %>
+                  <% if creator.description.present? %>
+                    <p class="text-secondary text-sm line-clamp-4">
+                      <%= creator.description %>
+                    </p>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </section>
+    <% end %>
+
+    <!-- Empty State -->
+    <% if @videos.empty? && @documents.empty? && @media.empty? %>
+      <div class="text-center py-16">
+        <div class="w-24 h-24 mx-auto mb-6 bg-surface-elevated flex items-center justify-center">
+          <%= lucide_icon "inbox", class: "w-12 h-12 text-muted" %>
+        </div>
+        <h3 class="font-heading text-2xl font-bold text-primary mb-3">No Resources Yet</h3>
+        <p class="text-secondary mb-6">Resources will appear here once they are added.</p>
+      </div>
+    <% end %>
+
+  </div>
+</div>

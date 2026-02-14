@@ -14,8 +14,11 @@
       <!-- Menu Links -->
       <div class="flex items-center gap-6">
         <div class="hidden md:flex items-center gap-6">
-          <%= link_to tools_path, class: "text-sm text-secondary hover:text-primary transition-colors font-medium" do %>
+          <%= link_to categories_path, class: "text-sm text-secondary hover:text-primary transition-colors font-medium" do %>
             分类
+          <% end %>
+          <%= link_to resources_path, class: "text-sm text-secondary hover:text-primary transition-colors font-medium" do %>
+            资源
           <% end %>
           <%= link_to new_submission_path, class: "btn-primary btn-sm inline-flex items-center gap-2" do %>
             <%= lucide_icon "plus", class: "w-4 h-4" %>
