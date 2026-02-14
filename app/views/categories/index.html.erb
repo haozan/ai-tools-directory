@@ -1,44 +1,52 @@
 <% content_for :title, "浏览所有分类" %>
 
-<!-- Hero Section -->
-<section class="gradient-surface py-20 px-4">
-  <div class="container-xl mx-auto text-center">
-    <div class="inline-flex items-center gap-3 px-6 py-2 bg-primary/10 border border-primary/30 rounded-full mb-6">
-      <%= lucide_icon "grid-3x3", class: "w-5 h-5 text-primary" %>
-      <span class="text-sm font-semibold text-primary">浏览所有分类</span>
-    </div>
-    <h1 class="font-heading text-5xl lg:text-6xl font-bold text-primary mb-6">
-      按分类探索
-    </h1>
-    <p class="text-xl text-secondary max-w-2xl mx-auto">
-      为你的法律工作找到最合适的AI工具
-    </p>
-  </div>
-</section>
+<div class="bg-surface min-h-screen" data-controller="category-filter" data-category-filter-selected-value="<%= @categories.first&.id %>">
+  <!-- Split Layout: Categories Sidebar + Tools Grid -->
+  <section class="py-8 px-4">
+    <div class="container-xl mx-auto">
+      <div class="flex gap-8 items-start">
+        <!-- Left Sidebar: Categories List -->
+        <aside class="w-80 flex-shrink-0">
+          <div class="sticky top-0">
+            <nav class="space-y-2">
+              <% @categories.each do |category| %>
+                <button 
+                  type="button"
+                  data-category-filter-target="categoryBtn"
+                  data-category-id="<%= category.id %>"
+                  data-action="click->category-filter#selectCategory"
+                  class="w-full text-left px-4 py-3 rounded-xl transition-all duration-300 flex items-center gap-4 group <%= 'bg-primary/10 border-2 border-primary' if category == @categories.first %> <%= 'border-2 border-border hover:border-primary hover:bg-surface-elevated' if category != @categories.first %>">
+                  <div class="flex items-center justify-center w-12 h-12 bg-primary/10 border border-primary/30 rounded-lg group-hover:bg-primary/20 flex-shrink-0">
+                    <%= lucide_icon "folder", class: "w-6 h-6 text-primary" %>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <h3 class="font-semibold text-primary mb-1">
+                      <%= category.name %>
+                    </h3>
+                    <div class="flex items-center gap-2 text-muted text-sm">
+                      <%= lucide_icon "layers", class: "w-4 h-4" %>
+                      <span><%= category.tools_count %> 工具</span>
+                    </div>
+                  </div>
+                </button>
+              <% end %>
+            </nav>
+          </div>
+        </aside>
 
-<!-- Categories Grid -->
-<section class="py-16 px-4 bg-surface">
-  <div class="container-xl mx-auto">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-      <% @categories.each do |category| %>
-        <%= link_to category_path(category), class: "card bg-surface-elevated border-2 border-border hover:border-primary rounded-2xl p-8 text-center transition-all duration-300 group hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/20" do %>
-          <div class="inline-flex items-center justify-center w-20 h-20 bg-primary/10 border-2 border-primary/30 rounded-2xl mb-6 group-hover:bg-primary/20 group-hover:border-primary/50 transition-all duration-300 group-hover:scale-110">
-            <%= lucide_icon "folder", class: "w-10 h-10 text-primary" %>
+        <!-- Right Content: Tools Grid -->
+        <main class="flex-1 min-w-0">
+          <div data-category-filter-target="toolsContainer">
+            <!-- Tools will be loaded here -->
+            <div class="text-center py-12">
+              <div class="inline-flex items-center justify-center w-16 h-16 bg-primary/10 border-2 border-primary/30 rounded-2xl mb-4">
+                <%= lucide_icon "loader", class: "w-8 h-8 text-primary animate-spin" %>
+              </div>
+              <p class="text-secondary">加载中...</p>
+            </div>
           </div>
-          <h3 class="font-heading text-2xl font-bold text-primary mb-3 group-hover:text-primary-light transition-colors">
-            <%= category.name %>
-          </h3>
-          <% if category.description.present? %>
-            <p class="text-sm text-secondary mb-4 line-clamp-2">
-              <%= category.description %>
-            </p>
-          <% end %>
-          <div class="flex items-center justify-center gap-2 text-muted">
-            <%= lucide_icon "layers", class: "w-4 h-4" %>
-            <span class="text-sm font-medium"><%= pluralize(category.tools_count, 'tool') %></span>
-          </div>
-        <% end %>
-      <% end %>
+        </main>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+</div>
