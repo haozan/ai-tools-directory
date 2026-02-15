@@ -47,7 +47,13 @@
         <!-- Pricing type -->
         <div class="form-group">
           <%= form.label :pricing_type %>
-          <%= form.text_field :pricing_type, placeholder: "Enter pricing type..." %>
+          <%= form.select :pricing_type, options_for_select(['Free', 'Freemium', 'Paid'], @tool.pricing_type), { prompt: 'Select pricing type...' }, { class: 'form-select' } %>
+        </div>
+
+        <!-- Categories -->
+        <div class="form-group">
+          <%= form.label :category_ids, "Categories" %>
+          <%= form.select :category_ids, options_from_collection_for_select(Category.order(:name), :id, :name, @tool.category_ids), { prompt: 'Select categories...' }, { multiple: true, class: 'form-select', size: 8 } %>
         </div>
 
         <!-- Slug -->
