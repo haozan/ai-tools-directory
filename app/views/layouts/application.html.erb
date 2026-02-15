@@ -22,15 +22,21 @@
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= content_for?(:head) ? yield(:head) : '' %>
+    
+    <!-- Resource Hints for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="dns-prefetch" href="https://backend-prod-hjlerckip39sk4no.s3-accelerate.amazonaws.com">
+    
+    <!-- Optimized Font Loading -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <!-- Load error handler early to catch all errors -->
     <%= javascript_include_tag 'error_handler' if Rails.env.development? %>
     <%= javascript_include_tag 'application', type: "module" %>
-    <!-- Generate new favicon at `images/app-favicon.svg` at the first time, remove this line after generated  -->
-    <%= favicon_link_tag asset_path("app-favicon.svg") unless Rails.env.test? %>
+    <%= favicon_link_tag asset_path("app-favicon.png") unless Rails.env.test? %>
   </head>
   <body class="flex flex-col min-h-screen text-foreground <%= body_class %>">
     <main class="flex-1 flex flex-col bg-surface">

@@ -435,6 +435,7 @@ DEPENDENCIES
   launchy
   listen
   lucide-rails (~> 0.7.1)
+  nokogiri (~> 1.16)
   ostruct (~> 0.6.3)
   parser (= 3.3.5.0)
   pg (>= 1.1)

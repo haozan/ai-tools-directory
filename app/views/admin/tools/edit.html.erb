@@ -40,8 +40,26 @@
 
         <!-- Logo url -->
         <div class="form-group">
-          <%= form.label :logo_url %>
-          <%= form.text_field :logo_url, placeholder: "Enter logo url..." %>
+          <%= form.label :logo_url, "Logo URL (自动提取或手动输入)" %>
+          <%= form.text_field :logo_url, placeholder: "留空则自动从网站提取 OG 图..." %>
+          <p class="text-sm text-muted mt-1">留空时，系统会自动从网站 URL 提取 Open Graph 图片</p>
+        </div>
+
+        <!-- Logo upload -->
+        <div class="form-group">
+          <%= form.label :logo, "或上传 Logo 图片" %>
+          <%= form.file_field :logo, accept: 'image/*', class: 'form-control' %>
+          <% if @tool.logo.attached? %>
+            <div class="mt-2">
+              <%= image_tag @tool.logo, class: "w-24 h-24 object-cover rounded-lg" %>
+              <p class="text-sm text-muted mt-1">当前已上传图片</p>
+            </div>
+          <% elsif @tool.logo_url.present? %>
+            <div class="mt-2">
+              <%= image_tag @tool.logo_url, class: "w-24 h-24 object-cover rounded-lg" rescue nil %>
+              <p class="text-sm text-muted mt-1">当前使用 URL 图片</p>
+            </div>
+          <% end %>
         </div>
 
         <!-- Pricing type -->

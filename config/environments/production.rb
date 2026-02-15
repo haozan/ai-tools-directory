@@ -79,6 +79,12 @@ Rails.application.configure do
 
   # Clacky: Enable caching
   config.cache_store = :memory_store
+  
+  # Configure static asset serving with caching headers
+  config.public_file_server.enabled = true
+  config.public_file_server.headers = {
+    'Cache-Control' => 'public, max-age=31536000, immutable'
+  }
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter = :resque

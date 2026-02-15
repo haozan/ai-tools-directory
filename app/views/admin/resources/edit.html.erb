@@ -35,7 +35,7 @@
         <!-- Category -->
         <div class="form-group">
           <%= form.label :category %>
-          <%= form.text_field :category, placeholder: "Enter category..." %>
+          <%= form.select :category, options_for_select(['video', 'document', 'media'], @resource.category), { prompt: 'Select category...' }, { class: 'form-select' } %>
         </div>
 
         <!-- Subscribers count -->

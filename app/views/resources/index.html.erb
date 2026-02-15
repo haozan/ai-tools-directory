@@ -1,4 +1,4 @@
-<% content_for :title, "AI Learning Resources" %>
+<% content_for :title, "AI学习资源" %>
 
 <div class="min-h-screen bg-surface py-12">
   <div class="container-xl mx-auto px-4">
@@ -6,10 +6,10 @@
     <!-- Page Header -->
     <div class="text-center mb-16">
       <h1 class="font-heading text-4xl lg:text-5xl font-bold text-primary mb-4">
-        AI Learning Resources
+        AI学习资源
       </h1>
       <p class="text-lg text-secondary max-w-3xl mx-auto">
-        Curated collection of AI tutorials, case studies, and documentation. Covering prompt engineering, model usage, and industry practices to inspire your creativity and learning.
+        精选的AI教程、案例研究和文档集合。涵盖提示词工程、模型使用和行业实践，激发你的创造力和学习热情。
       </p>
     </div>
 
@@ -19,9 +19,9 @@
         <div class="flex items-center justify-between mb-8">
           <div class="flex items-center gap-3">
             <%= lucide_icon "video", class: "w-6 h-6 text-primary" %>
-            <h2 class="font-heading text-2xl font-bold text-primary">Video Tutorials</h2>
+            <h2 class="font-heading text-2xl font-bold text-primary">视频教程</h2>
             <span class="px-3 py-1 bg-primary/10 text-primary text-sm font-medium">
-              <%= @videos.count %> Videos
+              <%= @videos.count %> 个视频
             </span>
           </div>
         </div>
@@ -48,7 +48,7 @@
                   <% end %>
                   <div class="flex items-center gap-2 text-muted text-xs">
                     <%= lucide_icon "play-circle", class: "w-4 h-4" %>
-                    <span><%= video.view_count %> views</span>
+                    <span><%= video.view_count %> 次观看</span>
                   </div>
                 </div>
               </div>
@@ -64,9 +64,9 @@
         <div class="flex items-center justify-between mb-8">
           <div class="flex items-center gap-3">
             <%= lucide_icon "file-text", class: "w-6 h-6 text-primary" %>
-            <h2 class="font-heading text-2xl font-bold text-primary">Document Resources</h2>
+            <h2 class="font-heading text-2xl font-bold text-primary">文档资源</h2>
             <span class="px-3 py-1 bg-primary/10 text-primary text-sm font-medium">
-              <%= @documents.count %> Documents
+              <%= @documents.count %> 个文档
             </span>
           </div>
         </div>
@@ -105,9 +105,9 @@
         <div class="flex items-center justify-between mb-8">
           <div class="flex items-center gap-3">
             <%= lucide_icon "users", class: "w-6 h-6 text-primary" %>
-            <h2 class="font-heading text-2xl font-bold text-primary">AI Creators & Media</h2>
+            <h2 class="font-heading text-2xl font-bold text-primary">AI创作者与媒体</h2>
             <span class="px-3 py-1 bg-primary/10 text-primary text-sm font-medium">
-              <%= @media.count %> Creators
+              <%= @media.count %> 个创作者
             </span>
           </div>
         </div>
@@ -152,8 +152,8 @@
         <div class="w-24 h-24 mx-auto mb-6 bg-surface-elevated flex items-center justify-center">
           <%= lucide_icon "inbox", class: "w-12 h-12 text-muted" %>
         </div>
-        <h3 class="font-heading text-2xl font-bold text-primary mb-3">No Resources Yet</h3>
-        <p class="text-secondary mb-6">Resources will appear here once they are added.</p>
+        <h3 class="font-heading text-2xl font-bold text-primary mb-3">暂无资源</h3>
+        <p class="text-secondary mb-6">添加资源后将在此处显示。</p>
       </div>
     <% end %>
 
