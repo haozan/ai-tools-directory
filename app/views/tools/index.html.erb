@@ -60,13 +60,7 @@
                   <%= lucide_icon "sparkles", class: "w-12 h-12 text-surface-elevated" %>
                 </div>
               <% end %>
-              
-              <!-- Price Badge -->
-              <div class="absolute top-3 right-3">
-                <span class="badge-<%= tool.pricing_type == 'Free' ? 'success' : tool.pricing_type == 'Freemium' ? 'info' : 'warning' %> badge-glow px-3 py-1 text-xs font-semibold rounded-full">
-                  <%= tool.pricing_type %>
-                </span>
-              </div>
+
             </div>
             
             <!-- Tool Info -->

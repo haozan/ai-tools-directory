@@ -1,0 +1,325 @@
+# 酷律师工具导入数据
+# 使用命令: rake tools:import
+
+categories:
+  # ========== AI 大模型 ==========
+  - name: "AI 大模型"
+    description: "各类AI大模型和智能助手工具"
+
+  # ========== 法律大数据 ==========
+  - name: "法律大数据"
+    description: "法律数据库、案例检索和企业信息查询工具"
+
+  # ========== 投融资/IPO ==========
+  - name: "投融资/IPO"
+    description: "投融资、IPO相关信息查询和新媒体工具"
+
+  # ========== 业务创新 ==========
+  - name: "业务创新"
+    description: "法律科技和业务创新工具"
+
+tools:
+  # ==================== AI 大模型 ====================
+  - name: "通义法睿"
+    website_url: "https://tongyi.aliyun.com/farui"
+    short_description: "阿里云推出的法律AI助手"
+    pricing_type: "Free"
+    categories:
+      - "AI 大模型"
+
+  - name: "MetaLaw"
+    website_url: "https://meta.law/"
+    short_description: "法律AI智能平台"
+    pricing_type: "Free"
+    categories:
+      - "AI 大模型"
+
+  - name: "Kimi"
+    website_url: "https://kimi.moonshot.cn/"
+    short_description: "Moonshot AI推出的智能助手"
+    pricing_type: "Free"
+    categories:
+      - "AI 大模型"
+
+  - name: "文心一言"
+    website_url: "https://yiyan.baidu.com/"
+    short_description: "百度推出的AI对话系统"
+    pricing_type: "Free"
+    categories:
+      - "AI 大模型"
+
+  - name: "智谱清言"
+    website_url: "https://chatglm.cn/"
+    short_description: "智谱AI推出的对话系统"
+    pricing_type: "Free"
+    categories:
+      - "AI 大模型"
+
+  - name: "通义千问"
+    website_url: "https://tongyi.aliyun.com/qianwen/"
+    short_description: "阿里云推出的大语言模型"
+    pricing_type: "Free"
+    categories:
+      - "AI 大模型"
+
+  - name: "讯飞星火"
+    website_url: "https://passport.xfyun.cn/"
+    short_description: "科大讯飞推出的认知大模型"
+    pricing_type: "Free"
+    categories:
+      - "AI 大模型"
+
+  - name: "百度文库"
+    website_url: "https://wenku.baidu.com/"
+    short_description: "百度文档分享平台"
+    pricing_type: "Freemium"
+    categories:
+      - "AI 大模型"
+
+  - name: "Coze"
+    website_url: "https://www.coze.com/"
+    short_description: "AI智能助手开发平台（国际版）"
+    pricing_type: "Free"
+    categories:
+      - "AI 大模型"
+
+  - name: "扣子"
+    website_url: "https://www.coze.cn/"
+    short_description: "AI智能助手开发平台（国内版）"
+    pricing_type: "Free"
+    categories:
+      - "AI 大模型"
+
+  - name: "ChatGPT"
+    website_url: "https://chatgpt.com/"
+    short_description: "OpenAI推出的对话AI系统"
+    pricing_type: "Freemium"
+    categories:
+      - "AI 大模型"
+
+  - name: "Midjourney"
+    website_url: "https://www.midjourney.com/"
+    short_description: "AI图像生成工具"
+    pricing_type: "Paid"
+    categories:
+      - "AI 大模型"
+
+  - name: "Gemini"
+    website_url: "https://gemini.google.com/"
+    short_description: "Google推出的多模态AI模型"
+    pricing_type: "Free"
+    categories:
+      - "AI 大模型"
+
+  - name: "Claude"
+    website_url: "https://www.anthropic.com/"
+    short_description: "Anthropic推出的AI助手"
+    pricing_type: "Freemium"
+    categories:
+      - "AI 大模型"
+
+  - name: "AI工具集导航"
+    website_url: "https://ai-bot.cn/"
+    short_description: "汇总各类AI工具的导航网站"
+    pricing_type: "Free"
+    categories:
+      - "AI 大模型"
+
+  # ==================== 法律大数据 ====================
+  - name: "北大法宝"
+    website_url: "https://www.pkulaw.com/"
+    short_description: "专业法律数据库和检索平台"
+    pricing_type: "Paid"
+    categories:
+      - "法律大数据"
+
+  - name: "元典智库"
+    website_url: "https://chineselaw.com/"
+    short_description: "法律智库和数据服务平台"
+    pricing_type: "Paid"
+    categories:
+      - "法律大数据"
+
+  - name: "法信"
+    website_url: "https://faxin.cn/"
+    short_description: "人民法院出版社法律数据库"
+    pricing_type: "Freemium"
+    categories:
+      - "法律大数据"
+
+  - name: "聚法"
+    website_url: "https://www.jufaanli.com/"
+    short_description: "法律案例检索和分析平台"
+    pricing_type: "Freemium"
+    categories:
+      - "法律大数据"
+
+  - name: "威科"
+    website_url: "https://law.wkinfo.com.cn/"
+    short_description: "威科先行法律信息库"
+    pricing_type: "Paid"
+    categories:
+      - "法律大数据"
+
+  - name: "国家企业信用信息公示系统"
+    website_url: "https://www.gsxt.gov.cn/"
+    short_description: "官方企业信息公示平台"
+    pricing_type: "Free"
+    categories:
+      - "法律大数据"
+
+  - name: "企信宝"
+    website_url: "https://www.qixin.com/"
+    short_description: "企业信息查询工具"
+    pricing_type: "Freemium"
+    categories:
+      - "法律大数据"
+
+  - name: "天眼查"
+    website_url: "https://www.tianyancha.com/"
+    short_description: "商业安全查询工具"
+    pricing_type: "Freemium"
+    categories:
+      - "法律大数据"
+
+  - name: "企查查"
+    website_url: "https://www.qcc.com/"
+    short_description: "企业工商信息查询平台"
+    pricing_type: "Freemium"
+    categories:
+      - "法律大数据"
+
+  - name: "中国商标网"
+    website_url: "https://sbj.cnipa.gov.cn/"
+    short_description: "国家知识产权局商标局官网"
+    pricing_type: "Free"
+    categories:
+      - "法律大数据"
+
+  - name: "法蝉"
+    website_url: "https://www.fachans.com/"
+    short_description: "法律数据分析和案件管理工具"
+    pricing_type: "Freemium"
+    categories:
+      - "法律大数据"
+
+  - name: "iCourt"
+    website_url: "https://www.icourt.cc/"
+    short_description: "智能法律研究平台"
+    pricing_type: "Freemium"
+    categories:
+      - "法律大数据"
+
+  - name: "金助理"
+    website_url: "https://www.kinglex.cn/"
+    short_description: "法律事务管理助手"
+    pricing_type: "Freemium"
+    categories:
+      - "法律大数据"
+
+  - name: "印象笔记"
+    website_url: "https://yinxiang.com/"
+    short_description: "知识管理和笔记工具"
+    pricing_type: "Freemium"
+    categories:
+      - "法律大数据"
+
+  - name: "iLovePDF"
+    website_url: "https://www.ilovepdf.com/"
+    short_description: "在线PDF处理工具"
+    pricing_type: "Freemium"
+    categories:
+      - "法律大数据"
+
+  - name: "WPS"
+    website_url: "https://www.wps.cn/"
+    short_description: "办公软件套件"
+    pricing_type: "Freemium"
+    categories:
+      - "法律大数据"
+
+  - name: "ProcessOn"
+    website_url: "https://www.processon.com/"
+    short_description: "在线思维导图和流程图工具"
+    pricing_type: "Freemium"
+    categories:
+      - "法律大数据"
+
+  - name: "沉浸式翻译"
+    website_url: "https://immersivetranslate.com/"
+    short_description: "网页双语对照翻译插件"
+    pricing_type: "Freemium"
+    categories:
+      - "法律大数据"
+
+  # ==================== 投融资/IPO ====================
+  - name: "全国中小企业股份转让系统"
+    website_url: "https://www.neeq.com.cn/"
+    short_description: "新三板官方网站"
+    pricing_type: "Free"
+    categories:
+      - "投融资/IPO"
+
+  - name: "巨潮资讯"
+    website_url: "http://www.cninfo.com.cn/"
+    short_description: "证监会指定信息披露网站"
+    pricing_type: "Free"
+    categories:
+      - "投融资/IPO"
+
+  - name: "视频号"
+    website_url: "https://channels.weixin.qq.com/"
+    short_description: "微信视频内容平台"
+    pricing_type: "Free"
+    categories:
+      - "投融资/IPO"
+
+  - name: "抖音网页版"
+    website_url: "https://www.douyin.com/"
+    short_description: "短视频社交平台网页版"
+    pricing_type: "Free"
+    categories:
+      - "投融资/IPO"
+
+  - name: "剪映"
+    website_url: "https://www.capcut.cn/"
+    short_description: "视频剪辑工具"
+    pricing_type: "Free"
+    categories:
+      - "投融资/IPO"
+
+  - name: "可画"
+    website_url: "https://www.canva.cn/"
+    short_description: "在线设计工具"
+    pricing_type: "Freemium"
+    categories:
+      - "投融资/IPO"
+
+  # ==================== 业务创新 ====================
+  - name: "理脉"
+    website_url: "https://www.legalminer.com/"
+    short_description: "法律科技解决方案平台"
+    pricing_type: "Paid"
+    categories:
+      - "业务创新"
+
+  - name: "海蜂法务"
+    website_url: "https://www.haifeng.cn/"
+    short_description: "企业法务管理系统"
+    pricing_type: "Paid"
+    categories:
+      - "业务创新"
+
+  - name: "易法通"
+    website_url: "https://www.yifatong.com/"
+    short_description: "在线法律服务平台"
+    pricing_type: "Freemium"
+    categories:
+      - "业务创新"
+
+  - name: "案牍 AutoDocs"
+    website_url: "https://www.autodocs.cn/"
+    short_description: "法律文书智能生成工具"
+    pricing_type: "Freemium"
+    categories:
+      - "业务创新"

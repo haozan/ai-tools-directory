@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2026_02_14_183110) do
+ActiveRecord::Schema[7.2].define(version: 2026_02_17_174040) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -76,7 +76,11 @@ ActiveRecord::Schema[7.2].define(version: 2026_02_14_183110) do
     t.integer "tools_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "parent_id"
+    t.integer "position", default: 0
     t.index ["name"], name: "index_categories_on_name", unique: true
+    t.index ["parent_id"], name: "index_categories_on_parent_id"
+    t.index ["position"], name: "index_categories_on_position"
     t.index ["slug"], name: "index_categories_on_slug", unique: true
   end
 
@@ -210,19 +214,18 @@ ActiveRecord::Schema[7.2].define(version: 2026_02_14_183110) do
     t.string "short_description", default: ""
     t.text "long_description"
     t.string "logo_url"
-    t.string "pricing_type", default: "Freemium"
     t.string "slug"
     t.integer "view_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_tools_on_name"
-    t.index ["pricing_type"], name: "index_tools_on_pricing_type"
     t.index ["slug"], name: "index_tools_on_slug", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "admin_oplogs", "administrators"
+  add_foreign_key "categories", "categories", column: "parent_id"
   add_foreign_key "tool_categories", "categories"
   add_foreign_key "tool_categories", "tools"
 end

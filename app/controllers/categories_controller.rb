@@ -1,17 +1,20 @@
 class CategoriesController < ApplicationController
 
   def index
-    @categories = Category.popular
+    # Only show root categories (top-level), their children will be shown nested
+    @categories = Category.root_categories.popular
   end
 
   def show
     @category = Category.friendly.find(params[:id])
-    @tools = @category.tools.newest.page(params[:page]).per(12)
+    # Use all_tools to include subcategory tools for parent categories
+    @tools = @category.all_tools.newest.page(params[:page]).per(12)
   end
 
   def tools
     @category = Category.find(params[:id])
-    @tools = @category.tools.newest
+    # Use all_tools to include subcategory tools for parent categories
+    @tools = @category.all_tools.newest
     render partial: 'tools_grid', locals: { category: @category, tools: @tools }, formats: [:html]
   end
 

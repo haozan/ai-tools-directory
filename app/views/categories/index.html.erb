@@ -1,7 +1,6 @@
 <% content_for :title, "浏览所有分类" %>
 
-<div class="bg-surface min-h-screen" data-controller="category-filter" data-category-filter-selected-value="<%= @categories.first&.id %>">
-  <!-- Split Layout: Categories Sidebar + Tools Grid -->
+<div class="bg-surface min-h-screen" data-controller="category-filter" data-category-filter-selected-value="<%= @categories.first&.id %>">  <!-- Split Layout: Categories Sidebar + Tools Grid -->
   <section class="py-8 px-4">
     <div class="container-xl mx-auto">
       <div class="flex gap-8 items-start">
@@ -10,25 +9,68 @@
           <div class="sticky top-0">
             <nav class="space-y-2">
               <% @categories.each do |category| %>
-                <button 
-                  type="button"
-                  data-category-filter-target="categoryBtn"
-                  data-category-id="<%= category.id %>"
-                  data-action="click->category-filter#selectCategory"
-                  class="w-full text-left px-4 py-3 rounded-xl transition-all duration-300 flex items-center gap-4 group <%= 'bg-primary/10 border-2 border-primary' if category == @categories.first %> <%= 'border-2 border-border hover:border-primary hover:bg-surface-elevated' if category != @categories.first %>">
-                  <div class="flex items-center justify-center w-12 h-12 bg-primary/10 border border-primary/30 rounded-lg group-hover:bg-primary/20 flex-shrink-0">
-                    <%= lucide_icon "folder", class: "w-6 h-6 text-primary" %>
+                <!-- Root Category -->
+                <div class="border-2 <%= category == @categories.first ? 'bg-primary/10 border-primary' : 'border-border hover:border-primary hover:bg-surface-elevated' %> rounded-xl transition-all duration-300">
+                  <div class="flex items-center">
+                    <button 
+                      type="button"
+                      data-category-filter-target="categoryBtn"
+                      data-category-id="<%= category.id %>"
+                      data-action="click->category-filter#selectCategory"
+                      class="flex-1 text-left px-4 py-3 flex items-center gap-4 group">
+                      <div class="flex items-center justify-center w-12 h-12 bg-primary/10 border border-primary/30 rounded-lg group-hover:bg-primary/20 flex-shrink-0">
+                        <%= lucide_icon "folder", class: "w-6 h-6 text-primary" %>
+                      </div>
+                      <div class="flex-1 min-w-0">
+                        <h3 class="font-semibold text-primary mb-1">
+                          <%= category.name %>
+                        </h3>
+                        <div class="flex items-center gap-2 text-muted text-sm">
+                          <%= lucide_icon "layers", class: "w-4 h-4" %>
+                          <span><%= category.tools_count %> 工具</span>
+                        </div>
+                      </div>
+                    </button>
+                    <% if category.has_children? %>
+                      <button
+                        type="button"
+                        data-category-id="<%= category.id %>"
+                        data-action="click->category-filter#toggleChildren"
+                        class="flex-shrink-0 p-3 text-secondary hover:text-primary transition-colors">
+                        <%= lucide_icon "chevron-down", class: "w-5 h-5", style: "transform: rotate(-90deg); transition: transform 0.3s ease;" %>
+                      </button>
+                    <% end %>
                   </div>
-                  <div class="flex-1 min-w-0">
-                    <h3 class="font-semibold text-primary mb-1">
-                      <%= category.name %>
-                    </h3>
-                    <div class="flex items-center gap-2 text-muted text-sm">
-                      <%= lucide_icon "layers", class: "w-4 h-4" %>
-                      <span><%= category.tools_count %> 工具</span>
+                </div>
+                  
+                  <!-- Child Categories (if any) -->
+                  <% if category.has_children? %>
+                    <div 
+                      data-category-filter-target="childrenContainer"
+                      data-parent-id="<%= category.id %>"
+                      class="ml-8 space-y-1 mt-1 hidden">
+                      <% category.children.each do |child| %>
+                        <button 
+                          type="button"
+                          data-category-filter-target="categoryBtn"
+                          data-category-id="<%= child.id %>"
+                          data-action="click->category-filter#selectCategory"
+                          class="w-full text-left px-3 py-2 rounded-lg transition-all duration-300 flex items-center gap-3 group border border-transparent hover:border-primary/50 hover:bg-surface-elevated">
+                          <div class="flex items-center justify-center w-8 h-8 bg-surface border border-border rounded-md group-hover:border-primary/50 flex-shrink-0">
+                            <%= lucide_icon "folder-open", class: "w-4 h-4 text-secondary" %>
+                          </div>
+                          <div class="flex-1 min-w-0">
+                            <h4 class="text-sm font-medium text-secondary group-hover:text-primary">
+                              <%= child.name %>
+                            </h4>
+                            <div class="flex items-center gap-1 text-muted text-xs">
+                              <span><%= child.tools_count %> 工具</span>
+                            </div>
+                          </div>
+                        </button>
+                      <% end %>
                     </div>
-                  </div>
-                </button>
+                  <% end %>
               <% end %>
             </nav>
           </div>

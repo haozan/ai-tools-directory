@@ -1,0 +1,107 @@
+# Kulawyer 法律AI工具数据
+# 格式说明：
+# - name: 工具名称（必填）
+# - website_url: 官网地址（必填，必须是完整的 http/https URL）
+# - short_description: 简短描述（必填，最多150字符）
+# - long_description: 详细描述（可选）
+# - logo_url: Logo图片URL（可选，系统会自动从网站提取）
+# - pricing_type: 价格类型（必填：Free/Freemium/Paid）
+# - categories: 分类列表（必填，至少一个）
+
+tools:
+  # 法律文书生成类
+  - name: "法小兔"
+    website_url: "https://faxiaotu.com"
+    short_description: "智能法律文书生成工具，支持各类合同、起诉状、答辩状等文书快速生成"
+    long_description: "法小兔是一款专业的法律文书AI生成工具，基于大语言模型技术，能够快速生成各类法律文书。支持合同起草、诉讼文书、法律意见书等多种文书类型，大幅提升律师工作效率。"
+    logo_url: ""
+    pricing_type: "Freemium"
+    categories:
+      - "法律文书生成"
+      - "合同审查"
+
+  - name: "智法AI"
+    website_url: "https://zhifa-ai.com"
+    short_description: "专业法律文书智能生成平台，提供合同、协议、函件等文书模板"
+    long_description: "智法AI专注于法律文书的智能化生成，内置数千种专业法律文书模板，结合AI技术实现个性化定制。适用于律师事务所、企业法务部门等专业场景。"
+    pricing_type: "Paid"
+    categories:
+      - "法律文书生成"
+
+  # 案例检索类
+  - name: "威科先行"
+    website_url: "https://law.wkinfo.com.cn"
+    short_description: "权威法律数据库，提供海量案例检索、法律法规查询服务"
+    long_description: "威科先行是国内领先的法律信息服务平台，汇集海量裁判文书、法律法规、期刊论文等资源。提供智能检索、案例分析、法律条文比对等功能，是法律人的专业工具。"
+    pricing_type: "Paid"
+    categories:
+      - "案例检索"
+      - "法律法规"
+
+  - name: "无讼案例"
+    website_url: "https://www.itslaw.com"
+    short_description: "专业案例检索工具，快速查找相关判例和裁判要旨"
+    long_description: "无讼案例专注于案例检索服务，收录全国各级法院裁判文书，提供智能检索、类案推送、争议焦点分析等功能。帮助律师快速找到类似案例，提高办案效率。"
+    pricing_type: "Freemium"
+    categories:
+      - "案例检索"
+
+  # 合同审查类
+  - name: "法律AI助手"
+    website_url: "https://legal-ai.com"
+    short_description: "智能合同审查工具，自动识别合同风险点和不合理条款"
+    long_description: "法律AI助手基于深度学习技术，能够自动审查合同内容，识别潜在法律风险、不合理条款和缺漏项。支持多种合同类型，提供详细的风险报告和修改建议。"
+    pricing_type: "Freemium"
+    categories:
+      - "合同审查"
+      - "风险评估"
+
+  # 法律咨询类
+  - name: "法律咨询AI"
+    website_url: "https://law-consulting-ai.com"
+    short_description: "24小时在线法律咨询机器人，快速解答常见法律问题"
+    long_description: "法律咨询AI是一个智能法律问答系统，基于大型语言模型训练，能够解答民事、刑事、行政等各类法律问题。提供即时响应，适合个人用户和企业客户。"
+    pricing_type: "Free"
+    categories:
+      - "法律咨询"
+
+  # 尽职调查类
+  - name: "企业合规宝"
+    website_url: "https://compliance-tool.com"
+    short_description: "企业合规检查和尽职调查工具，自动生成调查报告"
+    long_description: "企业合规宝专注于企业合规性检查和尽职调查，整合工商、司法、信用等多维度数据，自动生成专业的尽职调查报告。适用于投资并购、合作评估等场景。"
+    pricing_type: "Paid"
+    categories:
+      - "尽职调查"
+      - "企业合规"
+
+  # 判决预测类
+  - name: "智能判决预测"
+    website_url: "https://predict-ai.com"
+    short_description: "基于AI的诉讼结果预测工具，评估胜诉概率"
+    long_description: "智能判决预测通过分析历史案例数据和法律规则，为诉讼案件提供结果预测和胜诉概率评估。帮助律师制定更合理的诉讼策略，降低诉讼风险。"
+    pricing_type: "Freemium"
+    categories:
+      - "判决预测"
+      - "案例检索"
+
+# 分类定义（确保这些分类在数据库中存在）
+categories:
+  - name: "法律文书生成"
+    description: "智能生成各类法律文书、合同、协议等文档"
+  - name: "案例检索"
+    description: "快速检索相关判例、裁判文书和法律案例"
+  - name: "合同审查"
+    description: "自动识别合同风险点和不合理条款"
+  - name: "法律咨询"
+    description: "在线法律问题解答和咨询服务"
+  - name: "判决预测"
+    description: "基于AI的诉讼结果和判决预测"
+  - name: "风险评估"
+    description: "法律风险识别和评估工具"
+  - name: "法律法规"
+    description: "法律法规查询和更新服务"
+  - name: "尽职调查"
+    description: "企业背景调查和合规性检查"
+  - name: "企业合规"
+    description: "企业合规管理和风险防控"

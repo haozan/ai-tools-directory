@@ -1,8 +1,9 @@
 class Admin::CategoriesController < Admin::BaseController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
+  before_action :load_parent_categories, only: [:new, :edit, :create, :update]
 
   def index
-    @categories = Category.page(params[:page]).per(10)
+    @categories = Category.popular.page(params[:page]).per(10)
   end
 
   def show
@@ -43,8 +44,19 @@ class Admin::CategoriesController < Admin::BaseController
   def set_category
     @category = Category.find(params[:id])
   end
+  
+  def load_parent_categories
+    # Load all categories except the current one (to prevent circular references)
+    # For new records, show all. For edit, exclude self and descendants
+    if @category&.persisted?
+      excluded_ids = [@category.id] + @category.descendants.map(&:id)
+      @parent_categories = Category.where.not(id: excluded_ids).order(:name)
+    else
+      @parent_categories = Category.order(:name)
+    end
+  end
 
   def category_params
-    params.require(:category).permit(:name, :slug, :description, :tools_count)
+    params.require(:category).permit(:name, :slug, :description, :tools_count, :parent_id, :position)
   end
 end

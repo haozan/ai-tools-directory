@@ -1,0 +1,243 @@
+# 添加工具示例 - 复制这个模板
+
+# 方式 1: YAML 格式（推荐）
+# 复制以下内容到 db/data/tools.yml 的 tools: 部分
+
+- name: "你的工具名称"
+  website_url: "https://your-tool.com"
+  short_description: "用一句话描述这个工具（最多150字符）"
+  long_description: |
+    这里可以写详细的描述
+    可以多行
+    可以包含更多信息
+  logo_url: ""  # 留空系统会自动提取，或填写图片URL
+  pricing_type: "Freemium"  # 选择: Free, Freemium, 或 Paid
+  categories:
+    - "法律文书生成"  # 必须至少一个分类
+    - "合同审查"      # 可以有多个分类，支持一级/二级分类
+
+# 然后运行: rake tools:import
+
+# ========================================
+
+# 方式 2: CSV 格式（Excel 用户）
+# 在 Excel 中添加一行，格式如下：
+
+# | name | website_url | short_description | long_description | logo_url | pricing_type | categories |
+# |------|-------------|-------------------|------------------|----------|--------------|------------|
+# | 你的工具 | https://... | 简短描述 | 详细描述 | | Freemium | 法律文书生成,合同审查 |
+
+# 注意：
+# - categories 用逗号分隔多个分类
+# - 保存为 tools.csv
+# - 然后运行: rake tools:import_csv
+
+# ========================================
+
+# 真实示例：
+
+# 示例 1: 免费的法律咨询AI
+- name: "法律问答机器人"
+  website_url: "https://legal-bot.com"
+  short_description: "24小时在线回答常见法律问题的AI助手"
+  long_description: "基于大语言模型的法律问答系统，能够快速解答民事、刑事、行政等各类法律问题"
+  pricing_type: "Free"
+  categories:
+    - "法律咨询"
+
+# 示例 2: 付费的合同审查工具
+- name: "智能合同审查系统"
+  website_url: "https://contract-review.ai"
+  short_description: "自动识别合同风险点和不合理条款的专业工具"
+  logo_url: "https://contract-review.ai/logo.png"
+  pricing_type: "Paid"
+  categories:
+    - "合同审查"
+    - "风险评估"
+
+# 示例 3: 部分免费的文书生成工具
+- name: "AI文书助手"
+  website_url: "https://doc-ai.com"
+  short_description: "智能生成各类法律文书，包括起诉状、答辩状、合同等"
+  long_description: |
+    AI文书助手是一款专业的法律文书生成工具：
+    - 支持20+种文书类型
+    - 智能填充案情信息
+    - 自动引用法条
+    - 提供多个模板选择
+  pricing_type: "Freemium"
+  categories:
+    - "法律文书生成"
+    - "合同审查"
+
+# ========================================
+
+# ⭐ 新功能：二级分类支持
+
+# 可以创建层级化的分类结构！
+
+# 示例：创建一级和二级分类
+categories:
+  # 一级分类（不需要 parent 字段）
+  - name: "法律文书生成"
+    description: "智能生成各类法律文书"
+  
+  - name: "案例检索"
+    description: "快速检索法律案例和判例"
+  
+  # 二级分类（添加 parent 字段指定父分类）
+  - name: "合同审查"
+    description: "智能合同审查与风险提示"
+    parent: "法律文书生成"  # 指定父分类
+  
+  - name: "起诉状生成"
+    description: "各类诉讼文书快速生成"
+    parent: "法律文书生成"
+  
+  - name: "判例分析"
+    description: "AI判例智能分析"
+    parent: "案例检索"
+
+# 结果层级结构：
+# 法律文书生成
+# ├── 合同审查
+# └── 起诉状生成
+# 
+# 案例检索
+# └── 判例分析
+
+# 重要提示：
+# 1. 必须先定义一级分类，再定义二级分类
+# 2. parent 字段的值必须与父分类的 name 完全一致
+# 3. 工具可以关联一级或二级分类（推荐使用二级）
+
+# ========================================
+
+# 可用的分类（Category）：
+
+# 已存在的分类（可以直接使用）：
+# - 法律文书生成
+# - 案例检索
+# - 合同审查
+# - 法律咨询
+# - 判决预测
+# - 风险评估
+# - 法律法规
+# - 尽职调查
+# - 企业合规
+
+# 如需添加新分类，在 categories: 部分添加：
+categories:
+  - name: "新分类名称"
+    description: "分类的描述"
+  # 或者创建二级分类：
+  - name: "子分类名称"
+    description: "子分类的描述"
+    parent: "父分类名称"  # 指定父分类
+
+# ========================================
+
+# 完整的工具数据示例：
+
+tools:
+  # 法律文书生成类
+  - name: "法小兔"
+    website_url: "https://faxiaotu.com"
+    short_description: "智能法律文书生成工具，支持各类合同、起诉状、答辩状等文书快速生成"
+    long_description: "法小兔是一款专业的法律文书AI生成工具，基于大语言模型技术，能够快速生成各类法律文书。支持合同起草、诉讼文书、法律意见书等多种文书类型，大幅提升律师工作效率。"
+    pricing_type: "Freemium"
+    categories:
+      - "法律文书生成"
+      - "合同审查"
+  
+  # 案例检索类
+  - name: "智能案例库"
+    website_url: "https://case-ai.com"
+    short_description: "基于AI的案例智能检索和分析系统"
+    long_description: "收录全国各级法院裁判文书，提供语义检索、类案推送、争议焦点分析等功能"
+    pricing_type: "Paid"
+    categories:
+      - "案例检索"
+      - "判决预测"
+
+# ========================================
+
+# 数据验证规则：
+
+# ✅ 必填字段：
+# - name: 工具名称（唯一，不能重复）
+# - website_url: 官网地址（必须是完整的 http:// 或 https:// URL）
+# - short_description: 简短描述（最多 150 个字符）
+# - pricing_type: 价格类型（只能是 Free, Freemium, 或 Paid）
+# - categories: 分类列表（至少一个）
+
+# ❌ 可选字段：
+# - long_description: 详细描述（可以不填）
+# - logo_url: Logo图片URL（不填系统会自动从网站提取）
+
+# ========================================
+
+# 常见错误和解决方法：
+
+# 错误 1: "website_url is invalid"
+# ❌ 错误写法：
+#    website_url: "faxiaotu.com"
+#    website_url: "www.faxiaotu.com"
+# ✅ 正确写法：
+#    website_url: "https://faxiaotu.com"
+
+# 错误 2: "short_description is too long"
+# ❌ 错误：描述超过 150 个字符
+# ✅ 解决：缩短 short_description，详细内容写到 long_description
+
+# 错误 3: "pricing_type is not included"
+# ❌ 错误写法：
+#    pricing_type: "免费"
+#    pricing_type: "付费"
+# ✅ 正确写法：
+#    pricing_type: "Free"      # 完全免费
+#    pricing_type: "Freemium"  # 部分免费
+#    pricing_type: "Paid"      # 完全付费
+
+# 错误 4: "categories not found"
+# ❌ 分类不存在
+# ✅ 解决方法 1: 使用已存在的分类（见上面的列表）
+# ✅ 解决方法 2: 在 categories: 部分先定义新分类
+
+# ========================================
+
+# 导入后验证：
+
+# 查看工具数量
+# rails runner "puts Tool.count"
+
+# 查看最新添加的工具
+# rails runner "Tool.last(5).each { |t| puts t.name }"
+
+# 查看某个工具的详细信息
+# rails runner "tool = Tool.find_by(name: '法小兔'); puts tool.inspect"
+
+# ========================================
+
+# 快速参考：
+
+# 导入命令：
+#   rake tools:import       # 从 YAML 导入
+#   rake tools:import_csv   # 从 CSV 导入
+
+# 导出命令：
+#   rake tools:export       # 导出到 YAML
+#   rake tools:export_csv   # 导出到 CSV
+
+# 其他命令：
+#   rake tools:clear        # 清空所有工具
+#   rake tools:help         # 显示帮助信息
+#   rake -T tools           # 列出所有工具命令
+
+# ========================================
+
+# 现在开始添加你的工具吧！
+# 1. 复制上面的模板
+# 2. 填写你的工具信息
+# 3. 运行 rake tools:import
+# 4. 访问 http://localhost:3000/tools 查看结果

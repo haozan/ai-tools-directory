@@ -1,13 +1,14 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller<HTMLElement> {
-  static targets = ["categoryBtn", "toolsContainer"]
+  static targets = ["categoryBtn", "toolsContainer", "childrenContainer"]
   static values = {
     selected: Number
   }
 
   declare readonly categoryBtnTargets: HTMLButtonElement[]
   declare readonly toolsContainerTarget: HTMLElement
+  declare readonly childrenContainerTargets: HTMLElement[]
   declare selectedValue: number
 
   connect(): void {
@@ -39,6 +40,37 @@ export default class extends Controller<HTMLElement> {
 
     // Load tools for selected category
     this.loadTools(parseInt(categoryId))
+  }
+
+  toggleChildren(event: Event): void {
+    event.stopPropagation()
+    const button = event.currentTarget as HTMLButtonElement
+    const categoryId = button.dataset.categoryId
+    
+    if (!categoryId) return
+
+    // Find the children container for this category
+    const childrenContainer = this.childrenContainerTargets.find(
+      container => container.dataset.parentId === categoryId
+    )
+
+    if (!childrenContainer) return
+
+    // Find the icon element
+    const icon = button.querySelector('svg')
+    if (!icon) return
+
+    // Toggle visibility with animation
+    const isHidden = childrenContainer.classList.contains('hidden')
+    if (isHidden) {
+      // Expand: rotate to down position
+      childrenContainer.classList.remove('hidden')
+      icon.style.transform = 'rotate(0deg)'
+    } else {
+      // Collapse: rotate to right position
+      childrenContainer.classList.add('hidden')
+      icon.style.transform = 'rotate(-90deg)'
+    }
   }
 
   private loadTools(categoryId: number): void {

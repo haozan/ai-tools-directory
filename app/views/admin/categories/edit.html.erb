@@ -14,6 +14,16 @@
   <div class="card bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700">
     <div class="card-body">
       <%= form_with model: [:admin, @category], local: true, class: "space-y-6" do |form| %>
+        <!-- Parent Category -->
+        <div class="form-group">
+          <%= form.label :parent_id, "Parent Category (Optional)" %>
+          <%= form.select :parent_id, 
+              options_for_select([["无（一级分类）", nil]] + @parent_categories.map { |c| [c.name, c.id] }, @category.parent_id), 
+              {}, 
+              { class: "form-select" } %>
+          <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">如果不选择父分类，该分类将成为一级分类</p>
+        </div>
+      
         <!-- Name -->
         <div class="form-group">
           <%= form.label :name %>
@@ -36,6 +46,13 @@
         <div class="form-group">
           <%= form.label :tools_count %>
           <%= form.number_field :tools_count, placeholder: "Enter tools count..." %>
+        </div>
+        
+        <!-- Position -->
+        <div class="form-group">
+          <%= form.label :position, "Display Position (Optional)" %>
+          <%= form.number_field :position, placeholder: "Enter position..." %>
+          <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">设置显示顺序（数字越小越靠前，留空则按工具数量排序）</p>
         </div>
 
         <!-- Form Actions -->

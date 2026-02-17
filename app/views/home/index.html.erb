@@ -1,4 +1,4 @@
-<% content_for :title, "发现最佳法律AI工具" %>
+<% content_for :title, "酷律师 - 发现最佳法律AI工具" %>
 
 <!-- Hero Section -->
 <section class="gradient-surface py-20 px-4">
@@ -7,10 +7,10 @@
       <!-- Left: Text Content -->
       <div class="space-y-6">
         <h1 class="font-heading text-5xl lg:text-6xl font-bold text-primary leading-tight">
-          发现最佳法律AI工具
+          酷律师 - 发现最佳法律AI工具
         </h1>
         <p class="text-xl text-secondary leading-relaxed">
-          探索最强大的法律AI工具，提升你的工作效率。从法律文书撰写到案例分析，为你的法律工作找到最合适的AI助手。
+          探索强大的法律AI工具,提升工作效率。从法律文书撰写到案例分析，Kulawyer为您的法律工作找到最合适的AI助手。
         </p>
         
         <!-- Search Box -->
@@ -80,13 +80,7 @@
                 <%= lucide_icon "sparkles", class: "w-12 h-12 text-surface-elevated" %>
               </div>
             <% end %>
-            
-            <!-- Price Badge -->
-            <div class="absolute top-3 right-3">
-              <span class="badge-<%= tool.pricing_type == 'Free' ? 'success' : tool.pricing_type == 'Freemium' ? 'info' : 'warning' %> badge-glow px-3 py-1 text-xs font-semibold rounded-full">
-                <%= tool.pricing_type %>
-              </span>
-            </div>
+
           </div>
           
           <!-- Tool Info -->
@@ -128,10 +122,10 @@
       <!-- Brand -->
       <div class="space-y-4">
         <h3 class="font-heading text-2xl font-bold gradient-primary bg-clip-text text-transparent">
-          SolawAI
+          <%= Rails.application.config.x.appname %>
         </h3>
         <p class="text-sm text-secondary">
-          发现和探索最佳的法律AI工具，助力你的法律工作效率和专业能力提升。
+          探索和发现优质的法律AI工具，Kulawyer（酷律师）助力提升您的法律工作效率和专业能力。
         </p>
         <div class="flex gap-3">
           <%= lucide_icon "twitter", class: "w-5 h-5 text-muted hover:text-primary cursor-pointer transition-colors" %>
@@ -191,7 +185,7 @@
     <!-- Bottom Bar -->
     <div class="pt-8 border-t border-border text-center">
       <p class="text-sm text-muted">
-        © <%= Time.current.year %> SolawAI. 保留所有权利。专为法律人打造 <%= lucide_icon "heart", class: "inline w-4 h-4 text-danger" %>。
+        © <%= Time.current.year %> <%= Rails.application.config.x.appname %>（酷律师）. 保留所有权利。专为法律人打造 <%= lucide_icon "heart", class: "inline w-4 h-4 text-danger" %>。
       </p>
     </div>
   </div>

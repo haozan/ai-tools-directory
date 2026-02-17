@@ -1,6 +1,12 @@
-# ClackyAI Rails7 starter
+# Kulawyer (酷律师)
 
-The template for ClackyAI
+Kulawyer - 发现最佳法律AI工具平台
+
+探索强大的法律AI工具,提升工作效率。从AI法律文书撰写到案例分析，Kulawyer为您的法律工作找到最合适的AI助手。
+
+## About
+
+This project is built with ClackyAI Rails7 starter template.
 
 ## Installation
 

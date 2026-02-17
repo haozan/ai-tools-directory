@@ -3,11 +3,9 @@
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
       <%= link_to root_path, class: "flex items-center gap-2 group" do %>
-        <div class="w-8 h-8 rounded-lg gradient-primary flex items-center justify-center">
-          <%= lucide_icon "sparkles", class: "w-5 h-5 text-surface-elevated" %>
-        </div>
+        <%= image_tag "app-logo.png", alt: "Kulawyer Logo", class: "w-8 h-8 rounded-lg object-contain" %>
         <span class="font-heading text-xl font-bold gradient-primary bg-clip-text text-transparent">
-          SolawAI
+          <%= Rails.application.config.x.appname %>
         </span>
       <% end %>
       

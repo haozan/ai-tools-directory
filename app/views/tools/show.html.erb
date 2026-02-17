@@ -39,10 +39,7 @@
               <%= @tool.short_description %>
             </p>
           </div>
-          
-          <span class="badge-<%= @tool.pricing_type == 'Free' ? 'success' : @tool.pricing_type == 'Freemium' ? 'info' : 'warning' %> px-4 py-2 text-sm font-semibold rounded-lg">
-            <%= @tool.pricing_type %>
-          </span>
+
         </div>
         
         <!-- Categories -->
@@ -112,10 +109,7 @@
               <span class="text-secondary">浏览次数</span>
               <span class="font-semibold text-primary"><%= @tool.view_count %></span>
             </div>
-            <div class="flex items-center justify-between">
-              <span class="text-secondary">价格</span>
-              <span class="font-semibold text-<%= @tool.pricing_type == 'Free' ? 'success' : 'primary' %>"><%= @tool.pricing_type %></span>
-            </div>
+
             <div class="flex items-center justify-between">
               <span class="text-secondary">添加于</span>
               <span class="font-semibold text-primary"><%= time_ago_in_words(@tool.created_at) %> 前</span>
