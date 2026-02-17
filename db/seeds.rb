@@ -327,3 +327,84 @@ puts "Created #{Resource.count} resources"
 puts "  - #{Resource.by_category('video').count} video tutorials"
 puts "  - #{Resource.by_category('document').count} documents"
 puts "  - #{Resource.by_category('media').count} media creators"
+
+# Chinese Categories and Tools
+puts "\nCreating Chinese categories and tools..."
+
+# 通用大模型 (should already exist, find it)
+general_model_cat = Category.find_or_create_by!(name: '通用大模型') do |cat|
+  cat.description = '通用人工智能大模型'
+end
+
+# 法律新媒体 (top-level category)
+legal_media_cat = Category.find_or_create_by!(name: '法律新媒体') do |cat|
+  cat.description = '法律相关的新媒体工具和平台'
+end
+
+# 法律新媒体的子分类
+legal_subcategories = [
+  { name: '文本创作', description: 'AI辅助法律文本创作工具' },
+  { name: '图像创作', description: 'AI辅助法律相关图像创作' },
+  { name: '视频创作', description: 'AI辅助法律视频内容创作' },
+  { name: '发布平台', description: '法律新媒体内容发布平台' }
+]
+
+legal_subcategories.each do |subcat_data|
+  Category.find_or_create_by!(name: subcat_data[:name], parent_id: legal_media_cat.id) do |cat|
+    cat.description = subcat_data[:description]
+  end
+  puts "  Created subcategory: #{subcat_data[:name]} under 法律新媒体"
+end
+
+# API 聚合 (under 通用大模型)
+api_aggregation_cat = Category.find_or_create_by!(name: 'API 聚合', parent_id: general_model_cat.id) do |cat|
+  cat.description = 'AI模型API聚合服务平台'
+end
+puts "  Created: API 聚合 under 通用大模型"
+
+# 阿里云百炼工具
+bailian_tool = Tool.find_or_create_by!(name: '阿里云百炼') do |tool|
+  tool.website_url = 'https://bailian.console.aliyun.com/'
+  tool.short_description = '阿里云企业级AI应用开发平台，提供大模型服务、模型训练、应用构建等功能'
+  tool.long_description = '阿里云百炼是阿里云推出的企业级AI应用开发平台，整合了通义大模型能力，为企业提供模型服务、模型训练、知识库管理、应用构建等一站式AI开发工具。支持多种大模型接入，提供丰富的API接口和SDK，帮助企业快速构建智能应用。'
+  tool.pricing_type = 'Freemium'
+end
+
+# 将阿里云百炼添加到API聚合分类
+unless bailian_tool.categories.include?(api_aggregation_cat)
+  bailian_tool.categories << api_aggregation_cat
+end
+
+# 下载并附加阿里云百炼logo（如果还没有）
+if !bailian_tool.logo.attached? && File.exist?('tmp/bailian_logo.png')
+  bailian_tool.logo.attach(
+    io: File.open('tmp/bailian_logo.png'),
+    filename: 'bailian-logo.png',
+    content_type: 'image/png'
+  )
+  puts "  Attached logo for 阿里云百炼"
+end
+
+puts "  Created tool: 阿里云百炼"
+
+# Grok工具（如果存在则更新logo）
+grok_tool = Tool.find_by(name: 'Grok')
+if grok_tool
+  # 下载并附加Grok logo（如果还没有）
+  if !grok_tool.logo.attached? && File.exist?('tmp/grok_logo.webp')
+    grok_tool.logo.attach(
+      io: File.open('tmp/grok_logo.webp'),
+      filename: 'grok-logo.webp',
+      content_type: 'image/webp'
+    )
+    puts "  Attached logo for Grok"
+  end
+end
+
+# 更新所有分类的工具计数
+puts "\nUpdating all category counts..."
+Category.find_each do |category|
+  category.update_tools_count!
+end
+
+puts "\n✅ Chinese categories and tools seeding completed!"
