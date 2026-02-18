@@ -32,7 +32,6 @@ tools_data = [
     short_description: "Conversational AI assistant for text generation and problem-solving",
     long_description: "ChatGPT is a state-of-the-art conversational AI developed by OpenAI. It can assist with writing, coding, analysis, and creative tasks through natural dialogue.",
     logo_url: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&auto=format&fit=crop",
-    pricing_type: "Freemium",
     categories: ["Text & Writing", "Productivity"]
   },
   {
@@ -41,7 +40,6 @@ tools_data = [
     short_description: "AI art generator creating stunning images from text descriptions",
     long_description: "Midjourney is a powerful AI art generator that creates high-quality, imaginative images from text prompts. Perfect for artists, designers, and creative professionals.",
     logo_url: "https://images.unsplash.com/photo-1686191128892-c0f18d9f5fcd?w=400&auto=format&fit=crop",
-    pricing_type: "Paid",
     categories: ["Image Generation"]
   },
   {
@@ -50,7 +48,6 @@ tools_data = [
     short_description: "Realistic AI voice generation and voice cloning technology",
     long_description: "Eleven Labs offers cutting-edge text-to-speech and voice cloning technology with incredibly realistic results. Ideal for content creators and developers.",
     logo_url: "https://images.unsplash.com/photo-1589903308904-1010c2294adc?w=400&auto=format&fit=crop",
-    pricing_type: "Freemium",
     categories: ["Audio & Voice"]
   },
   {
@@ -59,7 +56,6 @@ tools_data = [
     short_description: "Professional AI video editing and generation platform",
     long_description: "Runway ML provides advanced AI tools for video editing, generation, and effects. Used by creative professionals worldwide for cutting-edge video production.",
     logo_url: "https://images.unsplash.com/photo-1492619375914-88005aa9e8fb?w=400&auto=format&fit=crop",
-    pricing_type: "Freemium",
     categories: ["Video Creation"]
   },
   {
@@ -68,7 +64,6 @@ tools_data = [
     short_description: "AI pair programmer helping developers write code faster",
     long_description: "GitHub Copilot is an AI-powered code completion tool that suggests entire lines or blocks of code as you type, trained on billions of lines of code.",
     logo_url: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&auto=format&fit=crop",
-    pricing_type: "Paid",
     categories: ["Code Assistant", "Productivity"]
   },
   {
@@ -77,7 +72,6 @@ tools_data = [
     short_description: "AI content writer for marketing and blog content",
     long_description: "Jasper AI helps marketers and content creators produce high-quality content faster. From blog posts to ad copy, Jasper streamlines the writing process.",
     logo_url: "https://images.unsplash.com/photo-1455390582262-044cdead277a?w=400&auto=format&fit=crop",
-    pricing_type: "Paid",
     categories: ["Text & Writing", "Marketing"]
   },
   {
@@ -86,7 +80,6 @@ tools_data = [
     short_description: "Advanced text-to-image generation by OpenAI",
     long_description: "DALL-E 3 is OpenAI's latest image generation model, creating highly detailed and accurate images from text descriptions with improved understanding.",
     logo_url: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&auto=format&fit=crop",
-    pricing_type: "Freemium",
     categories: ["Image Generation"]
   },
   {
@@ -95,7 +88,6 @@ tools_data = [
     short_description: "AI writing assistant for various content types",
     long_description: "Copy.ai is an AI-powered writing tool that helps create marketing copy, product descriptions, social media posts, and more in seconds.",
     logo_url: "https://images.unsplash.com/photo-1542435503-956c469947f6?w=400&auto=format&fit=crop",
-    pricing_type: "Freemium",
     categories: ["Text & Writing", "Marketing"]
   },
   {
@@ -104,7 +96,6 @@ tools_data = [
     short_description: "AI-powered writing and organization within Notion",
     long_description: "Notion AI integrates directly into your Notion workspace, helping you write, brainstorm, and organize information more efficiently.",
     logo_url: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=400&auto=format&fit=crop",
-    pricing_type: "Freemium",
     categories: ["Text & Writing", "Productivity"]
   },
   {
@@ -113,7 +104,6 @@ tools_data = [
     short_description: "Open-source AI image generation model",
     long_description: "Stable Diffusion is a powerful open-source text-to-image model that can generate detailed images from text descriptions, available for free use.",
     logo_url: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=400&auto=format&fit=crop",
-    pricing_type: "Free",
     categories: ["Image Generation"]
   },
   {
@@ -122,7 +112,6 @@ tools_data = [
     short_description: "Create AI videos with virtual avatars",
     long_description: "Synthesia enables you to create professional videos with AI avatars speaking your script in multiple languages, without cameras or actors.",
     logo_url: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=400&auto=format&fit=crop",
-    pricing_type: "Paid",
     categories: ["Video Creation", "Marketing"]
   },
   {
@@ -131,7 +120,6 @@ tools_data = [
     short_description: "AI-powered writing assistant and grammar checker",
     long_description: "Grammarly uses AI to improve your writing by checking grammar, spelling, style, and tone across all your applications and websites.",
     logo_url: "https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=400&auto=format&fit=crop",
-    pricing_type: "Freemium",
     categories: ["Text & Writing", "Productivity"]
   }
 ]
@@ -367,7 +355,6 @@ bailian_tool = Tool.find_or_create_by!(name: '阿里云百炼') do |tool|
   tool.website_url = 'https://bailian.console.aliyun.com/'
   tool.short_description = '阿里云企业级AI应用开发平台，提供大模型服务、模型训练、应用构建等功能'
   tool.long_description = '阿里云百炼是阿里云推出的企业级AI应用开发平台，整合了通义大模型能力，为企业提供模型服务、模型训练、知识库管理、应用构建等一站式AI开发工具。支持多种大模型接入，提供丰富的API接口和SDK，帮助企业快速构建智能应用。'
-  tool.pricing_type = 'Freemium'
 end
 
 # 将阿里云百炼添加到API聚合分类
