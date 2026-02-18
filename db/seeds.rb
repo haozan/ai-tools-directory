@@ -395,3 +395,108 @@ Category.find_each do |category|
 end
 
 puts "\n✅ Chinese categories and tools seeding completed!"
+
+# Additional modifications for existing categories and tools
+puts "\nApplying category and tool modifications..."
+
+# 1. 修改分类名称
+Category.find_by(name: '办公效率')&.update(name: '办案效率')
+Category.find_by(name: '法律文书生成')&.update(name: '文书生成')
+Category.find_by(name: '企业合规')&.update(name: '法律科技')
+Category.find_by(name: '文本创作')&.update(name: '新媒体写作')
+Category.find_by(name: '通用大模型')&.update(name: 'AI 大模型')
+Category.find_by(name: '法律新媒体')&.update(name: '新媒体')
+Category.find_by(name: '法律大数据')&.update(name: '大数据')
+Category.find_by(name: '国内模型')&.update(name: '国内通用大模型')
+Category.find_by(name: '国外模型')&.update(name: '国外通用大模型')
+puts "  ✅ 分类名称修改完成"
+
+# 2. 调整分类层级关系
+ban_an_cat = Category.find_by(name: '办案效率')
+wenshu_cat = Category.find_by(name: '文书生成')
+hetong_cat = Category.find_by(name: '合同审查')
+jinzhi_cat = Category.find_by(name: '尽职调查')
+if ban_an_cat
+  wenshu_cat&.update(parent_id: ban_an_cat.id)
+  hetong_cat&.update(parent_id: ban_an_cat.id)
+  jinzhi_cat&.update(parent_id: ban_an_cat.id)
+  puts "  ✅ 已将 文书生成、合同审查、尽职调查 移到 办案效率 下"
+end
+
+ai_model_cat = Category.find_by(name: 'AI 大模型')
+law_model_cat = Category.find_by(name: '法律大模型')
+if ai_model_cat && law_model_cat
+  law_model_cat.update(parent_id: ai_model_cat.id)
+  puts "  ✅ 已将 法律大模型 移到 AI 大模型 下"
+end
+
+# 3. 删除指定分类
+['法律咨询', '判决预测', '风险评估'].each do |name|
+  Category.find_by(name: name)&.destroy
+end
+puts "  ✅ 已删除 法律咨询、判决预测、风险评估"
+
+# 4. 设置分类排序
+ai_model_cat&.update(position: 1)
+ban_an_cat&.update(position: 2)
+Category.find_by(name: '法律科技')&.update(position: 3)
+Category.find_by(name: '业务创新')&.update(position: 4)
+Category.find_by(name: '大数据')&.update(position: 5)
+Category.find_by(name: '新媒体')&.update(position: 6)
+Category.find_by(name: '投融资/IPO')&.update(position: 7)
+puts "  ✅ 分类排序设置完成"
+
+# 5. 添加即梦AI工具到视频创作
+video_cat = Category.find_by(name: '视频创作')
+if video_cat
+  jimeng = Tool.find_or_create_by!(name: '即梦AI') do |tool|
+    tool.website_url = 'https://jimeng.jianying.com/'
+    tool.short_description = '即梦AI是剪映推出的AI视频生成工具，支持文本生成视频、图文生成视频等功能'
+    tool.long_description = '即梦AI是字节跳动旗下剪映推出的AI视频创作平台，提供AI视频生成、AI图片生成等功能。用户只需输入文本描述或上传图片，即可快速生成高质量的视频内容。适用于短视频创作、营销宣传、新媒体运营等场景。'
+  end
+  jimeng.categories << video_cat unless jimeng.categories.include?(video_cat)
+  puts "  ✅ 已添加 即梦AI 到 视频创作"
+end
+
+# 6. 将工具添加到法律科技分类
+fa_lv_tech_cat = Category.find_by(name: '法律科技')
+if fa_lv_tech_cat
+  ['案牍 AutoDocs', '理脉', 'iCourt', '法蝉', 'MetaLaw'].each do |tool_name|
+    tool = Tool.find_by("name LIKE ?", "%#{tool_name.gsub(' AutoDocs', '')}%")
+    if tool && !tool.categories.include?(fa_lv_tech_cat)
+      tool.categories << fa_lv_tech_cat
+    end
+  end
+  puts "  ✅ 已添加 案牍、理脉、iCourt、法蝉、MetaLaw 到 法律科技"
+end
+
+# 7. 将工商信息相关工具移到工商信息分类
+gongshang_cat = Category.find_by(name: '工商信息')
+big_data_cat = Category.find_by(name: '大数据')
+if gongshang_cat && big_data_cat
+  ['企查查', '天眼查', '企信宝', '国家企业信用信息公示系统'].each do |tool_name|
+    tool = Tool.find_by("name LIKE ?", "%#{tool_name}%")
+    if tool
+      tool.categories.delete(big_data_cat) if tool.categories.include?(big_data_cat)
+      tool.categories << gongshang_cat unless tool.categories.include?(gongshang_cat)
+    end
+  end
+  puts "  ✅ 已将 企查查、天眼查、企信宝、国家企业信用信息公示系统 移到 工商信息"
+end
+
+# 8. 从大数据分类中移除iCourt和法蝉
+if big_data_cat
+  ['iCourt', '法蝉'].each do |tool_name|
+    tool = Tool.find_by("name LIKE ?", "%#{tool_name}%")
+    tool&.categories&.delete(big_data_cat)
+  end
+  puts "  ✅ 已将 iCourt、法蝉 从大数据分类中移除"
+end
+
+# 更新所有分类的工具计数
+puts "\nUpdating all category counts after modifications..."
+Category.find_each do |category|
+  category.update_tools_count!
+end
+
+puts "\n✅ All modifications completed!"
