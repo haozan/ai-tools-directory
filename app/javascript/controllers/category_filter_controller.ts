@@ -93,17 +93,17 @@ export default class extends Controller<HTMLElement> {
         'Accept': 'text/vnd.turbo-stream.html'
       }
     })
-    .then(response => response.text())
-    .then(html => {
-      this.toolsContainerTarget.innerHTML = html
-    })
-    .catch(error => {
-      console.error('Error loading tools:', error)
-      this.toolsContainerTarget.innerHTML = `
-        <div class="text-center py-12">
-          <p class="text-secondary">加载失败，请稍后重试</p>
-        </div>
-      `
-    })
+      .then(response => response.text())
+      .then(html => {
+        this.toolsContainerTarget.innerHTML = html
+      })
+      .catch(error => {
+        console.error('Error loading tools:', error)
+        this.toolsContainerTarget.innerHTML = `
+          <div class="text-center py-12">
+            <p class="text-secondary">加载失败，请稍后重试</p>
+          </div>
+        `
+      })
   }
 }
