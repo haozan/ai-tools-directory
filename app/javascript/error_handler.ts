@@ -784,9 +784,9 @@ class ErrorHandler {
       });
     });
 
-    // Intercept fetch errors
-    this.interceptFetch();
-    // Intercept XHR errors
+    // NOTE: fetch() interception removed - project architecture forbids fetch() usage
+    // Service worker fetch() calls were incorrectly triggering "Failed to fetch" errors
+    // Only intercept XHR errors (used by Turbo)
     this.interceptXHR();
   }
 

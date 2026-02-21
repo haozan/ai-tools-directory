@@ -62,10 +62,12 @@
           <% end %>
         </div>
 
-        <!-- Pricing type -->
+        <!-- Featured -->
         <div class="form-group">
-          <%= form.label :pricing_type %>
-          <%= form.select :pricing_type, options_for_select(['Free', 'Freemium', 'Paid'], @tool.pricing_type), { prompt: 'Select pricing type...' }, { class: 'form-select' } %>
+          <label class="flex items-center space-x-2 cursor-pointer">
+            <%= form.check_box :featured, class: 'form-checkbox w-5 h-5 text-primary' %>
+            <span class="text-sm font-medium text-gray-700 dark:text-gray-300">设为精选工具（显示在首页）</span>
+          </label>
         </div>
 
         <!-- Categories -->

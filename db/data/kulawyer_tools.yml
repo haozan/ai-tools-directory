@@ -1,325 +1,607 @@
-# 酷律师工具导入数据
-# 使用命令: rake tools:import
-
+---
 categories:
-  # ========== AI 大模型 ==========
-  - name: "AI 大模型"
-    description: "各类AI大模型和智能助手工具"
-
-  # ========== 法律大数据 ==========
-  - name: "法律大数据"
-    description: "法律数据库、案例检索和企业信息查询工具"
-
-  # ========== 投融资/IPO ==========
-  - name: "投融资/IPO"
-    description: "投融资、IPO相关信息查询和新媒体工具"
-
-  # ========== 业务创新 ==========
-  - name: "业务创新"
-    description: "法律科技和业务创新工具"
-
+- name: 国外通用大模型
+  description: 国外AI对话助手
+  position: 0
+  parent: AI 大模型
+- name: 国内通用大模型
+  description: 国内AI对话助手
+  position: 0
+  parent: AI 大模型
+- name: 工商信息
+  description: 
+  position: 0
+  parent: 大数据
+- name: 发布平台
+  description: ''
+  position: 0
+  parent: 新媒体
+- name: 法律大模型
+  description: 专门面向法律领域的大模型工具
+  position: 1
+  parent: AI 大模型
+- name: AI Agent
+  description: 智能 AI 代理工具，提升工作效率
+  position: 1
+- name: 龙虾频道
+  description: 龙虾频道相关 AI 工具
+  position: 1
+  parent: AI Agent
+- name: AI 大模型
+  description: 各类通用AI大模型和智能助手
+  position: 2
+- name: 新媒体写作
+  description: ''
+  position: 2
+  parent: 新媒体
+- name: 办案效率
+  description: 3D modeling, design tools powered by AI
+  position: 3
+- name: 图像创作
+  description: ''
+  position: 3
+  parent: 新媒体
+- name: 法律科技
+  description: 企业合规管理和风险防控
+  position: 4
+- name: 视频创作
+  description: ''
+  position: 4
+  parent: 新媒体
+- name: 业务创新
+  description: 法律科技和业务创新工具
+  position: 5
+- name: 大数据
+  description: 法律数据库、案例检索和企业信息查询工具
+  position: 6
+- name: 新媒体
+  description: ''
+  position: 7
+- name: 投融资/IPO
+  description: 投融资、IPO相关信息查询和新媒体工具
+  position: 8
+- name: 文书生成
+  description: 智能生成各类法律文书、合同、协议等文档
+  position: 
+  parent: 办案效率
+- name: 案例检索
+  description: 快速检索相关判例、裁判文书和法律案例
+  position: 
+  parent: 大数据
+- name: 合同审查
+  description: 自动识别合同风险点和不合理条款
+  position: 
+  parent: 办案效率
+- name: 法律法规
+  description: 法律法规查询和更新服务
+  position: 
+  parent: 大数据
+- name: 尽职调查
+  description: 企业背景调查和合规性检查
+  position: 
+  parent: 办案效率
+- name: API 聚合
+  description: 聚合多个AI大模型API的平台
+  position: 
+  parent: AI 大模型
 tools:
-  # ==================== AI 大模型 ====================
-  - name: "通义法睿"
-    website_url: "https://tongyi.aliyun.com/farui"
-    short_description: "阿里云推出的法律AI助手"
-    pricing_type: "Free"
-    categories:
-      - "AI 大模型"
-
-  - name: "MetaLaw"
-    website_url: "https://meta.law/"
-    short_description: "法律AI智能平台"
-    pricing_type: "Free"
-    categories:
-      - "AI 大模型"
-
-  - name: "Kimi"
-    website_url: "https://kimi.moonshot.cn/"
-    short_description: "Moonshot AI推出的智能助手"
-    pricing_type: "Free"
-    categories:
-      - "AI 大模型"
-
-  - name: "文心一言"
-    website_url: "https://yiyan.baidu.com/"
-    short_description: "百度推出的AI对话系统"
-    pricing_type: "Free"
-    categories:
-      - "AI 大模型"
-
-  - name: "智谱清言"
-    website_url: "https://chatglm.cn/"
-    short_description: "智谱AI推出的对话系统"
-    pricing_type: "Free"
-    categories:
-      - "AI 大模型"
-
-  - name: "通义千问"
-    website_url: "https://tongyi.aliyun.com/qianwen/"
-    short_description: "阿里云推出的大语言模型"
-    pricing_type: "Free"
-    categories:
-      - "AI 大模型"
-
-  - name: "讯飞星火"
-    website_url: "https://passport.xfyun.cn/"
-    short_description: "科大讯飞推出的认知大模型"
-    pricing_type: "Free"
-    categories:
-      - "AI 大模型"
-
-  - name: "百度文库"
-    website_url: "https://wenku.baidu.com/"
-    short_description: "百度文档分享平台"
-    pricing_type: "Freemium"
-    categories:
-      - "AI 大模型"
-
-  - name: "Coze"
-    website_url: "https://www.coze.com/"
-    short_description: "AI智能助手开发平台（国际版）"
-    pricing_type: "Free"
-    categories:
-      - "AI 大模型"
-
-  - name: "扣子"
-    website_url: "https://www.coze.cn/"
-    short_description: "AI智能助手开发平台（国内版）"
-    pricing_type: "Free"
-    categories:
-      - "AI 大模型"
-
-  - name: "ChatGPT"
-    website_url: "https://chatgpt.com/"
-    short_description: "OpenAI推出的对话AI系统"
-    pricing_type: "Freemium"
-    categories:
-      - "AI 大模型"
-
-  - name: "Midjourney"
-    website_url: "https://www.midjourney.com/"
-    short_description: "AI图像生成工具"
-    pricing_type: "Paid"
-    categories:
-      - "AI 大模型"
-
-  - name: "Gemini"
-    website_url: "https://gemini.google.com/"
-    short_description: "Google推出的多模态AI模型"
-    pricing_type: "Free"
-    categories:
-      - "AI 大模型"
-
-  - name: "Claude"
-    website_url: "https://www.anthropic.com/"
-    short_description: "Anthropic推出的AI助手"
-    pricing_type: "Freemium"
-    categories:
-      - "AI 大模型"
-
-  - name: "AI工具集导航"
-    website_url: "https://ai-bot.cn/"
-    short_description: "汇总各类AI工具的导航网站"
-    pricing_type: "Free"
-    categories:
-      - "AI 大模型"
-
-  # ==================== 法律大数据 ====================
-  - name: "北大法宝"
-    website_url: "https://www.pkulaw.com/"
-    short_description: "专业法律数据库和检索平台"
-    pricing_type: "Paid"
-    categories:
-      - "法律大数据"
-
-  - name: "元典智库"
-    website_url: "https://chineselaw.com/"
-    short_description: "法律智库和数据服务平台"
-    pricing_type: "Paid"
-    categories:
-      - "法律大数据"
-
-  - name: "法信"
-    website_url: "https://faxin.cn/"
-    short_description: "人民法院出版社法律数据库"
-    pricing_type: "Freemium"
-    categories:
-      - "法律大数据"
-
-  - name: "聚法"
-    website_url: "https://www.jufaanli.com/"
-    short_description: "法律案例检索和分析平台"
-    pricing_type: "Freemium"
-    categories:
-      - "法律大数据"
-
-  - name: "威科"
-    website_url: "https://law.wkinfo.com.cn/"
-    short_description: "威科先行法律信息库"
-    pricing_type: "Paid"
-    categories:
-      - "法律大数据"
-
-  - name: "国家企业信用信息公示系统"
-    website_url: "https://www.gsxt.gov.cn/"
-    short_description: "官方企业信息公示平台"
-    pricing_type: "Free"
-    categories:
-      - "法律大数据"
-
-  - name: "企信宝"
-    website_url: "https://www.qixin.com/"
-    short_description: "企业信息查询工具"
-    pricing_type: "Freemium"
-    categories:
-      - "法律大数据"
-
-  - name: "天眼查"
-    website_url: "https://www.tianyancha.com/"
-    short_description: "商业安全查询工具"
-    pricing_type: "Freemium"
-    categories:
-      - "法律大数据"
-
-  - name: "企查查"
-    website_url: "https://www.qcc.com/"
-    short_description: "企业工商信息查询平台"
-    pricing_type: "Freemium"
-    categories:
-      - "法律大数据"
-
-  - name: "中国商标网"
-    website_url: "https://sbj.cnipa.gov.cn/"
-    short_description: "国家知识产权局商标局官网"
-    pricing_type: "Free"
-    categories:
-      - "法律大数据"
-
-  - name: "法蝉"
-    website_url: "https://www.fachans.com/"
-    short_description: "法律数据分析和案件管理工具"
-    pricing_type: "Freemium"
-    categories:
-      - "法律大数据"
-
-  - name: "iCourt"
-    website_url: "https://www.icourt.cc/"
-    short_description: "智能法律研究平台"
-    pricing_type: "Freemium"
-    categories:
-      - "法律大数据"
-
-  - name: "金助理"
-    website_url: "https://www.kinglex.cn/"
-    short_description: "法律事务管理助手"
-    pricing_type: "Freemium"
-    categories:
-      - "法律大数据"
-
-  - name: "印象笔记"
-    website_url: "https://yinxiang.com/"
-    short_description: "知识管理和笔记工具"
-    pricing_type: "Freemium"
-    categories:
-      - "法律大数据"
-
-  - name: "iLovePDF"
-    website_url: "https://www.ilovepdf.com/"
-    short_description: "在线PDF处理工具"
-    pricing_type: "Freemium"
-    categories:
-      - "法律大数据"
-
-  - name: "WPS"
-    website_url: "https://www.wps.cn/"
-    short_description: "办公软件套件"
-    pricing_type: "Freemium"
-    categories:
-      - "法律大数据"
-
-  - name: "ProcessOn"
-    website_url: "https://www.processon.com/"
-    short_description: "在线思维导图和流程图工具"
-    pricing_type: "Freemium"
-    categories:
-      - "法律大数据"
-
-  - name: "沉浸式翻译"
-    website_url: "https://immersivetranslate.com/"
-    short_description: "网页双语对照翻译插件"
-    pricing_type: "Freemium"
-    categories:
-      - "法律大数据"
-
-  # ==================== 投融资/IPO ====================
-  - name: "全国中小企业股份转让系统"
-    website_url: "https://www.neeq.com.cn/"
-    short_description: "新三板官方网站"
-    pricing_type: "Free"
-    categories:
-      - "投融资/IPO"
-
-  - name: "巨潮资讯"
-    website_url: "http://www.cninfo.com.cn/"
-    short_description: "证监会指定信息披露网站"
-    pricing_type: "Free"
-    categories:
-      - "投融资/IPO"
-
-  - name: "视频号"
-    website_url: "https://channels.weixin.qq.com/"
-    short_description: "微信视频内容平台"
-    pricing_type: "Free"
-    categories:
-      - "投融资/IPO"
-
-  - name: "抖音网页版"
-    website_url: "https://www.douyin.com/"
-    short_description: "短视频社交平台网页版"
-    pricing_type: "Free"
-    categories:
-      - "投融资/IPO"
-
-  - name: "剪映"
-    website_url: "https://www.capcut.cn/"
-    short_description: "视频剪辑工具"
-    pricing_type: "Free"
-    categories:
-      - "投融资/IPO"
-
-  - name: "可画"
-    website_url: "https://www.canva.cn/"
-    short_description: "在线设计工具"
-    pricing_type: "Freemium"
-    categories:
-      - "投融资/IPO"
-
-  # ==================== 业务创新 ====================
-  - name: "理脉"
-    website_url: "https://www.legalminer.com/"
-    short_description: "法律科技解决方案平台"
-    pricing_type: "Paid"
-    categories:
-      - "业务创新"
-
-  - name: "海蜂法务"
-    website_url: "https://www.haifeng.cn/"
-    short_description: "企业法务管理系统"
-    pricing_type: "Paid"
-    categories:
-      - "业务创新"
-
-  - name: "易法通"
-    website_url: "https://www.yifatong.com/"
-    short_description: "在线法律服务平台"
-    pricing_type: "Freemium"
-    categories:
-      - "业务创新"
-
-  - name: "案牍 AutoDocs"
-    website_url: "https://www.autodocs.cn/"
-    short_description: "法律文书智能生成工具"
-    pricing_type: "Freemium"
-    categories:
-      - "业务创新"
+- name: ChatGPT
+  website_url: https://chatgpt.com/
+  short_description: OpenAI推出的对话AI系统
+  long_description: ChatGPT is a state-of-the-art conversational AI developed by OpenAI.
+    It can assist with writing, coding, analysis, and creative tasks through natural
+    dialogue.
+  logo_url: https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&auto=format&fit=crop
+  featured: true
+  categories:
+  - 国外通用大模型
+- name: Midjourney
+  website_url: https://www.midjourney.com/
+  short_description: AI图像生成工具
+  long_description: Midjourney is a powerful AI art generator that creates high-quality,
+    imaginative images from text prompts. Perfect for artists, designers, and creative
+    professionals.
+  logo_url: https://images.unsplash.com/photo-1686191128892-c0f18d9f5fcd?w=400&auto=format&fit=crop
+  featured: false
+  categories:
+  - AI 大模型
+- name: 闪电说
+  website_url: https://shandianshuo.cn/
+  short_description: ''
+  long_description: ''
+  logo_url: ''
+  featured: false
+  categories:
+  - 办案效率
+- name: GitHub Copilot Test
+  website_url: https://github.com/features/copilot
+  short_description: AI pair programmer
+  long_description: 
+  logo_url: 
+  featured: false
+  categories: []
+- name: 法小兔
+  website_url: https://faxiaotu.com
+  short_description: 智能法律文书生成工具，支持各类合同、起诉状、答辩状等文书快速生成
+  long_description: 法小兔是一款专业的法律文书AI生成工具，基于大语言模型技术，能够快速生成各类法律文书。支持合同起草、诉讼文书、法律意见书等多种文书类型，大幅提升律师工作效率。
+  logo_url: 
+  featured: false
+  categories:
+  - 文书生成
+  - 合同审查
+- name: 智法AI
+  website_url: https://zhifa-ai.com
+  short_description: 专业法律文书智能生成平台，提供合同、协议、函件等文书模板
+  long_description: 智法AI专注于法律文书的智能化生成，内置数千种专业法律文书模板，结合AI技术实现个性化定制。适用于律师事务所、企业法务部门等专业场景。
+  logo_url: 
+  featured: false
+  categories:
+  - 文书生成
+- name: 威科先行
+  website_url: https://law.wkinfo.com.cn
+  short_description: 权威法律数据库，提供海量案例检索、法律法规查询服务
+  long_description: 威科先行是国内领先的法律信息服务平台，汇集海量裁判文书、法律法规、期刊论文等资源。提供智能检索、案例分析、法律条文比对等功能，是法律人的专业工具。
+  logo_url: 
+  featured: false
+  categories:
+  - 法律法规
+  - 案例检索
+- name: 无讼案例
+  website_url: https://www.itslaw.com
+  short_description: 专业案例检索工具，快速查找相关判例和裁判要旨
+  long_description: 无讼案例专注于案例检索服务，收录全国各级法院裁判文书，提供智能检索、类案推送、争议焦点分析等功能。帮助律师快速找到类似案例，提高办案效率。
+  logo_url: 
+  featured: false
+  categories:
+  - 案例检索
+- name: 法律AI助手
+  website_url: https://legal-ai.com
+  short_description: 智能合同审查工具，自动识别合同风险点和不合理条款
+  long_description: 法律AI助手基于深度学习技术，能够自动审查合同内容，识别潜在法律风险、不合理条款和缺漏项。支持多种合同类型，提供详细的风险报告和修改建议。
+  logo_url: 
+  featured: false
+  categories:
+  - 合同审查
+- name: 法律咨询AI
+  website_url: https://law-consulting-ai.com
+  short_description: 24小时在线法律咨询机器人，快速解答常见法律问题
+  long_description: 法律咨询AI是一个智能法律问答系统，基于大型语言模型训练，能够解答民事、刑事、行政等各类法律问题。提供即时响应，适合个人用户和企业客户。
+  logo_url: 
+  featured: false
+  categories: []
+- name: 企业合规宝
+  website_url: https://compliance-tool.com
+  short_description: 企业合规检查和尽职调查工具，自动生成调查报告
+  long_description: 企业合规宝专注于企业合规性检查和尽职调查，整合工商、司法、信用等多维度数据，自动生成专业的尽职调查报告。适用于投资并购、合作评估等场景。
+  logo_url: 
+  featured: false
+  categories:
+  - 尽职调查
+  - 法律科技
+- name: 智能判决预测
+  website_url: https://predict-ai.com
+  short_description: 基于AI的诉讼结果预测工具，评估胜诉概率
+  long_description: 智能判决预测通过分析历史案例数据和法律规则，为诉讼案件提供结果预测和胜诉概率评估。帮助律师制定更合理的诉讼策略，降低诉讼风险。
+  logo_url: 
+  featured: false
+  categories:
+  - 案例检索
+- name: 通义法睿
+  website_url: https://tongyi.aliyun.com/farui
+  short_description: 阿里云推出的法律AI助手
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 法律大模型
+- name: MetaLaw
+  website_url: https://meta.law/
+  short_description: 法律AI智能平台
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 国内通用大模型
+  - 法律科技
+- name: Kimi
+  website_url: https://kimi.moonshot.cn/
+  short_description: Moonshot AI推出的智能助手
+  long_description: 
+  logo_url: 
+  featured: true
+  categories:
+  - 国内通用大模型
+- name: 文心一言
+  website_url: https://yiyan.baidu.com/
+  short_description: 百度推出的AI对话系统
+  long_description: 
+  logo_url: 
+  featured: true
+  categories:
+  - 国内通用大模型
+- name: 智谱清言
+  website_url: https://chatglm.cn/
+  short_description: 智谱AI推出的对话系统
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 国内通用大模型
+- name: 通义千问
+  website_url: https://tongyi.aliyun.com/qianwen/
+  short_description: 阿里云推出的大语言模型
+  long_description: 
+  logo_url: 
+  featured: true
+  categories:
+  - 国内通用大模型
+- name: 讯飞星火
+  website_url: https://passport.xfyun.cn/
+  short_description: 科大讯飞推出的认知大模型
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 国内通用大模型
+- name: 百度文库
+  website_url: https://wenku.baidu.com/
+  short_description: 百度文档分享平台
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - AI 大模型
+- name: Gemini
+  website_url: https://gemini.google.com/
+  short_description: Google推出的多模态AI模型
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 国外通用大模型
+- name: Claude
+  website_url: https://www.anthropic.com/
+  short_description: Anthropic推出的AI助手
+  long_description: 
+  logo_url: 
+  featured: true
+  categories:
+  - 国外通用大模型
+- name: AI工具集导航
+  website_url: https://ai-bot.cn/
+  short_description: 汇总各类AI工具的导航网站
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - AI 大模型
+- name: 北大法宝
+  website_url: https://www.pkulaw.com/
+  short_description: 专业法律数据库和检索平台
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 大数据
+- name: 元典智库
+  website_url: https://chineselaw.com/
+  short_description: 法律智库和数据服务平台
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 大数据
+- name: 法信
+  website_url: https://faxin.cn/
+  short_description: 人民法院出版社法律数据库
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 大数据
+- name: 聚法案例
+  website_url: https://www.jufaanli.com/
+  short_description: 法律案例检索和分析平台
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 大数据
+- name: 威科
+  website_url: https://law.wkinfo.com.cn/
+  short_description: 威科先行法律信息库
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 大数据
+- name: 国家企业信用信息公示系统
+  website_url: https://www.gsxt.gov.cn/
+  short_description: 官方企业信息公示平台
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 工商信息
+- name: 企信宝
+  website_url: https://www.qixin.com/
+  short_description: 企业信息查询工具
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 工商信息
+- name: 天眼查
+  website_url: https://www.tianyancha.com/
+  short_description: 商业安全查询工具
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 工商信息
+- name: 企查查
+  website_url: https://www.qcc.com/
+  short_description: 企业工商信息查询平台
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 工商信息
+- name: 中国商标网
+  website_url: https://sbj.cnipa.gov.cn/
+  short_description: 国家知识产权局商标局官网
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 大数据
+- name: 法蝉
+  website_url: https://www.fachans.com/
+  short_description: 法律数据分析和案件管理工具
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 法律科技
+- name: iCourt
+  website_url: https://www.icourt.cc/
+  short_description: 智能法律研究平台
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 法律科技
+- name: 金助理
+  website_url: https://www.kinglex.cn/
+  short_description: 法律事务管理助手
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 大数据
+- name: 印象笔记
+  website_url: https://yinxiang.com/
+  short_description: 知识管理和笔记工具
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 大数据
+- name: iLovePDF
+  website_url: https://www.ilovepdf.com/
+  short_description: 在线PDF处理工具
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 大数据
+- name: WPS
+  website_url: https://www.wps.cn/
+  short_description: 办公软件套件
+  long_description: 
+  logo_url: data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAQ2SURBVHgB7Va9biRFEK7qWa9XAuSByMEhr0FIzvARkEBgEUHEPQG79wKcTyL3Li/gnxdgl5TgTAQSQmeJxEJCIoIjOc/JyemSW4tbe70z28XX1T0z+zO2U6RzWe3unq6un6+/rl6iW7mV111Y7tzZImMekVAcvkm+NqUnxZy1S0jsQz49PdTF3Q82ych3WNzM1dM/Msp+S4UviQ32RHDlBm5MIgJrz9Bvs6y9e4Ida3MOvRXGnxRTyb2HgM6I/13nZDCQb98/IcNNtQC19J8JXf46InWM5npjfM/qnJ1dtVGjSOLgKkQWnMz4y+clcmgx2TiWb955QENpFsBhT/r7SDhymZMwEnfKOjbiFcSSRuO+k7F7FFk4xsdIECZ6xtxg7HqeuHFYQ583lh59Dgvn0qZXmL/CviGy/3tM9gJOoYPmehcMcaR7vE03Vj9yyNJsxlQf4xgkLrNFUCnvEzUwGZUoRDjjiB7peCzr9Gm9hflOgRokfZHdnfw1HPi9+X/IMu8CpHsznIIN3SgbqzvoOiXAMgBgd/nJ84TmibGx+pgcCTeoS9HSY5hpFnwh6vEPp/cr9jidE3/M+Vfb4ycv7hsf5mifzOQlYPFwM87X2B2qlq62kWnRhW3SOaC8sExDHFUadSt3OFsecg+9csGorgbAfw4GVOMDPef8fCJpy0bcnLcFVI5oFYORbcMpaQBD6/o+HybJYvawAVs4Kgq2Hd96ObqmjHK8h8gGgYw+yuWoGoXzrEXnE2SfCQ0zN3dUqc7e2VAyB0LjdtBSWugWASgK7G7EFNONtGRzFgWdp7JNKYxlCBYd+h4fP0+wFi/oGmp7ZK1WI/jowleyEIAXCy7Yl8UxGGyIzCwKjvXGxj5AZxAR2ElXPorbVDPbs7qmExKRcLUTR75plZkAFIVIDvQY3CYlpW3nKBQZ6VqoGUb6oOwgBPa1bHkUVJcnXwUd9hwAUlPZVyAAGZPnQl6UXBDLsqtrDdvReV6UHFKRuxH2AeZwCGTc2MkymO9JnSfyDN768+4WAggo7IWKxeH8vpRP3mo5TpQVUYPrBSttrabujI1sy8dvfIixZ76x3gajRhzPZq/+qEIUxjR9igr3NlVKqChZtk6NxgC9e9A8AUWL0hn+r+QvDPQTytLP+HiU3IiAmj8KXCh5IEWR8mN9C5xB1a3RfnFz/NGtTL0d7v39vsr5lQH4lTq4YM+U6aVxCuQD3JOpe19zuoNQwALp8qtsE6plvSvdXLWgmRnZL1isJXoSXjLu81GZUaGrL14otVrQ0Eg607oLfugakS2c61L9qf5a8i+e6O+CzLw3b1R1a3XHhZWp1zHhXy7Xr/NhrlvkI73fB2Vh0vvcr8pIdR0Xpisp49reILWbFPjncUe+qK0g83vK5tGbD12xqJQR3pPG0hrq8xZQ+JF/yvp0K7fyf5f/AKzIO6StcaNfAAAAAElFTkSuQmCC
+  featured: false
+  categories:
+  - 大数据
+- name: ProcessOn
+  website_url: https://www.processon.com/
+  short_description: 在线思维导图和流程图工具
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 大数据
+- name: 沉浸式翻译
+  website_url: https://immersivetranslate.com/
+  short_description: 网页双语对照翻译插件
+  long_description: 
+  logo_url: https://s.immersivetranslate.com/static/official-static/img/twitter-image.jpg
+  featured: false
+  categories:
+  - 大数据
+- name: 全国中小企业股份转让系统
+  website_url: https://www.neeq.com.cn/
+  short_description: 新三板官方网站
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 投融资/IPO
+- name: 巨潮资讯
+  website_url: http://www.cninfo.com.cn/
+  short_description: 证监会指定信息披露网站
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 投融资/IPO
+- name: 视频号
+  website_url: https://channels.weixin.qq.com/
+  short_description: 微信视频内容平台
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 投融资/IPO
+- name: 抖音网页版
+  website_url: https://www.douyin.com/
+  short_description: 短视频社交平台网页版
+  long_description: 
+  logo_url: data:;base64,=
+  featured: false
+  categories:
+  - 投融资/IPO
+- name: 剪映
+  website_url: https://www.capcut.cn/
+  short_description: 视频剪辑工具
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 投融资/IPO
+- name: 可画
+  website_url: https://www.canva.cn/
+  short_description: 在线设计工具
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 投融资/IPO
+- name: 理脉
+  website_url: https://www.legalminer.com/
+  short_description: 法律科技解决方案平台
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 法律科技
+  - 业务创新
+- name: 海蜂法务
+  website_url: https://www.haifeng.cn/
+  short_description: 企业法务管理系统
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 业务创新
+- name: 易法通
+  website_url: https://www.yifatong.com/
+  short_description: 在线法律服务平台
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 业务创新
+- name: 案牍 AutoDocs
+  website_url: https://www.autodocs.cn/
+  short_description: 法律文书智能生成工具
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 法律科技
+  - 业务创新
+- name: OpenRouter
+  website_url: https://openrouter.ai/
+  short_description: AI 模型 API 聚合平台，提供多个大模型的统一接入服务
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - API 聚合
+- name: 火山引擎
+  website_url: https://www.volcengine.com/
+  short_description: 字节跳动旗下云服务平台，提供大模型 API 接入服务
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - API 聚合
+- name: DeepSeek
+  website_url: https://www.deepseek.com/
+  short_description: 深度求索，国产大模型对话助手
+  long_description: 
+  logo_url: https://backend-prod-hjlerckip39sk4no.s3-accelerate.amazonaws.com/images/2026/02/19/0194e09c-901f-7b99-bb46-e5b93b676708/v2-2bb295abf0692446f_ee339e3d633c714_720w_eb539844.png
+  featured: false
+  categories:
+  - 国内通用大模型
+- name: MiniMax
+  website_url: https://agent.minimaxi.com/
+  short_description: MiniMax AI 对话助手，国产大模型应用平台
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 国内通用大模型
+- name: 腾讯元宝
+  website_url: https://yuanbao.tencent.com/
+  short_description: 腾讯推出的 AI 晾能助手，提供晾能对话服务
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 国内通用大模型
+- name: 豆包
+  website_url: https://www.doubao.com/
+  short_description: 字节跳动推出的AI对话助手
+  long_description: 
+  logo_url: 
+  featured: true
+  categories:
+  - 国内通用大模型
+- name: Grok
+  website_url: https://grok.com/
+  short_description: xAI推出的AI对话助手，具有实时信息访问能力
+  long_description: 
+  logo_url: 
+  featured: false
+  categories:
+  - 国外通用大模型
+- name: 阿里云百炼
+  website_url: https://bailian.console.aliyun.com/
+  short_description: 阿里云企业级AI应用开发平台，提供大模型服务、模型训练、应用构建等功能
+  long_description: 阿里云百炼是阿里云推出的企业级大模型应用开发平台，集成了通义千问等多种大模型能力，提供模型调用、应用构建、模型训练等全流程服务。支持多种大模型接入，可快速构建企业智能AI应用。
+  logo_url: 
+  featured: false
+  categories:
+  - API 聚合
+- name: 即梦AI
+  website_url: https://jimeng.jianying.com/
+  short_description: 即梦AI是剑映推出的AI视频生成工具，支持文本生成视频、图文生成视频等功能
+  long_description: 即梦AI是字节跳动旗下剑映推出的AI视频创作平台，提供AI视频生成、AI图片生成等功能。用户只需输入文本描述或上传图片，即可快速生成高质量的视频内容。适用于短视频创作、营销宣传、新媒体运营等场景。
+  logo_url: 
+  featured: false
+  categories: []
+- name: 有道龙虾
+  website_url: https://lobsterai.youdao.com/
+  short_description: 有道推出的 AI 智能助手平台
+  long_description: 龙虾 AI 是有道推出的智能 AI 助手平台，提供多种 AI 功能和服务。
+  logo_url: 
+  featured: false
+  categories:
+  - 龙虾频道
+- name: MINIMAX 开放平台
+  website_url: https://platform.minimaxi.com/
+  short_description: MINIMAX 人工智能开放平台
+  long_description: MINIMAX 开放平台提供先进的人工智能 API 服务，包括自然语言处理、语音识别等多种 AI 能力。
+  logo_url: 
+  featured: false
+  categories:
+  - API 聚合
+- name: OpenClaw
+  website_url: https://openclaw.ai/
+  short_description: 开源个人 AI 助手，真正能做事的 AI
+  long_description: OpenClaw 是一个开源的个人 AI 助手，可以通过 WhatsApp、Telegram 或任何聊天应用使用。它能够执行实际任务，如清理收件箱、发送邮件、管理日历、航班值机等。运行在你自己的电脑上，数据完全由你控制，支持持久化记忆和自定义技能扩展。
+  logo_url: 
+  featured: true
+  categories:
+  - 龙虾频道
+- name: DeepSeek Platform
+  website_url: https://platform.deepseek.com/
+  short_description: DeepSeek AI 开放平台
+  long_description: DeepSeek Platform 是 DeepSeek 的官方 AI 开放平台，提供强大的大语言模型 API 服务。开发者可以通过
+    API 集成 DeepSeek 的先进 AI 能力到自己的应用中，支持对话生成、文本理解等多种 AI 功能。
+  logo_url: https://backend-prod-hjlerckip39sk4no.s3-accelerate.amazonaws.com/images/2026/02/19/0194e09c-901f-7b99-bb46-e5b93b676708/v2-2bb295abf0692446f_ee339e3d633c714_720w_eb539844.png
+  featured: true
+  categories:
+  - API 聚合

@@ -15,6 +15,7 @@ class Tool < ApplicationRecord
   # Scopes
   scope :popular, -> { order(view_count: :desc) }
   scope :newest, -> { order(created_at: :desc) }
+  scope :featured, -> { where(featured: true).order(created_at: :desc) }
   scope :search_by_name, ->(query) { where('name ILIKE ?', "%#{query}%") if query.present? }
   
   # Callbacks

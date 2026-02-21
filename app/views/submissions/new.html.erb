@@ -74,17 +74,6 @@
           <p class="form-help">可选：该工具Logo图片的直接链接</p>
         </div>
         
-        <!-- Pricing Type -->
-        <div>
-          <%= f.label :pricing_type, "价格类型 *", class: "form-label" %>
-          <%= f.select :pricing_type, 
-              options_for_select([['免费', 'Free'], ['部分免费', 'Freemium'], ['付费', 'Paid']], @tool.pricing_type),
-              {},
-              class: "form-select w-full", 
-              required: true %>
-          <p class="form-help">选择价格模式</p>
-        </div>
-        
         <!-- Categories -->
         <div>
           <%= f.label :category_ids, "分类 *", class: "form-label" %>

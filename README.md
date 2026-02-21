@@ -60,6 +60,17 @@ Default superuser: admin
 
 Default password: admin
 
+### 数据同步功能
+
+后台管理系统提供一键数据同步功能，可将本地数据同步到生产环境：
+
+1. **导出数据**：`rails runner tmp/export_current_data.rb`
+2. **部署后同步**：登录后台 → Dashboard → 点击 "Sync Data" 按钮
+
+详细说明请查看：
+- 快速指南：[docs/deployment_sync_checklist.md](docs/deployment_sync_checklist.md)
+- 完整文档：[docs/data_sync_guide.md](docs/data_sync_guide.md)
+
 ## Tech stack
 
 * Ruby on Rails 7.x

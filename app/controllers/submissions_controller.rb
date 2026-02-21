@@ -20,6 +20,6 @@ class SubmissionsController < ApplicationController
   private
   
   def tool_params
-    params.require(:tool).permit(:name, :website_url, :short_description, :long_description, :logo_url, :pricing_type, category_ids: [])
+    params.require(:tool).permit(:name, :website_url, :short_description, :long_description, :logo_url, category_ids: [])
   end
 end

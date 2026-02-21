@@ -51,12 +51,6 @@
           <%= form.file_field :logo, accept: 'image/*', class: 'form-control' %>
         </div>
 
-        <!-- Pricing type -->
-        <div class="form-group">
-          <%= form.label :pricing_type %>
-          <%= form.select :pricing_type, options_for_select(['Free', 'Freemium', 'Paid'], @tool.pricing_type), { prompt: 'Select pricing type...' }, { class: 'form-select' } %>
-        </div>
-
         <!-- Categories -->
         <div class="form-group">
           <%= form.label :category_ids, "Categories" %>
