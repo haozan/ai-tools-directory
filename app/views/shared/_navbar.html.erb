@@ -1,4 +1,4 @@
-<nav class="bg-surface border-b border-border sticky top-0 z-50 backdrop-blur-sm bg-surface/95">
+<nav class="bg-surface border-b border-border sticky top-0 z-50 backdrop-blur-sm bg-surface/95" data-controller="dropdown">
   <div class="container-xl mx-auto px-4">
     <div class="flex items-center justify-between h-16">
       <!-- Logo -->
@@ -25,7 +25,10 @@
         </div>
         
         <!-- Mobile Menu Button -->
-        <button class="md:hidden p-2 text-secondary hover:text-primary transition-colors">
+        <button class="md:hidden p-2 text-secondary hover:text-primary transition-colors" 
+                data-dropdown-target="trigger" 
+                data-action="click->dropdown#toggle"
+                aria-label="Toggle menu">
           <%= lucide_icon "menu", class: "w-6 h-6" %>
         </button>
       </div>
@@ -39,6 +42,22 @@
             placeholder: "搜索法律AI工具...", 
             class: "w-full pl-10 pr-4 py-2 bg-surface-elevated border border-border rounded-lg text-sm text-primary focus:outline-none focus:border-primary transition-all" %>
       <% end %>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div class="md:hidden hidden border-t border-border" data-dropdown-target="menu">
+      <div class="py-4 space-y-3">
+        <%= link_to categories_path, class: "block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-surface-elevated rounded-lg transition-colors font-medium" do %>
+          分类
+        <% end %>
+        <%= link_to resources_path, class: "block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-surface-elevated rounded-lg transition-colors font-medium" do %>
+          资源
+        <% end %>
+        <%= link_to new_submission_path, class: "block mx-4 text-center btn-primary btn-sm inline-flex items-center justify-center gap-2" do %>
+          <%= lucide_icon "plus", class: "w-4 h-4" %>
+          提交工具
+        <% end %>
+      </div>
     </div>
   </div>
 </nav>

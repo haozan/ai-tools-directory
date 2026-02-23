@@ -596,6 +596,14 @@ tools:
   featured: true
   categories:
   - 龙虾频道
+- name: ClawHub
+  website_url: https://clawhub.ai/
+  short_description: AI 工具聚合平台
+  long_description: ClawHub 是一个专业的 AI 工具聚合平台，为用户提供各类 AI 工具的发现和使用服务。
+  logo_url: 
+  featured: false
+  categories:
+  - 龙虾频道
 - name: DeepSeek Platform
   website_url: https://platform.deepseek.com/
   short_description: DeepSeek AI 开放平台
