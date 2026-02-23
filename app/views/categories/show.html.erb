@@ -22,17 +22,17 @@
       <%= @category.name %>
     </h1>
     <p class="text-lg text-secondary max-w-2xl mx-auto">
-      <%= @category.description.presence || "探索 #{@category.name} 分类中的 #{@category.tools_count} 个法律AI工具" %>
+      <%= @category.description.presence || "探索 #{@category.name} 分类中的 #{@category.all_tools.count} 个法律AI工具" %>
     </p>
     <div class="mt-6 flex items-center justify-center gap-4">
       <span class="inline-flex items-center gap-2 px-4 py-2 bg-surface-elevated border border-border rounded-full text-secondary">
         <%= lucide_icon "layers", class: "w-4 h-4" %>
-        <%= pluralize(@category.tools_count, 'tool') %>
+        <%= @category.all_tools.count %> 个工具
       </span>
       <% if @category.has_children? %>
         <span class="inline-flex items-center gap-2 px-4 py-2 bg-surface-elevated border border-border rounded-full text-secondary">
           <%= lucide_icon "folder", class: "w-4 h-4" %>
-          <%= pluralize(@category.children.count, 'subcategory', 'subcategories') %>
+          <%= @category.children.count %> 个子分类
         </span>
       <% end %>
     </div>
