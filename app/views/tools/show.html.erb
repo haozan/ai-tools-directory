@@ -1,17 +1,23 @@
 <% content_for :title, @tool.name %>
 
 <!-- Breadcrumb -->
-<div class="bg-surface border-b border-border py-3 px-4">
-  <div class="container-lg mx-auto">
-    <nav class="flex items-center gap-2 text-sm">
-      <%= link_to "首页", root_path, class: "text-muted hover:text-primary transition-colors" %>
-      <%= lucide_icon "chevron-right", class: "w-4 h-4 text-muted" %>
-      <%= link_to "工具", tools_path, class: "text-muted hover:text-primary transition-colors" %>
-      <%= lucide_icon "chevron-right", class: "w-4 h-4 text-muted" %>
-      <span class="text-primary font-medium"><%= @tool.name %></span>
-    </nav>
+<% if @tool.categories.any? %>
+  <div class="bg-surface border-b border-border py-3 px-4">
+    <div class="container-lg mx-auto">
+      <nav class="flex items-center gap-2 text-sm">
+        <% primary_category = @tool.categories.first %>
+        <% # 显示完整的分类层级路径 %>
+        <% primary_category.ancestors.reverse.each do |ancestor| %>
+          <%= link_to ancestor.name, category_path(ancestor), class: "text-muted hover:text-primary transition-colors" %>
+          <%= lucide_icon "chevron-right", class: "w-4 h-4 text-muted" %>
+        <% end %>
+        <%= link_to primary_category.name, category_path(primary_category), class: "text-muted hover:text-primary transition-colors" %>
+        <%= lucide_icon "chevron-right", class: "w-4 h-4 text-muted" %>
+        <span class="text-primary font-medium"><%= @tool.name %></span>
+      </nav>
+    </div>
   </div>
-</div>
+<% end %>
 
 <!-- Tool Header -->
 <section class="gradient-surface py-12 px-4">

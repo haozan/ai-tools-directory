@@ -13,5 +13,9 @@ class HomeController < ApplicationController
     @categories = Category.popular.limit(6)
     @tools_count = Tool.count
     @categories_count = Category.count
+    
+    # 预加载热门分类用于首页展示
+    trending_names = ["龙虾频道", "AI 编程", "AI 阅卷", "AI 语音输出", "AI 起草文书", "AI 合同审核", "AI 写作"]
+    @trending_categories = Category.where(name: trending_names).index_by(&:name)
   end
 end

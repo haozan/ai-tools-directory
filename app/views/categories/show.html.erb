@@ -5,15 +5,10 @@
   <section class="bg-surface-elevated py-4 px-4 border-b border-border">
     <div class="container-xl mx-auto">
       <nav class="flex items-center gap-2 text-sm">
-        <%= link_to categories_path, class: "text-secondary hover:text-primary transition-colors flex items-center gap-1" do %>
-          <%= lucide_icon "home", class: "w-4 h-4" %>
-          <span>所有分类</span>
-        <% end %>
         <% @category.ancestors.reverse.each do |ancestor| %>
-          <%= lucide_icon "chevron-right", class: "w-4 h-4 text-muted" %>
           <%= link_to ancestor.name, category_path(ancestor), class: "text-secondary hover:text-primary transition-colors" %>
+          <%= lucide_icon "chevron-right", class: "w-4 h-4 text-muted" %>
         <% end %>
-        <%= lucide_icon "chevron-right", class: "w-4 h-4 text-muted" %>
         <span class="text-primary font-medium"><%= @category.name %></span>
       </nav>
     </div>
@@ -80,8 +75,8 @@
         <% @tools.each do |tool| %>
           <%= link_to tool_path(tool), class: "tool-card card bg-surface-elevated border border-border rounded-xl overflow-hidden block" do %>
             <div class="aspect-video relative overflow-hidden bg-surface">
-              <% if tool.logo_url.present? %>
-                <img src="<%= tool.logo_url %>" alt="<%= tool.name %>" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
+              <% if tool.logo_image_url.present? %>
+                <img src="<%= tool.logo_image_url %>" alt="<%= tool.name %>" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" loading="lazy" decoding="async" />
               <% else %>
                 <div class="w-full h-full flex items-center justify-center gradient-primary">
                   <%= lucide_icon "sparkles", class: "w-12 h-12 text-surface-elevated" %>
