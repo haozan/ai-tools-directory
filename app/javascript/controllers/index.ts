@@ -9,6 +9,8 @@ import FlatpickrController from "./flatpickr_controller"
 import SystemMonitorController from "./system_monitor_controller"
 import FlashController from "./flash_controller"
 import CategoryFilterController from "./category_filter_controller"
+import WechatQrController from "./wechat_qr_controller"
+import WechatQrTriggerController from "./wechat_qr_trigger_controller"
 
 const application = Application.start()
 
@@ -21,5 +23,7 @@ application.register("flatpickr", FlatpickrController)
 application.register("system-monitor", SystemMonitorController)
 application.register("flash", FlashController)
 application.register("category-filter", CategoryFilterController)
+application.register("wechat-qr", WechatQrController)
+application.register("wechat-qr-trigger", WechatQrTriggerController)
 
 window.Stimulus = application

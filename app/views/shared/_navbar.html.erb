@@ -6,22 +6,20 @@
         <%= image_tag "app-logo.png", alt: "Kulawyer Logo", class: "w-8 h-8 rounded-lg object-contain" %>
         <span class="font-heading text-xl font-bold gradient-primary bg-clip-text text-transparent">
           <%= Rails.application.config.x.appname %>
+          <span class="text-xs text-muted ml-1 font-normal">v1.0.1</span>
         </span>
       <% end %>
       
       <!-- Menu Links -->
       <div class="flex items-center gap-6">
         <div class="hidden md:flex items-center gap-6">
-          <%= link_to categories_path, class: "text-sm text-secondary hover:text-primary transition-colors font-medium" do %>
-            分类
-          <% end %>
           <%= link_to resources_path, class: "text-sm text-secondary hover:text-primary transition-colors font-medium" do %>
-            资源
+            直达资源
           <% end %>
-          <%= link_to new_submission_path, class: "btn-primary btn-sm inline-flex items-center gap-2" do %>
+          <button data-controller="wechat-qr-trigger" data-action="click->wechat-qr-trigger#show" class="btn-primary btn-sm inline-flex items-center gap-2">
             <%= lucide_icon "plus", class: "w-4 h-4" %>
             提交工具
-          <% end %>
+          </button>
         </div>
         
         <!-- Mobile Menu Button -->
@@ -53,11 +51,49 @@
         <%= link_to resources_path, class: "block px-4 py-2 text-sm text-secondary hover:text-primary hover:bg-surface-elevated rounded-lg transition-colors font-medium" do %>
           资源
         <% end %>
-        <%= link_to new_submission_path, class: "block mx-4 text-center btn-primary btn-sm inline-flex items-center justify-center gap-2" do %>
+        <button data-controller="wechat-qr-trigger" data-action="click->wechat-qr-trigger#show" class="block mx-4 text-center btn-primary btn-sm inline-flex items-center justify-center gap-2">
           <%= lucide_icon "plus", class: "w-4 h-4" %>
           提交工具
-        <% end %>
+        </button>
       </div>
     </div>
   </div>
 </nav>
+
+<!-- WeChat QR Code Modal (Body Level) -->
+<div data-controller="wechat-qr">
+  <div data-wechat-qr-target="modal" 
+       data-action="click->wechat-qr#closeOnOutsideClick"
+       class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-[9999] flex items-center justify-center p-4">
+    <div class="bg-surface rounded-2xl shadow-2xl max-w-lg w-full p-10 relative animate-in fade-in zoom-in duration-200">
+      <!-- Close Button -->
+      <button data-action="click->wechat-qr#hide" 
+              class="absolute top-4 right-4 text-muted hover:text-primary transition-colors">
+        <%= lucide_icon "x", class: "w-6 h-6" %>
+      </button>
+      
+      <!-- Content -->
+      <div class="text-center space-y-8">
+        <div class="space-y-2">
+          <h3 class="text-2xl font-bold text-primary">提交工具</h3>
+          <p class="text-secondary">扫码添加创始人微信，直连镐赞提交您的工具</p>
+        </div>
+        
+        <!-- QR Code -->
+        <div class="flex justify-center py-4">
+          <%= image_tag "founder-wechat-qr.png", 
+              alt: "创始人镐赞微信二维码", 
+              class: "w-80 h-80 rounded-xl border-4 border-primary/20 shadow-lg" %>
+        </div>
+        
+        <div class="space-y-2 text-sm text-muted">
+          <p class="flex items-center justify-center gap-2">
+            <%= lucide_icon "user", class: "w-4 h-4" %>
+            <span>创始人：镐赞</span>
+          </p>
+          <p>期待与您的交流！</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
