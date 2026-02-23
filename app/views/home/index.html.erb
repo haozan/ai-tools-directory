@@ -23,8 +23,8 @@
         
         <!-- Trending Tags -->
         <div class="flex flex-wrap gap-2">
-          <span class="text-sm text-muted">热门标签:</span>
-          <% ["法律文书生成", "案例检索", "合同审查", "法律咨询", "判决预测"].each do |tag| %>
+          <span class="text-sm text-muted">热门分类:</span>
+          <% ["AI 编程", "AI 阅卷", "AI 语音输出", "AI 起草文书", "AI 合同审核", "AI 写作"].each do |tag| %>
             <%= link_to tools_path(q: tag), class: "px-3 py-1 bg-surface-elevated border border-primary/30 rounded-full text-sm text-primary hover:bg-primary/10 cursor-pointer transition-colors" do %>
               <%= tag %>
             <% end %>

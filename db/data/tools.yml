@@ -3,70 +3,68 @@ categories:
 - name: 龙虾频道
   description: 龙虾频道相关 AI 工具
   parent: 
-  position: 0 
-- name: AI Agent
+  position: 10
+- name: 大模型
+  description: 通用人工智能大模型
+  parent: 
+  position: 30
+- name: 新技能
   description: 智能 AI 代理工具，提升工作效率
   parent: 
+  position: 20 
+- name: AI 语音输出
+  description: AI 语音生成和配音工具
+  parent: 新技能
+- name: AI 阅卷
+  description: AI 辅助阅卷和文书审阅工具
+  parent: 新技能
+- name: AI 起草文书
+  description: AI 辅助起草法律文书工具
+  parent: 新技能
+- name: AI 合同审核
+  description: AI 辅助合同审核和风险识别工具
+  parent: 新技能
+- name: AI 编程
+  description: AI 辅助编程和代码生成工具
+  parent: 新技能
+- name: AI 写作
+  description: AI 辅助写作和内容创作工具
+  parent: 新媒体
 - name: API 聚合
   description: 聚合多个AI大模型API的平台
-  parent: 通用大模型
-- name: 业务创新
-  description: 法律科技和业务创新工具
-  parent: 
-- name: 办案效率
-  description: 3D modeling, design tools powered by AI
-  parent: 
+  parent: 大模型
 - name: 发布平台
   description: ''
   parent: 新媒体
-- name: 合同审查
-  description: 自动识别合同风险点和不合理条款
-  parent: 办案效率
-- name: 国内通用大模型
+- name: 国内大模型
   description: 国内AI对话助手
-  parent: 通用大模型
-- name: 国外通用大模型
+  parent: 大模型
+- name: 国外大模型
   description: 国外AI对话助手
-  parent: 通用大模型
+  parent: 大模型
 - name: 图像创作
   description: ''
   parent: 新媒体
 - name: 大数据
   description: 法律数据库、案例检索和企业信息查询工具
   parent: 
-- name: 尽职调查
-  description: 企业背景调查和合规性检查
-  parent: 办案效率
+  position: 40
+- name: 新媒体
+  description: ''
+  parent: 
+  position: 50 
 - name: 工商信息
   description: 
   parent: 大数据
 - name: 投融资/IPO
   description: 投融资、IPO相关信息查询和新媒体工具
   parent: 
-- name: 文书生成
-  description: 智能生成各类法律文书、合同、协议等文档
-  parent: 办案效率
-- name: 文本创作
-  description: AI辅助法律文本创作工具
-  parent: 法律新媒体
-- name: 新媒体
-  description: ''
-  parent: 
-- name: 新媒体写作
-  description: ''
-  parent: 新媒体
 - name: 案例检索
   description: 快速检索相关判例、裁判文书和法律案例
   parent: 大数据
-- name: 法律大数据
-  description: 法律数据库、案例检索和企业信息查询工具
-  parent: 
 - name: 法律大模型
   description: 专门面向法律领域的大模型工具
-  parent: 通用大模型
-- name: 法律新媒体
-  description: 法律相关的新媒体工具和平台
-  parent: 
+  parent: 大模型
 - name: 法律法规
   description: 法律法规查询和更新服务
   parent: 大数据
@@ -75,10 +73,7 @@ categories:
   parent: 
 - name: 视频创作
   description: ''
-  parent: 新媒体
-- name: 通用大模型
-  description: 通用人工智能大模型
-  parent: 
+  parent: 新媒体 
 tools:
 - name: AI工具集导航
   website_url: https://ai-bot.cn/
@@ -87,7 +82,7 @@ tools:
   logo_url: 
   featured: false
   categories:
-  - 通用大模型
+  - 大模型
 - name: ChatGPT
   website_url: https://chatgpt.com/
   short_description: OpenAI推出的对话AI系统
@@ -104,7 +99,7 @@ tools:
   logo_url: 
   featured: true
   categories:
-  - 国外通用大模型
+  - 国外大模型
 - name: ClawHub
   website_url: https://clawhub.ai/
   short_description: AI 工具聚合平台
@@ -136,7 +131,7 @@ tools:
   logo_url: https://backend-prod-hjlerckip39sk4no.s3-accelerate.amazonaws.com/images/2026/02/19/0194e09c-901f-7b99-bb46-e5b93b676708/v2-2bb295abf0692446f_ee339e3d633c714_720w_eb539844.png
   featured: false
   categories:
-  - 国内通用大模型
+  - 国内大模型
 - name: DeepSeek Platform
   website_url: https://platform.deepseek.com/
   short_description: DeepSeek AI 开放平台
@@ -161,7 +156,7 @@ tools:
   logo_url: 
   featured: false
   categories:
-  - 国外通用大模型
+  - 国外大模型
 - name: GitHub Copilot
   website_url: https://github.com/features/copilot
   short_description: AI pair programmer helping developers write code faster
@@ -192,7 +187,7 @@ tools:
   logo_url: 
   featured: false
   categories:
-  - 国外通用大模型
+  - 国外大模型
 - name: Jasper AI
   website_url: https://jasper.ai
   short_description: AI content writer for marketing and blog content
@@ -208,7 +203,7 @@ tools:
   logo_url: 
   featured: true
   categories:
-  - 国内通用大模型
+  - 国内大模型
 - name: MINIMAX 开放平台
   website_url: https://platform.minimaxi.com/
   short_description: MINIMAX 人工智能开放平台
@@ -224,7 +219,7 @@ tools:
   logo_url: 
   featured: false
   categories:
-  - 国内通用大模型
+  - 国内大模型
   - 法律科技
 - name: Midjourney
   website_url: https://www.midjourney.com/
@@ -242,7 +237,7 @@ tools:
   logo_url: 
   featured: false
   categories:
-  - 国内通用大模型
+  - 国内大模型
 - name: Notion AI
   website_url: https://notion.so/product/ai
   short_description: AI-powered writing and organization within Notion
@@ -331,15 +326,6 @@ tools:
   featured: false
   categories:
   - 大数据
-- name: 企业合规宝
-  website_url: https://compliance-tool.com
-  short_description: 企业合规检查和尽职调查工具，自动生成调查报告
-  long_description: 企业合规宝专注于企业合规性检查和尽职调查，整合工商、司法、信用等多维度数据，自动生成专业的尽职调查报告。适用于投资并购、合作评估等场景。
-  logo_url: 
-  featured: false
-  categories:
-  - 尽职调查
-  - 法律科技
 - name: 企信宝
   website_url: https://www.qixin.com/
   short_description: 企业信息查询工具
@@ -371,7 +357,7 @@ tools:
   logo_url: 
   featured: false
   categories:
-  - 投融资/IPO
+  - 发布平台
 - name: 剪映
   website_url: https://www.capcut.cn/
   short_description: 视频剪辑工具
@@ -379,7 +365,7 @@ tools:
   logo_url: 
   featured: false
   categories:
-  - 投融资/IPO
+  - 视频创作
 - name: 北大法宝
   website_url: https://www.pkulaw.com/
   short_description: 专业法律数据库和检索平台
@@ -403,14 +389,6 @@ tools:
   logo_url: 
   featured: false
   categories: []
-- name: 可画
-  website_url: https://www.canva.cn/
-  short_description: 在线设计工具
-  long_description: 
-  logo_url: 
-  featured: false
-  categories:
-  - 投融资/IPO
 - name: 国家企业信用信息公示系统
   website_url: https://www.gsxt.gov.cn/
   short_description: 官方企业信息公示平台
@@ -459,7 +437,7 @@ tools:
   logo_url: data:;base64,=
   featured: false
   categories:
-  - 投融资/IPO
+  - 发布平台
 - name: 文心一言
   website_url: https://yiyan.baidu.com/
   short_description: 百度推出的AI对话系统
@@ -467,7 +445,7 @@ tools:
   logo_url: 
   featured: true
   categories:
-  - 国内通用大模型
+  - 国内大模型
 - name: 无讼案例
   website_url: https://www.itslaw.com
   short_description: 专业案例检索工具，快速查找相关判例和裁判要旨
@@ -476,22 +454,6 @@ tools:
   featured: false
   categories:
   - 案例检索
-- name: 易法通
-  website_url: https://www.yifatong.com/
-  short_description: 在线法律服务平台
-  long_description: 
-  logo_url: 
-  featured: false
-  categories:
-  - 业务创新
-- name: 智法AI
-  website_url: https://zhifa-ai.com
-  short_description: 专业法律文书智能生成平台，提供合同、协议、函件等文书模板
-  long_description: 智法AI专注于法律文书的智能化生成，内置数千种专业法律文书模板，结合AI技术实现个性化定制。适用于律师事务所、企业法务部门等专业场景。
-  logo_url: 
-  featured: false
-  categories:
-  - 文书生成
 - name: 智能判决预测
   website_url: https://predict-ai.com
   short_description: 基于AI的诉讼结果预测工具，评估胜诉概率
@@ -507,7 +469,7 @@ tools:
   logo_url: 
   featured: false
   categories:
-  - 国内通用大模型
+  - 国内大模型
 - name: 有道龙虾
   website_url: https://lobsterai.youdao.com/
   short_description: 有道推出的 AI 智能助手平台
@@ -516,15 +478,6 @@ tools:
   featured: false
   categories:
   - 龙虾频道
-- name: 案牍 AutoDocs
-  website_url: https://www.autodocs.cn/
-  short_description: 法律文书智能生成工具
-  long_description: 
-  logo_url: 
-  featured: false
-  categories:
-  - 法律科技
-  - 业务创新
 - name: 沉浸式翻译
   website_url: https://immersivetranslate.com/
   short_description: 网页双语对照翻译插件
@@ -541,23 +494,6 @@ tools:
   featured: false
   categories:
   - 大数据
-- name: 法小兔
-  website_url: https://faxiaotu.com
-  short_description: 智能法律文书生成工具，支持各类合同、起诉状、答辩状等文书快速生成
-  long_description: 法小兔是一款专业的法律文书AI生成工具，基于大语言模型技术，能够快速生成各类法律文书。支持合同起草、诉讼文书、法律意见书等多种文书类型，大幅提升律师工作效率。
-  logo_url: 
-  featured: false
-  categories:
-  - 文书生成
-  - 合同审查
-- name: 法律AI助手
-  website_url: https://legal-ai.com
-  short_description: 智能合同审查工具，自动识别合同风险点和不合理条款
-  long_description: 法律AI助手基于深度学习技术，能够自动审查合同内容，识别潜在法律风险、不合理条款和缺漏项。支持多种合同类型，提供详细的风险报告和修改建议。
-  logo_url: 
-  featured: false
-  categories:
-  - 合同审查
 - name: 法律咨询AI
   website_url: https://law-consulting-ai.com
   short_description: 24小时在线法律咨询机器人，快速解答常见法律问题
@@ -573,14 +509,6 @@ tools:
   featured: false
   categories:
   - 法律科技
-- name: 海蜂法务
-  website_url: https://www.haifeng.cn/
-  short_description: 企业法务管理系统
-  long_description: 
-  logo_url: 
-  featured: false
-  categories:
-  - 业务创新
 - name: 火山引擎
   website_url: https://www.volcengine.com/
   short_description: 字节跳动旗下云服务平台，提供大模型 API 接入服务
@@ -589,15 +517,6 @@ tools:
   featured: false
   categories:
   - API 聚合
-- name: 理脉
-  website_url: https://www.legalminer.com/
-  short_description: 法律科技解决方案平台
-  long_description: 
-  logo_url: 
-  featured: false
-  categories:
-  - 法律科技
-  - 业务创新
 - name: 百度文库
   website_url: https://wenku.baidu.com/
   short_description: 百度文档分享平台
@@ -621,7 +540,7 @@ tools:
   logo_url: 
   featured: false
   categories:
-  - 国内通用大模型
+  - 国内大模型
 - name: 视频号
   website_url: https://channels.weixin.qq.com/
   short_description: 微信视频内容平台
@@ -629,7 +548,7 @@ tools:
   logo_url: 
   featured: false
   categories:
-  - 投融资/IPO
+  - 发布平台
 - name: 讯飞星火
   website_url: https://passport.xfyun.cn/
   short_description: 科大讯飞推出的认知大模型
@@ -637,7 +556,7 @@ tools:
   logo_url: 
   featured: false
   categories:
-  - 国内通用大模型
+  - 国内大模型
 - name: 豆包
   website_url: https://www.doubao.com/
   short_description: 字节跳动推出的AI对话助手
@@ -645,7 +564,7 @@ tools:
   logo_url: 
   featured: true
   categories:
-  - 国内通用大模型
+  - 国内大模型
 - name: 通义千问
   website_url: https://tongyi.aliyun.com/qianwen/
   short_description: 阿里云推出的大语言模型
@@ -653,7 +572,7 @@ tools:
   logo_url: 
   featured: true
   categories:
-  - 国内通用大模型
+  - 国内大模型
 - name: 通义法睿
   website_url: https://tongyi.aliyun.com/farui
   short_description: 阿里云推出的法律AI助手
@@ -677,7 +596,7 @@ tools:
   logo_url: ''
   featured: false
   categories:
-  - 办案效率
+  - AI 语音输出
 - name: 阿里云百炼
   website_url: https://bailian.console.aliyun.com/
   short_description: 阿里云企业级AI应用开发平台，提供大模型服务、模型训练、应用构建等功能

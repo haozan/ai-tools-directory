@@ -12,7 +12,7 @@ class DataSyncService < ApplicationService
 
   def call
     ActiveRecord::Base.transaction do
-      data_file = Rails.root.join('db', 'data', 'kulawyer_tools.yml')
+      data_file = Rails.root.join('db', 'data', 'tools.yml')
       
       unless File.exist?(data_file)
         @results[:error] = "数据文件不存在: #{data_file}"
@@ -22,7 +22,7 @@ class DataSyncService < ApplicationService
       @data = YAML.load_file(data_file)
       
       # 按顺序执行同步
-      sync_categories
+      sync_categories_two_pass  # 两次遍历：先根分类，后子分类
       sync_tools
       sync_tool_categories
       
@@ -38,6 +38,22 @@ class DataSyncService < ApplicationService
   end
 
   private
+
+  def sync_categories_two_pass
+    categories_data = @data['categories'] || []
+    
+    # First pass: sync root categories (no parent)
+    root_categories = categories_data.select { |cat| cat['parent'].blank? }
+    root_categories.each do |cat_data|
+      sync_category(cat_data)
+    end
+    
+    # Second pass: sync child categories (with parent)
+    child_categories = categories_data.select { |cat| cat['parent'].present? }
+    child_categories.each do |cat_data|
+      sync_category(cat_data)
+    end
+  end
 
   def sync_categories
     categories_data = @data['categories'] || []
