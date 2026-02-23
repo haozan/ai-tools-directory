@@ -104,7 +104,7 @@ tools:
   website_url: https://clawhub.ai/
   short_description: AI 工具聚合平台
   long_description: ClawHub 是一个专业的 AI 工具聚合平台，为用户提供各类 AI 工具的发现和使用服务。
-  logo_url: https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&auto=format&fit=crop
+  logo_url: /images/logos/91_clawhub.jpg
   featured: false
   categories:
   - 龙虾频道
@@ -250,7 +250,7 @@ tools:
   website_url: https://openclaw.ai/
   short_description: 开源个人 AI 助手，真正能做事的 AI
   long_description: OpenClaw 是一个开源的个人 AI 助手，可以通过 WhatsApp、Telegram 或任何聊天应用使用。它能够执行实际任务，如清理收件箱、发送邮件、管理日历、航班值机等。运行在你自己的电脑上，数据完全由你控制，支持持久化记忆和自定义技能扩展。
-  logo_url: https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=400&auto=format&fit=crop
+  logo_url: /images/logos/77_openclaw.jpg
   featured: true
   categories:
   - 龙虾频道
@@ -474,7 +474,7 @@ tools:
   website_url: https://lobsterai.youdao.com/
   short_description: 有道推出的 AI 智能助手平台
   long_description: 龙虾 AI 是有道推出的智能 AI 助手平台，提供多种 AI 功能和服务。
-  logo_url: https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&auto=format&fit=crop
+  logo_url: /images/logos/75_youdao_lobster_logo.png
   featured: false
   categories:
   - 龙虾频道
