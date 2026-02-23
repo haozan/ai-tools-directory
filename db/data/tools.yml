@@ -11,7 +11,7 @@ categories:
 - name: 新技能
   description: 智能 AI 代理工具，提升工作效率
   parent: 
-  position: 20 
+  position: 20
 - name: AI 语音输出
   description: AI 语音生成和配音工具
   parent: 新技能
@@ -52,7 +52,7 @@ categories:
 - name: 新媒体
   description: ''
   parent: 
-  position: 50 
+  position: 50
 - name: 工商信息
   description: 
   parent: 大数据
@@ -73,13 +73,13 @@ categories:
   parent: 
 - name: 视频创作
   description: ''
-  parent: 新媒体 
+  parent: 新媒体
 tools:
 - name: AI工具集导航
   website_url: https://ai-bot.cn/
   short_description: 汇总各类AI工具的导航网站
   long_description: 
-  logo_url: 
+  logo_url: "/images/logos/37_ai-0ade416b-28c4-4348-ac09-4ed5cddaa4ea.jpg"
   featured: false
   categories:
   - 大模型
@@ -96,7 +96,7 @@ tools:
   website_url: https://www.anthropic.com/
   short_description: Anthropic推出的AI助手
   long_description: 
-  logo_url: 
+  logo_url: "/images/logos/36_claude.jpg"
   featured: true
   categories:
   - 国外大模型
@@ -153,7 +153,7 @@ tools:
   website_url: https://gemini.google.com/
   short_description: Google推出的多模态AI模型
   long_description: 
-  logo_url: 
+  logo_url: "/images/logos/35_gemini.jpg"
   featured: false
   categories:
   - 国外大模型
@@ -169,7 +169,7 @@ tools:
   website_url: https://github.com/features/copilot
   short_description: AI pair programmer
   long_description: 
-  logo_url: 
+  logo_url: "/images/logos/16_github-copilot-test.jpg"
   featured: false
   categories: []
 - name: Grammarly
@@ -184,7 +184,7 @@ tools:
   website_url: https://grok.com/
   short_description: xAI推出的AI对话助手，具有实时信息访问能力
   long_description: 
-  logo_url: 
+  logo_url: "/images/logos/72_grok-logo.webp"
   featured: false
   categories:
   - 国外大模型
@@ -200,7 +200,7 @@ tools:
   website_url: https://kimi.moonshot.cn/
   short_description: Moonshot AI推出的智能助手
   long_description: 
-  logo_url: 
+  logo_url: "/images/logos/27_kimi_logo.webp"
   featured: true
   categories:
   - 国内大模型
@@ -208,7 +208,7 @@ tools:
   website_url: https://platform.minimaxi.com/
   short_description: MINIMAX 人工智能开放平台
   long_description: MINIMAX 开放平台提供先进的人工智能 API 服务，包括自然语言处理、语音识别等多种 AI 能力。
-  logo_url: 
+  logo_url: "/images/logos/76_minimax_logo.png"
   featured: false
   categories:
   - API 聚合
@@ -216,7 +216,7 @@ tools:
   website_url: https://meta.law/
   short_description: 法律AI智能平台
   long_description: 
-  logo_url: 
+  logo_url: "/images/logos/26_metalaw.jpg"
   featured: false
   categories:
   - 国内大模型
@@ -234,7 +234,7 @@ tools:
   website_url: https://agent.minimaxi.com/
   short_description: MiniMax AI 对话助手，国产大模型应用平台
   long_description: 
-  logo_url: 
+  logo_url: "/images/logos/69_minimax_logo.png"
   featured: false
   categories:
   - 国内大模型
@@ -258,7 +258,7 @@ tools:
   website_url: https://openrouter.ai/
   short_description: AI 模型 API 聚合平台，提供多个大模型的统一接入服务
   long_description: 
-  logo_url: 
+  logo_url: "/images/logos/66_openrouter_logo.png"
   featured: false
   categories:
   - API 聚合
@@ -306,7 +306,7 @@ tools:
   website_url: https://www.icourt.cc/
   short_description: 智能法律研究平台
   long_description: 
-  logo_url: 
+  logo_url: "/images/logos/49_icourt.jpg"
   featured: false
   categories:
   - 法律科技
@@ -314,7 +314,7 @@ tools:
   website_url: https://www.ilovepdf.com/
   short_description: 在线PDF处理工具
   long_description: 
-  logo_url: 
+  logo_url: "/images/logos/52_ilovepdf.jpg"
   featured: false
   categories:
   - 大数据
@@ -338,7 +338,7 @@ tools:
   website_url: https://www.qcc.com/
   short_description: 企业工商信息查询平台
   long_description: 
-  logo_url: 
+  logo_url: "/images/logos/46_6e313176-2d58-4eba-bb6b-0a3537659ef1.jpg"
   featured: false
   categories:
   - 工商信息
@@ -354,7 +354,7 @@ tools:
   website_url: https://www.neeq.com.cn/
   short_description: 新三板官方网站
   long_description: 
-  logo_url: 
+  logo_url: "/images/logos/56_44a34a94-9a8c-4a36-9ce7-4df6196f29a0.jpg"
   featured: false
   categories:
   - 发布平台
@@ -378,7 +378,7 @@ tools:
   website_url: https://yinxiang.com/
   short_description: 知识管理和笔记工具
   long_description: 
-  logo_url: 
+  logo_url: "/images/logos/51_a5ef9a78-8cfa-42b0-92f1-4a9ad5d03edc.jpg"
   featured: false
   categories:
   - 大数据
@@ -386,7 +386,7 @@ tools:
   website_url: https://jimeng.jianying.com/
   short_description: 即梦AI是剑映推出的AI视频生成工具，支持文本生成视频、图文生成视频等功能
   long_description: 即梦AI是字节跳动旗下剑映推出的AI视频创作平台，提供AI视频生成、AI图片生成等功能。用户只需输入文本描述或上传图片，即可快速生成高质量的视频内容。适用于短视频创作、营销宣传、新媒体运营等场景。
-  logo_url: 
+  logo_url: "/images/logos/74_ai-2ceb3e55-7609-4181-9141-624622818c4b.jpg"
   featured: false
   categories: []
 - name: 国家企业信用信息公示系统
@@ -409,7 +409,7 @@ tools:
   website_url: https://law.wkinfo.com.cn/
   short_description: 威科先行法律信息库
   long_description: 
-  logo_url: 
+  logo_url: "/images/logos/42_978776b9-1647-45cf-ae1e-1e56d4f35d0a.jpg"
   featured: false
   categories:
   - 大数据
@@ -417,7 +417,7 @@ tools:
   website_url: https://law.wkinfo.com.cn
   short_description: 权威法律数据库，提供海量案例检索、法律法规查询服务
   long_description: 威科先行是国内领先的法律信息服务平台，汇集海量裁判文书、法律法规、期刊论文等资源。提供智能检索、案例分析、法律条文比对等功能，是法律人的专业工具。
-  logo_url: 
+  logo_url: "/images/logos/19_0e0a2866-4c0c-476c-9fd0-94e02b945a56.jpg"
   featured: false
   categories:
   - 法律法规
@@ -426,7 +426,7 @@ tools:
   website_url: http://www.cninfo.com.cn/
   short_description: 证监会指定信息披露网站
   long_description: 
-  logo_url: 
+  logo_url: "/images/logos/57_74432f85-bfd7-4755-9c44-f94336c071fb.jpg"
   featured: false
   categories:
   - 投融资/IPO
@@ -442,7 +442,7 @@ tools:
   website_url: https://yiyan.baidu.com/
   short_description: 百度推出的AI对话系统
   long_description: 
-  logo_url: 
+  logo_url: "/images/logos/28_wenxin.png"
   featured: true
   categories:
   - 国内大模型
@@ -450,7 +450,7 @@ tools:
   website_url: https://www.itslaw.com
   short_description: 专业案例检索工具，快速查找相关判例和裁判要旨
   long_description: 无讼案例专注于案例检索服务，收录全国各级法院裁判文书，提供智能检索、类案推送、争议焦点分析等功能。帮助律师快速找到类似案例，提高办案效率。
-  logo_url: 
+  logo_url: "/images/logos/20_00a246c1-6a3d-4c5b-b8b9-20c6fa19e603.jpg"
   featured: false
   categories:
   - 案例检索
@@ -466,7 +466,7 @@ tools:
   website_url: https://chatglm.cn/
   short_description: 智谱AI推出的对话系统
   long_description: 
-  logo_url: 
+  logo_url: "/images/logos/29_zhipu_qingyan_logo.jpg"
   featured: false
   categories:
   - 国内大模型
@@ -505,7 +505,7 @@ tools:
   website_url: https://www.fachans.com/
   short_description: 法律数据分析和案件管理工具
   long_description: 
-  logo_url: 
+  logo_url: "/images/logos/48_72a48438-6a7e-4cef-a166-6e1f9ac9ad18.jpg"
   featured: false
   categories:
   - 法律科技
@@ -513,7 +513,7 @@ tools:
   website_url: https://www.volcengine.com/
   short_description: 字节跳动旗下云服务平台，提供大模型 API 接入服务
   long_description: 
-  logo_url: 
+  logo_url: "/images/logos/67_e4b9b0d4-7182-440a-ac62-35792696ec62.jpg"
   featured: false
   categories:
   - API 聚合
@@ -521,7 +521,7 @@ tools:
   website_url: https://wenku.baidu.com/
   short_description: 百度文档分享平台
   long_description: 
-  logo_url: 
+  logo_url: "/images/logos/32_3fccbb0f-0b47-46be-af4d-7ecf0681c55b.jpg"
   featured: false
   categories:
   - AI 大模型
@@ -529,7 +529,7 @@ tools:
   website_url: https://www.jufaanli.com/
   short_description: 法律案例检索和分析平台
   long_description: 
-  logo_url: 
+  logo_url: "/images/logos/41_jufa_logo.png"
   featured: false
   categories:
   - 大数据
@@ -537,7 +537,7 @@ tools:
   website_url: https://yuanbao.tencent.com/
   short_description: 腾讯推出的 AI 晾能助手，提供晾能对话服务
   long_description: 
-  logo_url: 
+  logo_url: "/images/logos/70_yuanbao_logo.png"
   featured: false
   categories:
   - 国内大模型
@@ -545,7 +545,7 @@ tools:
   website_url: https://channels.weixin.qq.com/
   short_description: 微信视频内容平台
   long_description: 
-  logo_url: 
+  logo_url: "/images/logos/58_3ff429c6-456b-45bc-a453-93f69bae3367.jpg"
   featured: false
   categories:
   - 发布平台
@@ -553,7 +553,7 @@ tools:
   website_url: https://passport.xfyun.cn/
   short_description: 科大讯飞推出的认知大模型
   long_description: 
-  logo_url: 
+  logo_url: "/images/logos/31_xinghuo_logo.png"
   featured: false
   categories:
   - 国内大模型
@@ -561,7 +561,7 @@ tools:
   website_url: https://www.doubao.com/
   short_description: 字节跳动推出的AI对话助手
   long_description: 
-  logo_url: 
+  logo_url: "/images/logos/71_doubao_new.png"
   featured: true
   categories:
   - 国内大模型
@@ -569,7 +569,7 @@ tools:
   website_url: https://tongyi.aliyun.com/qianwen/
   short_description: 阿里云推出的大语言模型
   long_description: 
-  logo_url: 
+  logo_url: "/images/logos/30_tongyi_qianwen_logo.png"
   featured: true
   categories:
   - 国内大模型
@@ -577,7 +577,7 @@ tools:
   website_url: https://tongyi.aliyun.com/farui
   short_description: 阿里云推出的法律AI助手
   long_description: 
-  logo_url: 
+  logo_url: "/images/logos/25_6dd5e8d8-ac31-4020-a48e-1d6c3460883f.jpg"
   featured: false
   categories:
   - 法律大模型
@@ -593,7 +593,7 @@ tools:
   website_url: https://shandianshuo.cn/
   short_description: ''
   long_description: ''
-  logo_url: ''
+  logo_url: "/images/logos/14_shandianshuo_logo.png"
   featured: false
   categories:
   - AI 语音输出
@@ -601,7 +601,7 @@ tools:
   website_url: https://bailian.console.aliyun.com/
   short_description: 阿里云企业级AI应用开发平台，提供大模型服务、模型训练、应用构建等功能
   long_description: 阿里云百炼是阿里云推出的企业级大模型应用开发平台，集成了通义千问等多种大模型能力，提供模型调用、应用构建、模型训练等全流程服务。支持多种大模型接入，可快速构建企业智能AI应用。
-  logo_url: 
+  logo_url: "/images/logos/73_bailian-logo.png"
   featured: false
   categories:
   - API 聚合

@@ -23,12 +23,13 @@ class Tool < ApplicationRecord
   after_destroy :update_categories_count
   after_save :auto_extract_og_image, if: :should_extract_og_image?
   
-  # Return logo URL (prioritize ActiveStorage, fallback to logo_url field)
+  # Return logo URL (prioritize logo_url field, fallback to ActiveStorage)
+  # This ensures static assets in /public/images/logos are used in production
   def logo_image_url
-    if logo.attached?
+    if logo_url.present?
+      logo_url
+    elsif logo.attached?
       Rails.application.routes.url_helpers.rails_blob_url(logo, only_path: true)
-    else
-      logo_url.presence
     end
   end
   
