@@ -18,6 +18,12 @@ class CategoriesController < ApplicationController
     render partial: 'tools_grid', locals: { category: @category, tools: @tools }, formats: [:html]
   end
 
+  def all_tools
+    # Return all tools across all categories
+    @tools = Tool.newest
+    render partial: 'tools_grid', locals: { category: nil, tools: @tools }, formats: [:html]
+  end
+
   private
   # Write your private methods here
 end

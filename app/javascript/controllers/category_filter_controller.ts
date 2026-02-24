@@ -3,18 +3,22 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller<HTMLElement> {
   static targets = ["categoryBtn", "toolsContainer", "childrenContainer"]
   static values = {
-    selected: Number
+    selected: String  // Changed from Number to String to support 'all'
   }
 
   declare readonly categoryBtnTargets: HTMLButtonElement[]
   declare readonly toolsContainerTarget: HTMLElement
   declare readonly childrenContainerTargets: HTMLElement[]
-  declare selectedValue: number
+  declare selectedValue: string
 
   connect(): void {
     // Load first category's tools on page load
     if (this.selectedValue) {
-      this.loadTools(this.selectedValue)
+      if (this.selectedValue === 'all') {
+        this.loadAllTools()
+      } else {
+        this.loadTools(parseInt(this.selectedValue))
+      }
     }
   }
 
@@ -25,7 +29,7 @@ export default class extends Controller<HTMLElement> {
     if (!categoryId) return
 
     // Update selected state
-    this.selectedValue = parseInt(categoryId)
+    this.selectedValue = categoryId
     
     // Update button styles
     this.categoryBtnTargets.forEach(btn => {
@@ -39,7 +43,11 @@ export default class extends Controller<HTMLElement> {
     })
 
     // Load tools for selected category
-    this.loadTools(parseInt(categoryId))
+    if (categoryId === 'all') {
+      this.loadAllTools()
+    } else {
+      this.loadTools(parseInt(categoryId))
+    }
   }
 
   toggleChildren(event: Event): void {
@@ -71,6 +79,40 @@ export default class extends Controller<HTMLElement> {
       childrenContainer.classList.add('hidden')
       icon.style.transform = 'rotate(-90deg)'
     }
+  }
+
+  private loadAllTools(): void {
+    // Show loading state
+    this.toolsContainerTarget.innerHTML = `
+      <div class="text-center py-12">
+        <div class="inline-flex items-center justify-center w-16 h-16 bg-primary/10 border-2 border-primary/30 rounded-2xl mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary animate-spin">
+            <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
+          </svg>
+        </div>
+        <p class="text-secondary">加载中...</p>
+      </div>
+    `
+
+    // Fetch all tools via Turbo
+    const url = `/categories/all_tools`
+    fetch(url, {
+      headers: {
+        'Accept': 'text/vnd.turbo-stream.html'
+      }
+    })
+      .then(response => response.text())
+      .then(html => {
+        this.toolsContainerTarget.innerHTML = html
+      })
+      .catch(error => {
+        console.error('Error loading all tools:', error)
+        this.toolsContainerTarget.innerHTML = `
+          <div class="text-center py-12">
+            <p class="text-secondary">加载失败，请稍后重试</p>
+          </div>
+        `
+      })
   }
 
   private loadTools(categoryId: number): void {

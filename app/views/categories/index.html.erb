@@ -1,6 +1,6 @@
 <% content_for :title, "浏览所有分类" %>
 
-<div class="bg-surface min-h-screen" data-controller="category-filter" data-category-filter-selected-value="<%= @categories.first&.id %>">  <!-- Split Layout: Categories Sidebar + Tools Grid -->
+<div class="bg-surface min-h-screen" data-controller="category-filter" data-category-filter-selected-value="all">  <!-- Split Layout: Categories Sidebar + Tools Grid -->
   <section class="py-8 px-4">
     <div class="container-xl mx-auto">
       <div class="flex gap-8 items-start">
@@ -8,9 +8,32 @@
         <aside class="w-80 flex-shrink-0">
           <div class="sticky top-0">
             <nav class="space-y-2">
+              <!-- All Tools Option (Special) -->
+              <div class="border-2 bg-primary/10 border-primary rounded-xl transition-all duration-300">
+                <button 
+                  type="button"
+                  data-category-filter-target="categoryBtn"
+                  data-category-id="all"
+                  data-action="click->category-filter#selectCategory"
+                  class="w-full text-left px-4 py-3 flex items-center gap-4 group">
+                  <div class="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-primary/20 to-primary/10 border-2 border-primary rounded-lg group-hover:from-primary/30 group-hover:to-primary/20 flex-shrink-0">
+                    <%= lucide_icon "grid-3x3", class: "w-6 h-6 text-primary" %>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <h3 class="font-bold text-primary mb-1 text-lg">
+                      所有工具
+                    </h3>
+                    <div class="flex items-center gap-2 text-muted text-sm">
+                      <%= lucide_icon "zap", class: "w-4 h-4" %>
+                      <span><%= Tool.count %> 工具</span>
+                    </div>
+                  </div>
+                </button>
+              </div>
+
               <% @categories.each do |category| %>
                 <!-- Root Category -->
-                <div class="border-2 <%= category == @categories.first ? 'bg-primary/10 border-primary' : 'border-border hover:border-primary hover:bg-surface-elevated' %> rounded-xl transition-all duration-300">
+                <div class="border-2 border-border hover:border-primary hover:bg-surface-elevated rounded-xl transition-all duration-300">
                   <div class="flex items-center">
                     <button 
                       type="button"
