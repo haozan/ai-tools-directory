@@ -13,7 +13,7 @@ storage_bucket:
   service: S3
   access_key_id: <%= ENV.fetch("QINIU_ACCESS_KEY", "") %>
   secret_access_key: <%= ENV.fetch("QINIU_SECRET_KEY", "") %>
-  region: <%= ENV.fetch("QINIU_REGION", "cn-east-1") %>
+  region: <%= ENV.fetch("QINIU_REGION", "cn-south-1") %>
   bucket: <%= ENV.fetch("QINIU_BUCKET", "") %>
-  endpoint: "https://s3.<%= ENV.fetch('QINIU_REGION', 'cn-east-1') %>.qiniucs.com"
+  endpoint: "https://s3.<%= ENV.fetch('QINIU_REGION', 'cn-south-1') %>.qiniucs.com"
   force_path_style: true
