@@ -39,11 +39,8 @@ class Admin::ToolsController < Admin::BaseController
   end
 
   def refresh_og_image
-    if @tool.extract_og_image!
-      redirect_to edit_admin_tool_path(@tool), notice: '✅ OG 图已重新抓取成功！'
-    else
-      redirect_to edit_admin_tool_path(@tool), alert: '❌ 未能从网站获取到图片，请检查网址是否正确。'
-    end
+    @tool.extract_og_image!
+    redirect_to edit_admin_tool_path(@tool), notice: '⏳ 正在后台抓取 OG 图，稍后刷新页面查看结果。'
   end
 
   private
