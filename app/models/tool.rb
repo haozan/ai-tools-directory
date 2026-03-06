@@ -37,7 +37,12 @@ class Tool < ApplicationRecord
     if logo_url.present?
       logo_url
     elsif logo.attached?
-      Rails.application.routes.url_helpers.rails_blob_url(logo, only_path: true)
+      # 生产环境用完整 URL（七牛 CDN），开发环境用相对路径
+      if Rails.env.production?
+        Rails.application.routes.url_helpers.rails_blob_url(logo)
+      else
+        Rails.application.routes.url_helpers.rails_blob_url(logo, only_path: true)
+      end
     end
   end
   
