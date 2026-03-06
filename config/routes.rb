@@ -40,7 +40,7 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'categories#index'
+  root 'home#index'
 
   # Do not write business logic at admin dashboard
   namespace :admin do
