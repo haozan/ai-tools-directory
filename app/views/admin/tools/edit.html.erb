@@ -55,8 +55,8 @@
               <img src="<%= @tool.logo_image_url %>" class="w-32 h-20 object-cover rounded-lg border border-gray-200 dark:border-gray-600" alt="当前图片" />
               <div>
                 <p class="text-sm text-muted mb-2">当前封面图</p>
-                <%= link_to refresh_og_image_admin_tool_path(@tool), method: :post,
-                    data: { confirm: "将重新从网站抓取 OG 图，当前图片会被替换，确认吗？" },
+                <%= link_to refresh_og_image_admin_tool_path(@tool),
+                    data: { turbo_method: :post, turbo_confirm: "将重新从网站抓取 OG 图，当前图片会被替换，确认吗？" },
                     class: "inline-flex items-center gap-1.5 text-sm font-medium px-3 py-1.5 rounded-lg border border-primary/40 hover:bg-primary/10 transition-colors",
                     style: "color: hsl(var(--color-primary));" do %>
                   <%= lucide_icon "refresh-cw", class: "w-3.5 h-3.5" %>
@@ -67,7 +67,8 @@
           <% else %>
             <div class="mt-2 flex items-center gap-3">
               <p class="text-sm text-muted">暂无封面图</p>
-              <%= link_to refresh_og_image_admin_tool_path(@tool), method: :post,
+              <%= link_to refresh_og_image_admin_tool_path(@tool),
+                  data: { turbo_method: :post },
                   class: "inline-flex items-center gap-1.5 text-sm font-medium px-3 py-1.5 rounded-lg border border-primary/40 hover:bg-primary/10 transition-colors",
                   style: "color: hsl(var(--color-primary));" do %>
                 <%= lucide_icon "image", class: "w-3.5 h-3.5" %>

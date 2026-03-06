@@ -1,5 +1,5 @@
 class Admin::ToolsController < Admin::BaseController
-  before_action :set_tool, only: [:show, :edit, :update, :destroy]
+  before_action :set_tool, only: [:show, :edit, :update, :destroy, :refresh_og_image]
 
   def index
     @tools = Tool.page(params[:page]).per(10)
