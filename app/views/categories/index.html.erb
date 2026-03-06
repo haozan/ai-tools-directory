@@ -1,123 +1,121 @@
 <% content_for :title, "浏览所有分类" %>
 
-<div class="bg-surface min-h-screen" data-controller="category-filter" data-category-filter-selected-value="all">  <!-- Split Layout: Categories Sidebar + Tools Grid -->
-  <section class="py-8 px-4">
+<div class="bg-surface min-h-screen" data-controller="category-filter" data-category-filter-selected-value="all">
+
+  <!-- Page Header -->
+  <section class="gradient-surface hero-grid-bg relative overflow-hidden">
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+      <div class="absolute bottom-0 right-1/4 w-72 h-48 rounded-full opacity-8"
+           style="background: radial-gradient(circle, hsl(43 72% 58%) 0%, transparent 70%); filter: blur(60px);"></div>
+    </div>
+    <div class="container-xl mx-auto px-4 lg:px-6 py-12 relative">
+      <p class="text-xs text-muted uppercase tracking-widest mb-2 font-medium">分类导航</p>
+      <h1 class="font-heading text-3xl lg:text-4xl font-bold text-primary">浏览工具分类</h1>
+    </div>
+    <div class="gold-divider"></div>
+  </section>
+
+  <!-- Content: Sidebar + Grid -->
+  <section class="py-8 px-4 lg:px-6">
     <div class="container-xl mx-auto">
-      <div class="flex gap-8 items-start">
-        <!-- Left Sidebar: Categories List -->
-        <aside class="w-80 flex-shrink-0">
-          <div class="sticky top-0">
-            <nav class="space-y-2">
-              <!-- All Tools Option (Special) -->
-              <div class="border-2 bg-primary/10 border-primary rounded-xl transition-all duration-300">
-                <button 
-                  type="button"
-                  data-category-filter-target="categoryBtn"
-                  data-category-id="all"
-                  data-action="click->category-filter#selectCategory"
-                  class="w-full text-left px-4 py-3 flex items-center gap-4 group">
-                  <div class="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-primary/20 to-primary/10 border-2 border-primary rounded-lg group-hover:from-primary/30 group-hover:to-primary/20 flex-shrink-0">
-                    <%= lucide_icon "grid-3x3", class: "w-6 h-6 text-primary" %>
-                  </div>
-                  <div class="flex-1 min-w-0">
-                    <h3 class="font-bold text-primary mb-1 text-lg">
-                      所有工具
-                    </h3>
-                    <div class="flex items-center gap-2 text-muted text-sm">
-                      <%= lucide_icon "zap", class: "w-4 h-4" %>
-                      <span><%= @tools_count %> 工具</span>
-                    </div>
-                  </div>
-                </button>
-              </div>
+      <div class="flex gap-6 items-start">
+
+        <!-- Sidebar: Categories -->
+        <aside class="w-72 flex-shrink-0">
+          <div class="sticky top-20">
+            <nav class="space-y-1.5">
+
+              <!-- All Tools -->
+              <button
+                type="button"
+                data-category-filter-target="categoryBtn"
+                data-category-id="all"
+                data-action="click->category-filter#selectCategory"
+                class="w-full text-left px-4 py-3 rounded-xl border-2 border-primary bg-primary/10 flex items-center gap-3 group transition-all duration-200">
+                <div class="flex items-center justify-center w-9 h-9 rounded-lg gradient-primary flex-shrink-0">
+                  <%= lucide_icon "layout-grid", class: "w-4 h-4", style: "color: hsl(222 28% 8%);" %>
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="font-semibold text-primary text-sm">所有工具</div>
+                  <div class="text-xs text-muted mt-0.5"><%= @tools_count %> 款工具</div>
+                </div>
+              </button>
 
               <% @categories.each do |category| %>
-                <!-- Root Category -->
-                <div class="border-2 border-border hover:border-primary hover:bg-surface-elevated rounded-xl transition-all duration-300">
+                <div class="rounded-xl border border-border hover:border-primary/50 transition-all duration-200 overflow-hidden"
+                     style="background: hsl(var(--color-surface-elevated));">
                   <div class="flex items-center">
-                    <button 
+                    <button
                       type="button"
                       data-category-filter-target="categoryBtn"
                       data-category-id="<%= category.id %>"
                       data-action="click->category-filter#selectCategory"
-                      class="flex-1 text-left px-4 py-3 flex items-center gap-4 group">
-                      <div class="flex items-center justify-center w-12 h-12 bg-primary/10 border border-primary/30 rounded-lg group-hover:bg-primary/20 flex-shrink-0">
-                        <%= lucide_icon "folder", class: "w-6 h-6 text-primary" %>
+                      class="flex-1 text-left px-4 py-3 flex items-center gap-3 group">
+                      <div class="flex items-center justify-center w-9 h-9 bg-primary/10 border border-primary/20 rounded-lg flex-shrink-0 group-hover:bg-primary/20 transition-colors">
+                        <%= lucide_icon "folder", class: "w-4 h-4", style: "color: hsl(var(--color-primary));" %>
                       </div>
                       <div class="flex-1 min-w-0">
-                        <h3 class="font-semibold text-primary mb-1">
-                          <%= category.name %>
-                        </h3>
-                        <div class="flex items-center gap-2 text-muted text-sm">
-                          <%= lucide_icon "layers", class: "w-4 h-4" %>
-                          <span><%= category.all_tools.count %> 工具</span>
-                        </div>
+                        <div class="font-medium text-primary text-sm truncate"><%= category.name %></div>
+                        <div class="text-xs text-muted mt-0.5"><%= category.all_tools.count %> 款</div>
                       </div>
                     </button>
+
                     <% if category.has_children? %>
                       <button
                         type="button"
                         data-category-id="<%= category.id %>"
                         data-action="click->category-filter#toggleChildren"
-                        class="flex-shrink-0 p-3 text-secondary hover:text-primary transition-colors">
-                        <%= lucide_icon "chevron-down", class: "w-5 h-5", style: "transform: rotate(-90deg); transition: transform 0.3s ease;" %>
+                        class="flex-shrink-0 p-3 text-muted hover:text-primary transition-colors">
+                        <%= lucide_icon "chevron-right", class: "w-4 h-4 transition-transform duration-200" %>
                       </button>
                     <% end %>
                   </div>
-                </div>
-                  
-                  <!-- Child Categories (if any) -->
+
                   <% if category.has_children? %>
-                    <div 
+                    <div
                       data-category-filter-target="childrenContainer"
                       data-parent-id="<%= category.id %>"
-                      class="ml-8 space-y-1 mt-1 hidden">
+                      class="hidden border-t border-border/50 bg-surface/50">
                       <% category.children.each do |child| %>
-                        <button 
+                        <button
                           type="button"
                           data-category-filter-target="categoryBtn"
                           data-category-id="<%= child.id %>"
                           data-action="click->category-filter#selectCategory"
-                          class="w-full text-left px-3 py-2 rounded-lg transition-all duration-300 flex items-center gap-3 group border border-transparent hover:border-primary/50 hover:bg-surface-elevated">
-                          <div class="flex items-center justify-center w-8 h-8 bg-surface border border-border rounded-md group-hover:border-primary/50 flex-shrink-0">
-                            <%= lucide_icon "folder-open", class: "w-4 h-4 text-secondary" %>
-                          </div>
-                          <div class="flex-1 min-w-0">
-                            <h4 class="text-sm font-medium text-secondary group-hover:text-primary">
-                              <%= child.name %>
-                            </h4>
-                            <div class="flex items-center gap-1 text-muted text-xs">
-                              <span><%= child.tools_count %> 工具</span>
-                            </div>
-                          </div>
+                          class="w-full text-left px-4 py-2.5 pl-12 flex items-center gap-2 group hover:bg-surface-elevated transition-colors border-b border-border/30 last:border-0">
+                          <div class="w-1.5 h-1.5 rounded-full flex-shrink-0" style="background: hsl(var(--color-primary) / 0.4);"></div>
+                          <span class="text-sm text-secondary group-hover:text-primary transition-colors flex-1 truncate"><%= child.name %></span>
+                          <span class="text-xs text-muted flex-shrink-0"><%= child.tools_count %></span>
                         </button>
                       <% end %>
                     </div>
                   <% end %>
+                </div>
               <% end %>
+
             </nav>
           </div>
         </aside>
 
-        <!-- Right Content: Tools Grid -->
+        <!-- Main: Tools Grid -->
         <main class="flex-1 min-w-0">
           <div data-category-filter-target="toolsContainer">
-            <!-- Initial loading state — replaced by JS after mount -->
-            <div data-category-filter-target="loadingPlaceholder" class="text-center py-12">
-              <div class="inline-flex items-center justify-center w-16 h-16 bg-primary/10 border border-primary/20 rounded-xl mb-4">
-                <%= lucide_icon "loader", class: "w-8 h-8 text-primary animate-spin" %>
+            <div data-category-filter-target="loadingPlaceholder" class="text-center py-20">
+              <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl border border-border mb-4"
+                   style="background: hsl(var(--color-surface-elevated));">
+                <%= lucide_icon "loader", class: "w-7 h-7 animate-spin", style: "color: hsl(var(--color-primary));" %>
               </div>
-              <p class="text-secondary text-sm">加载中...</p>
+              <p class="text-sm text-muted">加载中...</p>
             </div>
-            <!-- No-JS fallback: show all tools link -->
             <noscript>
-              <div class="text-center py-12">
-                <p class="text-secondary mb-4">请开启 JavaScript 以浏览分类工具</p>
-                <%= link_to "查看全部工具", tools_path, class: "btn-primary" %>
+              <div class="text-center py-16 rounded-xl border border-border" style="background: hsl(var(--color-surface-elevated));">
+                <p class="text-secondary mb-4 text-sm">请开启 JavaScript 以浏览分类工具</p>
+                <%= link_to "查看全部工具", tools_path, class: "btn-primary btn-sm rounded-lg" %>
               </div>
             </noscript>
           </div>
         </main>
+
       </div>
     </div>
   </section>

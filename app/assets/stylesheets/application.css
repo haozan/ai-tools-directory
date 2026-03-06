@@ -27,139 +27,299 @@
 @tailwind components;
 @layer components {
 
-  /*
-   * Design System Variables
-   *
-   * Usage:
-   * - Text: text-primary/secondary/muted
-   * - Surface: surface/surface-elevated
-   * - Brand: primary/secondary
-   * - Status: success/warning/danger/info
-   *
-   * NEVER use direct colors: text-white, bg-white, text-black, bg-black, etc.
-   * Use semantic variables only for maintainability and theme consistency.
-   */
+  /* ============================================================
+   * KULAWYER DESIGN SYSTEM — 法典现代主义
+   * 深夜蓝 × 铂金 × 冷白  |  Playfair Display + DM Sans
+   * ============================================================ */
   :root {
-    /* Vibrant Blue - Primary brand color */
-    --color-primary: 220 90% 55%;
-    --color-primary-light: 218 90% 65%;
-    --color-primary-dark: 222 85% 45%;
+    /* ── Gold accent — 主品牌色 ── */
+    --color-primary: 43 72% 58%;          /* #C9A84C  铂金 */
+    --color-primary-light: 43 80% 70%;    /* 亮金 */
+    --color-primary-dark: 40 65% 44%;     /* 深金 */
 
-    /* Vibrant Purple - Secondary brand color */
-    --color-secondary: 280 75% 55%;
-    --color-secondary-light: 275 80% 65%;
-    --color-secondary-dark: 285 70% 45%;
+    /* ── Secondary — 冷蓝辅助 ── */
+    --color-secondary: 210 25% 65%;
+    --color-secondary-light: 210 30% 78%;
+    --color-secondary-dark: 210 20% 50%;
 
-    /* Text colors - optimized for light mode */
-    --color-text-primary: 0 0% 15%;    /* Dark gray, optimal contrast */
-    --color-text-secondary: 0 0% 35%;  /* Secondary text */
-    --color-text-muted: 0 0% 55%;      /* Muted text */
+    /* ── Text ── */
+    --color-text-primary: 210 20% 96%;    /* 近白 */
+    --color-text-secondary: 210 15% 72%;  /* 浅灰蓝 */
+    --color-text-muted: 210 10% 48%;      /* 暗灰 */
 
-    /* Surface colors - light theme */
-    --color-surface: 0 0% 98%;          /* Nearly white background */
-    --color-surface-elevated: 0 0% 100%; /* Pure white for cards */
-    --color-border: 220 15% 90%;        /* Subtle borders */
+    /* ── Surface — 深夜蓝 ── */
+    --color-surface: 222 28% 8%;          /* #0D1117 深夜蓝 */
+    --color-surface-elevated: 222 24% 12%; /* #161D27 卡片面 */
+    --color-border: 222 18% 18%;          /* 微亮边框 */
 
-    /* Neutral color */
-    --color-neutral: 0 0% 50%;
+    /* ── Neutral ── */
+    --color-neutral: 210 10% 55%;
 
-    /* Status colors - softer for light mode */
-    --color-success: 145 65% 45%;
-    --color-warning: 45 90% 50%;
-    --color-danger: 0 75% 55%;
-    --color-info: 200 85% 50%;
+    /* ── Status ── */
+    --color-success: 152 60% 48%;
+    --color-warning: 43 90% 55%;
+    --color-danger: 2 72% 58%;
+    --color-info: 200 80% 55%;
 
-    --color-success-bg: 145 65% 45% / 0.1;
-    --color-warning-bg: 45 90% 50% / 0.1;
-    --color-danger-bg: 0 75% 55% / 0.1;
-    --color-info-bg: 200 85% 50% / 0.1;
+    --color-success-bg: 152 60% 48% / 0.12;
+    --color-warning-bg: 43 90% 55% / 0.12;
+    --color-danger-bg: 2 72% 58% / 0.12;
+    --color-info-bg: 200 80% 55% / 0.12;
 
-    --font-family-sans: 'Rubik', 'Inter', 'Helvetica Neue', 'Arial', sans-serif;
-    --font-family-heading: 'Outfit', 'Rubik', sans-serif;
+    /* ── Typography ── */
+    --font-family-sans: 'DM Sans', 'Helvetica Neue', 'Arial', sans-serif;
+    --font-family-heading: 'Playfair Display', 'Georgia', serif;
     --font-family-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
 
-    --border-radius-sm: 0;
-    --border-radius: 0;
-    --border-radius-md: 0;
-    --border-radius-lg: 0;
-    --border-radius-xl: 0;
+    /* ── Radius — 略微圆润 ── */
+    --border-radius-sm: 4px;
+    --border-radius: 6px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    --border-radius-xl: 16px;
 
-    --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-    --shadow-xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-  }
-
-  /*
-   * Dark Mode - Comprehensive optimization for contrast and visual effects
-   * Follows WCAG AA standards with minimum 4.5:1 text contrast ratio
-   */
-  .dark {
-    /* Same as :root for pure dark mode - no light theme needed */
-    --color-primary: 220 100% 65%;
-    --color-primary-light: 218 100% 75%;
-    --color-primary-dark: 222 90% 55%;
-
-    --color-secondary: 280 85% 65%;
-    --color-secondary-light: 275 90% 75%;
-    --color-secondary-dark: 285 80% 55%;
-
-    --color-text-primary: 0 0% 95%;
-    --color-text-secondary: 0 0% 75%;
-    --color-text-muted: 0 0% 55%;
-
-    --color-surface: 240 10% 8%;
-    --color-surface-elevated: 240 8% 12%;
-    --color-border: 240 6% 20%;
-
-    --color-success: 145 80% 50%;
-    --color-warning: 45 95% 60%;
-    --color-danger: 0 85% 65%;
-    --color-info: 200 95% 55%;
-
-    --color-success-bg: 145 80% 50% / 0.15;
-    --color-warning-bg: 45 95% 60% / 0.15;
-    --color-danger-bg: 0 85% 65% / 0.15;
-    --color-info-bg: 200 95% 55% / 0.15;
-
-    --color-neutral: 0 0% 70%;
-
-    /* Glow shadows for neon effect */
+    /* ── Shadows ── */
     --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.4);
-    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.5), 0 1px 2px -1px rgb(0 0 0 / 0.5);
-    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
-    --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.5);
-    --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.5), 0 8px 10px -6px rgb(0 0 0 / 0.5);
-    --shadow-xl: 0 25px 50px -12px rgb(0 0 0 / 0.7);
+    --shadow-sm: 0 2px 6px 0 rgb(0 0 0 / 0.5);
+    --shadow: 0 4px 12px -2px rgb(0 0 0 / 0.55);
+    --shadow-md: 0 8px 24px -4px rgb(0 0 0 / 0.6);
+    --shadow-lg: 0 20px 40px -8px rgb(0 0 0 / 0.65);
+    --shadow-xl: 0 30px 60px -12px rgb(0 0 0 / 0.75);
+
+    /* ── Gold glow ── */
+    --shadow-gold: 0 0 20px hsl(43 72% 58% / 0.25), 0 0 40px hsl(43 72% 58% / 0.1);
+    --shadow-gold-sm: 0 0 8px hsl(43 72% 58% / 0.3);
   }
 
-  /* Custom components for Kulawyer */
+  /* Dark mode 与 :root 相同（全站深色） */
+  .dark {
+    --color-primary: 43 72% 58%;
+    --color-primary-light: 43 80% 70%;
+    --color-primary-dark: 40 65% 44%;
 
-  /* Gradient backgrounds */
+    --color-secondary: 210 25% 65%;
+    --color-secondary-light: 210 30% 78%;
+    --color-secondary-dark: 210 20% 50%;
+
+    --color-text-primary: 210 20% 96%;
+    --color-text-secondary: 210 15% 72%;
+    --color-text-muted: 210 10% 48%;
+
+    --color-surface: 222 28% 8%;
+    --color-surface-elevated: 222 24% 12%;
+    --color-border: 222 18% 18%;
+
+    --color-neutral: 210 10% 55%;
+
+    --color-success: 152 60% 48%;
+    --color-warning: 43 90% 55%;
+    --color-danger: 2 72% 58%;
+    --color-info: 200 80% 55%;
+
+    --color-success-bg: 152 60% 48% / 0.12;
+    --color-warning-bg: 43 90% 55% / 0.12;
+    --color-danger-bg: 2 72% 58% / 0.12;
+    --color-info-bg: 200 80% 55% / 0.12;
+
+    --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.5);
+    --shadow-sm: 0 2px 6px 0 rgb(0 0 0 / 0.6);
+    --shadow: 0 4px 12px -2px rgb(0 0 0 / 0.65);
+    --shadow-md: 0 8px 24px -4px rgb(0 0 0 / 0.7);
+    --shadow-lg: 0 20px 40px -8px rgb(0 0 0 / 0.75);
+    --shadow-xl: 0 30px 60px -12px rgb(0 0 0 / 0.85);
+  }
+
+  /* ── Base body ── */
+  body {
+    font-family: var(--font-family-sans);
+    background-color: hsl(var(--color-surface));
+    color: hsl(var(--color-text-primary));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* ── Grid texture overlay on hero sections ── */
+  .hero-grid-bg {
+    background-image:
+      linear-gradient(hsl(var(--color-border) / 0.4) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--color-border) / 0.4) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  /* ── Gold gradient text ── */
+  .gradient-gold {
+    background: linear-gradient(135deg, hsl(43 80% 70%) 0%, hsl(43 72% 58%) 50%, hsl(40 65% 44%) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* ── Subtle gradient for gradient-primary class ── */
   .gradient-primary {
-    background: linear-gradient(135deg, hsl(220 100% 65%) 0%, hsl(280 85% 65%) 100%);
+    background: linear-gradient(135deg, hsl(43 72% 58%) 0%, hsl(40 65% 44%) 100%);
   }
 
+  /* ── Hero surface ── */
   .gradient-surface {
-    background-color: hsl(var(--color-surface-elevated));
-    border-bottom: 1px solid hsl(var(--color-border));
+    background-color: hsl(var(--color-surface));
+    position: relative;
+    overflow: hidden;
   }
 
-  /* Tool card hover effect */
+  /* ── Tool card ── */
   .tool-card {
-    @apply transition-all duration-200;
+    @apply transition-all duration-300;
+    background: hsl(var(--color-surface-elevated));
+    border: 1px solid hsl(var(--color-border));
   }
 
   .tool-card:hover {
-    @apply -translate-y-0.5;
-    box-shadow: 0 4px 16px hsl(var(--color-primary) / 0.15);
+    transform: translateY(-3px);
+    border-color: hsl(var(--color-primary) / 0.5);
+    box-shadow: 0 8px 32px rgb(0 0 0 / 0.4), var(--shadow-gold-sm);
   }
 
-  /* Search box focus */
+  /* ── Search box ── */
+  .search-box {
+    background: hsl(var(--color-surface-elevated));
+    border: 1px solid hsl(var(--color-border));
+    color: hsl(var(--color-text-primary));
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .search-box::placeholder {
+    color: hsl(var(--color-text-muted));
+  }
+
   .search-box:focus {
-    box-shadow: 0 0 0 3px hsl(var(--color-primary) / 0.2);
+    outline: none;
+    border-color: hsl(var(--color-primary) / 0.6);
+    box-shadow: 0 0 0 3px hsl(var(--color-primary) / 0.12);
+  }
+
+  /* ── Gold divider ── */
+  .gold-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, hsl(var(--color-primary) / 0.5), transparent);
+  }
+
+  /* ── Section heading accent ── */
+  .section-heading-accent {
+    display: inline-block;
+    position: relative;
+    padding-bottom: 8px;
+  }
+
+  .section-heading-accent::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, hsl(var(--color-primary)), transparent);
+  }
+
+  /* ── Category pill ── */
+  .category-pill {
+    background: hsl(var(--color-primary) / 0.1);
+    border: 1px solid hsl(var(--color-primary) / 0.25);
+    color: hsl(var(--color-primary-light));
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .category-pill:hover {
+    background: hsl(var(--color-primary) / 0.2);
+    border-color: hsl(var(--color-primary) / 0.5);
+  }
+
+  .category-pill.active {
+    background: hsl(var(--color-primary) / 0.2);
+    border-color: hsl(var(--color-primary) / 0.6);
+    color: hsl(var(--color-primary-light));
+  }
+
+  /* ── Stat badge ── */
+  .stat-badge {
+    background: hsl(var(--color-surface-elevated));
+    border: 1px solid hsl(var(--color-border));
+    box-shadow: var(--shadow-md);
+    backdrop-filter: blur(8px);
+  }
+
+  /* ── Button overrides for gold theme ── */
+  .btn-primary {
+    background: linear-gradient(135deg, hsl(43 72% 62%) 0%, hsl(40 65% 48%) 100%) !important;
+    color: hsl(222 28% 8%) !important;
+    font-weight: 600 !important;
+    border: none !important;
+    box-shadow: 0 2px 12px hsl(43 72% 58% / 0.3) !important;
+    letter-spacing: 0.01em;
+  }
+
+  .btn-primary:hover {
+    background: linear-gradient(135deg, hsl(43 80% 68%) 0%, hsl(40 72% 54%) 100%) !important;
+    box-shadow: 0 4px 20px hsl(43 72% 58% / 0.4) !important;
+    transform: translateY(-1px);
+  }
+
+  /* ── Filter tag active state ── */
+  .filter-tag-active {
+    background: hsl(var(--color-primary) / 0.15);
+    border-color: hsl(var(--color-primary) / 0.5);
+    color: hsl(var(--color-primary-light));
+  }
+
+  /* ── Prose overrides ── */
+  .prose p {
+    color: hsl(var(--color-text-secondary));
+    line-height: 1.8;
+  }
+
+  /* ── Scrollbar ── */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--color-surface));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--color-border));
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--color-primary) / 0.5);
+  }
+
+  /* ── Page fade-in animation ── */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.5s ease forwards;
+  }
+
+  .animate-delay-100 { animation-delay: 0.1s; opacity: 0; }
+  .animate-delay-200 { animation-delay: 0.2s; opacity: 0; }
+  .animate-delay-300 { animation-delay: 0.3s; opacity: 0; }
+  .animate-delay-400 { animation-delay: 0.4s; opacity: 0; }
+
+  @keyframes shimmer {
+    0%   { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  .gold-shimmer {
+    background: linear-gradient(90deg,
+      hsl(43 72% 58% / 0) 0%,
+      hsl(43 72% 58% / 0.3) 50%,
+      hsl(43 72% 58% / 0) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 3s infinite;
   }
 
 } /* End of @layer components */

@@ -1,83 +1,131 @@
 <% content_for :title, "酷律师 - 发现最佳法律AI工具" %>
 
 <!-- Hero Section -->
-<section class="gradient-surface py-20 px-4">
-  <div class="container-xl mx-auto">
-    <div class="grid lg:grid-cols-2 gap-12 items-center">
+<section class="relative gradient-surface hero-grid-bg overflow-hidden">
+  <!-- Background atmospheric glow -->
+  <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+    <div class="absolute top-0 left-1/4 w-96 h-96 rounded-full opacity-10"
+         style="background: radial-gradient(circle, hsl(43 72% 58%) 0%, transparent 70%); filter: blur(60px);"></div>
+    <div class="absolute bottom-0 right-1/4 w-72 h-72 rounded-full opacity-8"
+         style="background: radial-gradient(circle, hsl(200 80% 55%) 0%, transparent 70%); filter: blur(80px);"></div>
+  </div>
+
+  <div class="container-xl mx-auto px-4 lg:px-6 py-20 lg:py-28 relative">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
       <!-- Left: Text Content -->
-      <div class="space-y-6">
-        <h1 class="font-heading text-5xl lg:text-6xl font-bold text-primary leading-tight">
-          酷律师 - 发现最佳法律AI工具
-        </h1>
-        <p class="text-xl text-secondary leading-relaxed">
-          探索强大的法律AI工具,提升工作效率。从法律文书撰写到案例分析，Kulawyer为您的法律工作找到最合适的AI助手。
+      <div class="space-y-8">
+        <!-- Eyebrow label -->
+        <div class="animate-fade-in-up">
+          <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium tracking-widest uppercase"
+                style="background: hsl(43 72% 58% / 0.12); border: 1px solid hsl(43 72% 58% / 0.3); color: hsl(43 80% 70%);">
+            <%= lucide_icon "scale", class: "w-3.5 h-3.5" %>
+            法律 AI 工具导航
+          </span>
+        </div>
+
+        <div class="animate-fade-in-up animate-delay-100">
+          <h1 class="font-heading text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight tracking-tight">
+            <span class="text-primary">发现最佳</span><br>
+            <span class="gradient-gold">法律 AI 工具</span>
+          </h1>
+        </div>
+
+        <p class="text-lg text-secondary leading-relaxed max-w-lg animate-fade-in-up animate-delay-200">
+          精选法律从业者专属 AI 工具，覆盖文书起草、合同审核、案例分析、法律研究等核心场景，助力提升执业效率。
         </p>
-        
+
         <!-- Search Box -->
-        <%= form_with url: tools_path, method: :get, class: "relative" do |f| %>
-          <%= lucide_icon "search", class: "absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted" %>
-          <%= f.text_field :q, 
-              placeholder: "搜索法律AI工具...", 
-              class: "search-box w-full pl-12 pr-4 py-4 bg-surface-elevated border border-border rounded-xl text-primary focus:outline-none focus:border-primary transition-all" %>
-        <% end %>
-        
+        <div class="animate-fade-in-up animate-delay-300">
+          <%= form_with url: tools_path, method: :get, class: "relative" do |f| %>
+            <%= lucide_icon "search", class: "absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted pointer-events-none" %>
+            <%= f.text_field :q,
+                placeholder: "搜索法律AI工具，例如：合同审核...",
+                class: "search-box w-full pl-12 pr-16 py-4 rounded-xl text-base",
+                autofocus: false %>
+            <button type="submit"
+                    class="absolute right-2 top-1/2 -translate-y-1/2 btn-primary btn-sm rounded-lg px-4 py-2 text-sm">
+              搜索
+            </button>
+          <% end %>
+        </div>
+
         <!-- Trending Tags -->
-        <div class="flex flex-wrap gap-2">
-          <span class="text-sm text-muted">热门分类:</span>
-          <% ["龙虾频道", "AI 编程", "AI 阅卷", "AI 语音输出", "AI 起草文书", "AI 合同审核", "AI 写作"].each do |category_name| %>
-            <% if category = @trending_categories[category_name] %>
-              <%= link_to category_path(category), class: "px-3 py-1 bg-surface-elevated border border-primary/30 rounded-full text-sm text-primary hover:bg-primary/10 cursor-pointer transition-colors" do %>
-                <%= category_name %>
+        <div class="flex flex-wrap items-center gap-2 animate-fade-in-up animate-delay-400">
+          <span class="text-xs text-muted tracking-wide uppercase">热门：</span>
+          <% [["龙虾频道","🦞"], ["AI 编程","💻"], ["AI 阅卷","📋"], ["AI 语音输出","🎙"], ["AI 起草文书","📝"], ["AI 合同审核","📄"]].each do |name, emoji| %>
+            <% if category = @trending_categories[name] %>
+              <%= link_to category_path(category),
+                  class: "category-pill inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium" do %>
+                <span><%= emoji %></span>
+                <span><%= name %></span>
               <% end %>
             <% end %>
           <% end %>
         </div>
       </div>
-      
+
       <!-- Right: Hero Image -->
-      <div class="relative">
-        <div class="aspect-square rounded-2xl overflow-hidden border border-border">
-          <img 
-            src="https://backend-prod-hjlerckip39sk4no.s3-accelerate.amazonaws.com/images/2026/02/15/0194e09c-901f-7b99-bb46-e5b93b676708/%E4%B8%8B_%E8%BD%BD_55154586.png" 
-            alt="法律 AI 科技" 
-            class="w-full h-full object-cover"
-            fetchpriority="high"
-            decoding="async"
-          />
-        </div>
-        <!-- Floating Stats -->
-        <div class="absolute -bottom-6 -left-6 bg-surface-elevated border border-border rounded-xl p-4 shadow-xl">
-          <div class="text-3xl font-bold text-primary"><%= @tools_count %>+</div>
-          <div class="text-sm text-muted">AI工具</div>
-        </div>
-        <div class="absolute -top-6 -right-6 bg-surface-elevated border border-border rounded-xl p-4 shadow-xl">
-          <div class="text-3xl font-bold text-secondary"><%= @categories_count %>+</div>
-          <div class="text-sm text-muted">分类</div>
+      <div class="relative hidden lg:block animate-fade-in-up animate-delay-200">
+        <div class="relative">
+          <!-- Outer decorative border with gold glow -->
+          <div class="absolute -inset-1 rounded-2xl opacity-40"
+               style="background: linear-gradient(135deg, hsl(43 72% 58% / 0.4), transparent 60%); filter: blur(4px);"></div>
+          <div class="relative aspect-square rounded-2xl overflow-hidden border border-primary/20">
+            <img
+              src="https://backend-prod-hjlerckip39sk4no.s3-accelerate.amazonaws.com/images/2026/02/15/0194e09c-901f-7b99-bb46-e5b93b676708/%E4%B8%8B_%E8%BD%BD_55154586.png"
+              alt="法律 AI 科技"
+              class="w-full h-full object-cover opacity-90"
+              fetchpriority="high"
+              decoding="async"
+            />
+            <!-- Overlay gradient for depth -->
+            <div class="absolute inset-0"
+                 style="background: linear-gradient(to bottom right, transparent 60%, hsl(222 28% 8% / 0.4));"></div>
+          </div>
+
+          <!-- Floating Stats — tools count -->
+          <div class="stat-badge absolute -bottom-5 -left-5 rounded-xl p-4">
+            <div class="text-2xl font-bold gradient-gold"><%= @tools_count %>+</div>
+            <div class="text-xs text-muted mt-0.5">精选 AI 工具</div>
+          </div>
+
+          <!-- Floating Stats — categories count -->
+          <div class="stat-badge absolute -top-5 -right-5 rounded-xl p-4">
+            <div class="text-2xl font-bold" style="color: hsl(var(--color-info));"><%= @categories_count %>+</div>
+            <div class="text-xs text-muted mt-0.5">工具分类</div>
+          </div>
         </div>
       </div>
+
     </div>
   </div>
+
+  <!-- Bottom divider -->
+  <div class="gold-divider"></div>
 </section>
 
-<!-- Tools Grid -->
-<section class="py-16 px-4 bg-surface">
+<!-- Featured Tools -->
+<section class="py-16 px-4 lg:px-6 bg-surface">
   <div class="container-xl mx-auto">
-    <div class="flex justify-between items-center mb-8">
-      <h2 class="font-heading text-3xl font-bold text-primary">精选工具</h2>
-      <%= link_to tools_path, class: "btn-outline text-primary hover:bg-primary/10" do %>
-        查看全部
+
+    <div class="flex items-end justify-between mb-10">
+      <div>
+        <p class="text-xs text-muted uppercase tracking-widest mb-2 font-medium">精心挑选</p>
+        <h2 class="font-heading text-3xl font-bold text-primary section-heading-accent">精选工具</h2>
+      </div>
+      <%= link_to tools_path,
+          class: "inline-flex items-center gap-1.5 text-sm font-medium transition-colors duration-200",
+          style: "color: hsl(var(--color-primary-light));" do %>
+        查看全部工具
         <%= lucide_icon "arrow-right", class: "w-4 h-4" %>
       <% end %>
     </div>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
       <% @tools.each do |tool| %>
         <%= render 'shared/tool_card', tool: tool %>
       <% end %>
     </div>
   </div>
 </section>
-
-
-
-
