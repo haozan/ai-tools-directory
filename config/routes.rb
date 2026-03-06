@@ -46,7 +46,11 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :resources
     resources :categories
-    resources :tools
+    resources :tools do
+      member do
+        post :refresh_og_image
+      end
+    end
     resources :admin_oplogs, only: [:index, :show]
     resources :administrators
     get 'login', to: 'sessions#new', as: :login

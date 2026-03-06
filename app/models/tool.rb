@@ -24,6 +24,30 @@ class Tool < ApplicationRecord
   after_destroy :update_categories_count
   after_save :auto_extract_og_image, if: :should_extract_og_image?
   
+  # 强制重新从网站抓取 OG 图（会清除旧图）
+  def extract_og_image!
+    og_image_url = OgImageExtractorService.call(website_url)
+    return false if og_image_url.blank?
+
+    # 清除旧的 Active Storage 附件
+    logo.purge if logo.attached?
+    update_column(:logo_url, nil) if logo_url.present?
+
+    begin
+      logo.attach(
+        io: URI.open(og_image_url),
+        filename: "#{slug || name.parameterize}.jpg",
+        content_type: 'image/jpeg'
+      )
+      Rails.logger.info("Re-fetched OG image for tool: #{name}")
+      true
+    rescue StandardError => e
+      Rails.logger.error("Failed to re-fetch OG image for #{name}: #{e.message}")
+      update_column(:logo_url, og_image_url)
+      true
+    end
+  end
+
   # Return logo URL (prioritize logo_url field, fallback to ActiveStorage)
   # This ensures static assets in /public/images/logos are used in production
   def logo_image_url
