@@ -20,7 +20,8 @@
   </div>
 
   <!-- Info -->
-  <div class="p-4 space-y-2.5" style="background: hsl(var(--color-surface-elevated));">
+  <div class="p-4 flex flex-col gap-2" style="background: hsl(var(--color-surface-elevated)); min-height: 7.5rem;">
+    <!-- 标题行 -->
     <div class="flex items-start justify-between gap-2">
       <h3 class="font-heading text-base font-semibold text-primary group-hover:text-primary-light transition-colors leading-snug line-clamp-1">
         <%= tool.name %>
@@ -29,12 +30,14 @@
           style: "color: hsl(var(--color-primary));" %>
     </div>
 
-    <p class="text-sm leading-relaxed line-clamp-2" style="color: hsl(var(--color-text-secondary));">
+    <!-- 副标题：固定 2 行高度，多余截断，不足留空 -->
+    <p class="text-sm leading-relaxed line-clamp-2 flex-1" style="color: hsl(var(--color-text-secondary)); min-height: 2.5rem;">
       <%= tool.short_description %>
     </p>
 
+    <!-- 标签：始终在底部 -->
     <% if tool.categories.any? %>
-      <div class="flex flex-wrap items-center gap-1.5 pt-0.5">
+      <div class="flex flex-wrap items-center gap-1.5 mt-auto">
         <% tool.categories.first(2).each do |cat| %>
           <span class="category-pill inline-flex items-center px-2 py-0.5 rounded text-xs">
             <%= cat.name %>
