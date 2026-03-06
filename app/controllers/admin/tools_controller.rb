@@ -2,7 +2,7 @@ class Admin::ToolsController < Admin::BaseController
   before_action :set_tool, only: [:show, :edit, :update, :destroy, :refresh_og_image]
 
   def index
-    @tools = Tool.page(params[:page]).per(10)
+    @tools = Tool.order(updated_at: :desc).page(params[:page]).per(10)
   end
 
   def show
