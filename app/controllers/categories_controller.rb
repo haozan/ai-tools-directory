@@ -3,6 +3,7 @@ class CategoriesController < ApplicationController
   def index
     # Only show root categories (top-level), their children will be shown nested
     @categories = Category.root_categories.popular
+    @tools_count = Tool.count
   end
 
   def show

@@ -17,6 +17,7 @@ class Tool < ApplicationRecord
   scope :newest, -> { order(created_at: :desc) }
   scope :featured, -> { where(featured: true).order(created_at: :desc) }
   scope :search_by_name, ->(query) { where('name ILIKE ?', "%#{query}%") if query.present? }
+  scope :by_pricing, ->(pricing) { where(pricing: pricing) if pricing.present? }
   
   # Callbacks
   after_create :update_categories_count

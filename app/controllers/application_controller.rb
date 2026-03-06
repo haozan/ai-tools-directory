@@ -12,4 +12,11 @@ class ApplicationController < ActionController::Base
   include DevelopmentCsrfBypassConcern
   include TurboCompatibleRenderConcern
 
+  before_action :set_footer_categories
+
+  private
+
+  def set_footer_categories
+    @footer_categories = Category.limit(5)
+  end
 end

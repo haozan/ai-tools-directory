@@ -133,48 +133,33 @@
     --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.5);
     --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.5), 0 8px 10px -6px rgb(0 0 0 / 0.5);
     --shadow-xl: 0 25px 50px -12px rgb(0 0 0 / 0.7);
-    --shadow-neon-blue: 0 0 20px hsl(220 100% 65% / 0.5);
-    --shadow-neon-purple: 0 0 20px hsl(280 85% 65% / 0.5);
   }
 
   /* Custom components for Kulawyer */
-  
-  /* Neon glow effects */
-  .neon-glow-blue {
-    box-shadow: 0 0 20px hsl(220 100% 65% / 0.5), 0 0 40px hsl(220 100% 65% / 0.3);
-  }
-  
-  .neon-glow-purple {
-    box-shadow: 0 0 20px hsl(280 85% 65% / 0.5), 0 0 40px hsl(280 85% 65% / 0.3);
-  }
-  
+
   /* Gradient backgrounds */
   .gradient-primary {
     background: linear-gradient(135deg, hsl(220 100% 65%) 0%, hsl(280 85% 65%) 100%);
   }
-  
+
   .gradient-surface {
-    background: linear-gradient(180deg, hsl(240 10% 10%) 0%, hsl(240 10% 8%) 100%);
+    background-color: hsl(var(--color-surface-elevated));
+    border-bottom: 1px solid hsl(var(--color-border));
   }
-  
+
   /* Tool card hover effect */
   .tool-card {
-    @apply transition-all duration-300;
+    @apply transition-all duration-200;
   }
-  
+
   .tool-card:hover {
-    @apply -translate-y-1;
-    box-shadow: 0 8px 24px hsl(220 100% 65% / 0.2), 0 0 20px hsl(220 100% 65% / 0.1);
+    @apply -translate-y-0.5;
+    box-shadow: 0 4px 16px hsl(var(--color-primary) / 0.15);
   }
-  
-  /* Search box with neon focus */
+
+  /* Search box focus */
   .search-box:focus {
-    box-shadow: 0 0 0 3px hsl(220 100% 65% / 0.3), 0 0 20px hsl(220 100% 65% / 0.4);
-  }
-  
-  /* Badge with glow */
-  .badge-glow {
-    box-shadow: 0 0 10px currentColor;
+    box-shadow: 0 0 0 3px hsl(var(--color-primary) / 0.2);
   }
 
 } /* End of @layer components */

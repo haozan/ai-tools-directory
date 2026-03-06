@@ -10,7 +10,6 @@ class HomeController < ApplicationController
     else
       @tools = featured_tools
     end
-    @categories = Category.popular.limit(6)
     @tools_count = Tool.count
     @categories_count = Category.count
     

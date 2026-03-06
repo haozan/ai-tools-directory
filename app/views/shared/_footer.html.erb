@@ -1,0 +1,51 @@
+<footer class="bg-surface border-t border-border py-12 px-4">
+  <div class="container-xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      <!-- Brand -->
+      <div class="space-y-4">
+        <h3 class="font-heading text-2xl font-bold gradient-primary bg-clip-text text-transparent">
+          <%= Rails.application.config.x.appname %>
+        </h3>
+        <p class="text-sm text-secondary">
+          探索和发现优质的法律AI工具，酷律师助力提升您的法律工作效率和专业能力。
+        </p>
+      </div>
+
+      <!-- Categories -->
+      <div>
+        <h4 class="font-semibold text-primary mb-4">分类</h4>
+        <ul class="space-y-2">
+          <% @footer_categories.each do |cat| %>
+            <li>
+              <%= link_to cat.name, category_path(cat), class: "text-sm text-secondary hover:text-primary transition-colors" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
+      <!-- Resources -->
+      <div>
+        <h4 class="font-semibold text-primary mb-4">资源</h4>
+        <ul class="space-y-2">
+          <li><%= link_to "全部工具", tools_path, class: "text-sm text-secondary hover:text-primary transition-colors" %></li>
+          <li><%= link_to "提交工具", new_submission_path, class: "text-sm text-secondary hover:text-primary transition-colors" %></li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div>
+        <h4 class="font-semibold text-primary mb-4">法律条款</h4>
+        <ul class="space-y-2">
+          <li><span class="text-sm text-secondary">隐私政策</span></li>
+          <li><span class="text-sm text-secondary">服务条款</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pt-8 border-t border-border text-center">
+      <p class="text-sm text-muted">
+        © <%= Time.current.year %> <%= Rails.application.config.x.appname %>（酷律师）. 保留所有权利。专为法律人打造 <%= lucide_icon "heart", class: "inline w-4 h-4 text-danger" %>。
+      </p>
+    </div>
+  </div>
+</footer>

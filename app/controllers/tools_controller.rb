@@ -17,7 +17,8 @@ class ToolsController < ApplicationController
              end
     
     @tools = @tools.page(params[:page]).per(12)
-    @categories = Category.popular.limit(6)
+    @tools_count = Tool.count
+    @categories_count = Category.count
   end
 
 

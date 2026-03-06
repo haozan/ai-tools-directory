@@ -1,0 +1,33 @@
+<div data-controller="wechat-qr">
+  <div data-wechat-qr-target="modal"
+       data-action="click->wechat-qr#closeOnOutsideClick"
+       class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-[9999] flex items-center justify-center p-4">
+    <div class="bg-surface rounded-2xl shadow-2xl max-w-lg w-full p-10 relative">
+      <button data-action="click->wechat-qr#hide"
+              class="absolute top-4 right-4 text-muted hover:text-primary transition-colors">
+        <%= lucide_icon "x", class: "w-6 h-6" %>
+      </button>
+
+      <div class="text-center space-y-8">
+        <div class="space-y-2">
+          <h3 class="text-2xl font-bold text-primary">提交工具</h3>
+          <p class="text-secondary">扫码添加创始人微信，直连镐赞提交您的工具</p>
+        </div>
+
+        <div class="flex justify-center py-4">
+          <%= image_tag "founder-wechat-qr.png",
+              alt: "创始人镐赞微信二维码",
+              class: "w-80 h-80 rounded-xl border-4 border-primary/20 shadow-lg" %>
+        </div>
+
+        <div class="space-y-2 text-sm text-muted">
+          <p class="flex items-center justify-center gap-2">
+            <%= lucide_icon "user", class: "w-4 h-4" %>
+            <span>创始人：镐赞</span>
+          </p>
+          <p>期待与您的交流！</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

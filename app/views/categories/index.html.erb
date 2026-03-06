@@ -25,7 +25,7 @@
                     </h3>
                     <div class="flex items-center gap-2 text-muted text-sm">
                       <%= lucide_icon "zap", class: "w-4 h-4" %>
-                      <span><%= Tool.count %> 工具</span>
+                      <span><%= @tools_count %> 工具</span>
                     </div>
                   </div>
                 </button>
@@ -102,13 +102,20 @@
         <!-- Right Content: Tools Grid -->
         <main class="flex-1 min-w-0">
           <div data-category-filter-target="toolsContainer">
-            <!-- Tools will be loaded here -->
-            <div class="text-center py-12">
-              <div class="inline-flex items-center justify-center w-16 h-16 bg-primary/10 border-2 border-primary/30 rounded-2xl mb-4">
+            <!-- Initial loading state — replaced by JS after mount -->
+            <div data-category-filter-target="loadingPlaceholder" class="text-center py-12">
+              <div class="inline-flex items-center justify-center w-16 h-16 bg-primary/10 border border-primary/20 rounded-xl mb-4">
                 <%= lucide_icon "loader", class: "w-8 h-8 text-primary animate-spin" %>
               </div>
-              <p class="text-secondary">加载中...</p>
+              <p class="text-secondary text-sm">加载中...</p>
             </div>
+            <!-- No-JS fallback: show all tools link -->
+            <noscript>
+              <div class="text-center py-12">
+                <p class="text-secondary mb-4">请开启 JavaScript 以浏览分类工具</p>
+                <%= link_to "查看全部工具", tools_path, class: "btn-primary" %>
+              </div>
+            </noscript>
           </div>
         </main>
       </div>
