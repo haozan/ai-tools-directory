@@ -65,23 +65,255 @@
         </div>
       </div>
 
-      <!-- Right: Hero Image -->
+      <!-- Right: Hero Illustration -->
       <div class="relative hidden lg:block animate-fade-in-up animate-delay-200">
         <div class="relative">
-          <!-- Outer decorative border with gold glow -->
-          <div class="absolute -inset-1 rounded-2xl opacity-40"
-               style="background: linear-gradient(135deg, hsl(43 72% 58% / 0.4), transparent 60%); filter: blur(4px);"></div>
-          <div class="relative aspect-square rounded-2xl overflow-hidden border border-primary/20">
-            <img
-              src="https://backend-prod-hjlerckip39sk4no.s3-accelerate.amazonaws.com/images/2026/02/15/0194e09c-901f-7b99-bb46-e5b93b676708/%E4%B8%8B_%E8%BD%BD_55154586.png"
-              alt="法律 AI 科技"
-              class="w-full h-full object-cover opacity-90"
-              fetchpriority="high"
-              decoding="async"
-            />
-            <!-- Overlay gradient for depth -->
-            <div class="absolute inset-0"
-                 style="background: linear-gradient(to bottom right, transparent 60%, hsl(222 28% 8% / 0.4));"></div>
+          <!-- 外层金色光晕 -->
+          <div class="absolute -inset-2 rounded-3xl opacity-30"
+               style="background: radial-gradient(ellipse at 60% 40%, hsl(43 72% 58% / 0.5), transparent 70%); filter: blur(16px);"></div>
+
+          <!-- 主插画容器 -->
+          <div class="relative aspect-square rounded-2xl overflow-hidden"
+               style="border: 1px solid hsl(43 72% 58% / 0.2); background: hsl(222 28% 8%);">
+
+            <svg viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+              <defs>
+                <!-- 铂金渐变 -->
+                <linearGradient id="h-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%"   stop-color="#F5D97A"/>
+                  <stop offset="50%"  stop-color="#C9973A"/>
+                  <stop offset="100%" stop-color="#E8B84B"/>
+                </linearGradient>
+                <!-- 铂金浅色 -->
+                <linearGradient id="h-gold2" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%"   stop-color="#FDE68A" stop-opacity="1"/>
+                  <stop offset="100%" stop-color="#C9973A" stop-opacity="0.4"/>
+                </linearGradient>
+                <!-- 蓝色科技渐变 -->
+                <linearGradient id="h-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%"   stop-color="#60A5FA"/>
+                  <stop offset="100%" stop-color="#3B82F6" stop-opacity="0.5"/>
+                </linearGradient>
+                <!-- 背景径向渐变 -->
+                <radialGradient id="h-bg-glow" cx="50%" cy="45%" r="55%">
+                  <stop offset="0%"   stop-color="#1e2d4a"/>
+                  <stop offset="100%" stop-color="#0d1525"/>
+                </radialGradient>
+                <!-- 金色发光 -->
+                <filter id="h-glow-gold" x="-30%" y="-30%" width="160%" height="160%">
+                  <feGaussianBlur stdDeviation="3" result="blur"/>
+                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+                <!-- 柔和发光 -->
+                <filter id="h-glow-soft" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="6" result="blur"/>
+                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+                <!-- 网格 pattern -->
+                <pattern id="h-grid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                  <path d="M 40 0 L 0 0 0 40" fill="none" stroke="hsl(43 72% 58% / 0.06)" stroke-width="0.8"/>
+                </pattern>
+              </defs>
+
+              <!-- 背景 -->
+              <rect width="480" height="480" fill="url(#h-bg-glow)"/>
+              <!-- 网格纹理 -->
+              <rect width="480" height="480" fill="url(#h-grid)"/>
+
+              <!-- 底部环境光 -->
+              <ellipse cx="240" cy="420" rx="200" ry="60"
+                       fill="hsl(43 72% 58% / 0.08)" filter="url(#h-glow-soft)"/>
+
+              <!-- ══════════════════════════════════ -->
+              <!-- 中心：大天平 -->
+              <!-- ══════════════════════════════════ -->
+
+              <!-- 底座 -->
+              <rect x="180" y="360" width="120" height="8" rx="4" fill="url(#h-gold)" opacity="0.9"/>
+              <rect x="210" y="330" width="60" height="32" rx="3" fill="url(#h-gold)" opacity="0.7"/>
+              <!-- 底座发光 -->
+              <rect x="180" y="360" width="120" height="8" rx="4" fill="url(#h-gold)" opacity="0.4" filter="url(#h-glow-gold)"/>
+
+              <!-- 主柱 -->
+              <rect x="236" y="120" width="8" height="214" rx="4" fill="url(#h-gold)"/>
+              <!-- 顶部圆球 -->
+              <circle cx="240" cy="112" r="12" fill="url(#h-gold)" filter="url(#h-glow-gold)"/>
+              <circle cx="240" cy="112" r="6" fill="#FDE68A"/>
+
+              <!-- 横梁 -->
+              <rect x="100" y="174" width="280" height="7" rx="3.5" fill="url(#h-gold)"/>
+              <!-- 横梁发光 -->
+              <rect x="100" y="174" width="280" height="7" rx="3.5" fill="url(#h-gold)" opacity="0.5" filter="url(#h-glow-gold)"/>
+
+              <!-- 左链条 -->
+              <line x1="130" y1="181" x2="118" y2="270" stroke="url(#h-gold2)" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="130" y1="181" x2="142" y2="270" stroke="url(#h-gold2)" stroke-width="2.5" stroke-linecap="round"/>
+              <!-- 左秤盘 (微下沉) -->
+              <path d="M88 272 Q130 292 172 272" stroke="url(#h-gold)" stroke-width="4"
+                    stroke-linecap="round" fill="none" filter="url(#h-glow-gold)"/>
+              <path d="M88 272 Q130 292 172 272" stroke="url(#h-gold)" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+              <!-- 右链条 -->
+              <line x1="350" y1="181" x2="338" y2="258" stroke="url(#h-gold2)" stroke-width="2.5" stroke-linecap="round"/>
+              <line x1="350" y1="181" x2="362" y2="258" stroke="url(#h-gold2)" stroke-width="2.5" stroke-linecap="round"/>
+              <!-- 右秤盘 (微上抬) -->
+              <path d="M308 260 Q350 280 392 260" stroke="url(#h-gold)" stroke-width="4"
+                    stroke-linecap="round" fill="none" filter="url(#h-glow-gold)"/>
+              <path d="M308 260 Q350 280 392 260" stroke="url(#h-gold)" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+              <!-- ══════════════════════════════════ -->
+              <!-- 左秤盘内：法典图标 -->
+              <!-- ══════════════════════════════════ -->
+              <g transform="translate(108, 228)" opacity="0.9">
+                <!-- 书本 -->
+                <rect x="0" y="0" width="44" height="34" rx="3"
+                      fill="none" stroke="url(#h-gold)" stroke-width="1.8"/>
+                <line x1="22" y1="0" x2="22" y2="34" stroke="url(#h-gold)" stroke-width="1.2" opacity="0.6"/>
+                <line x1="6" y1="9" x2="16" y2="9" stroke="url(#h-gold)" stroke-width="1.2" opacity="0.7"/>
+                <line x1="6" y1="15" x2="16" y2="15" stroke="url(#h-gold)" stroke-width="1.2" opacity="0.7"/>
+                <line x1="6" y1="21" x2="16" y2="21" stroke="url(#h-gold)" stroke-width="1.2" opacity="0.7"/>
+                <line x1="28" y1="9" x2="38" y2="9" stroke="url(#h-gold)" stroke-width="1.2" opacity="0.5"/>
+                <line x1="28" y1="15" x2="38" y2="15" stroke="url(#h-gold)" stroke-width="1.2" opacity="0.5"/>
+                <line x1="28" y1="21" x2="38" y2="21" stroke="url(#h-gold)" stroke-width="1.2" opacity="0.5"/>
+              </g>
+
+              <!-- ══════════════════════════════════ -->
+              <!-- 右秤盘内：AI 芯片图标 -->
+              <!-- ══════════════════════════════════ -->
+              <g transform="translate(328, 218)" opacity="0.9">
+                <!-- 芯片外框 -->
+                <rect x="0" y="0" width="44" height="44" rx="6"
+                      fill="none" stroke="url(#h-blue)" stroke-width="1.8"/>
+                <!-- 芯片内核 -->
+                <rect x="12" y="12" width="20" height="20" rx="3"
+                      fill="hsl(210 80% 60% / 0.15)" stroke="url(#h-blue)" stroke-width="1.2"/>
+                <!-- 引脚 左 -->
+                <line x1="0" y1="14" x2="-6" y2="14" stroke="url(#h-blue)" stroke-width="1.5"/>
+                <line x1="0" y1="22" x2="-6" y2="22" stroke="url(#h-blue)" stroke-width="1.5"/>
+                <line x1="0" y1="30" x2="-6" y2="30" stroke="url(#h-blue)" stroke-width="1.5"/>
+                <!-- 引脚 右 -->
+                <line x1="44" y1="14" x2="50" y2="14" stroke="url(#h-blue)" stroke-width="1.5"/>
+                <line x1="44" y1="22" x2="50" y2="22" stroke="url(#h-blue)" stroke-width="1.5"/>
+                <line x1="44" y1="30" x2="50" y2="30" stroke="url(#h-blue)" stroke-width="1.5"/>
+                <!-- 引脚 上 -->
+                <line x1="14" y1="0" x2="14" y2="-6" stroke="url(#h-blue)" stroke-width="1.5"/>
+                <line x1="22" y1="0" x2="22" y2="-6" stroke="url(#h-blue)" stroke-width="1.5"/>
+                <line x1="30" y1="0" x2="30" y2="-6" stroke="url(#h-blue)" stroke-width="1.5"/>
+                <!-- 引脚 下 -->
+                <line x1="14" y1="44" x2="14" y2="50" stroke="url(#h-blue)" stroke-width="1.5"/>
+                <line x1="22" y1="44" x2="22" y2="50" stroke="url(#h-blue)" stroke-width="1.5"/>
+                <line x1="30" y1="44" x2="30" y2="50" stroke="url(#h-blue)" stroke-width="1.5"/>
+                <!-- AI 文字 -->
+                <text x="22" y="26" text-anchor="middle" dominant-baseline="middle"
+                      font-size="8" font-weight="bold" font-family="monospace"
+                      fill="url(#h-blue)" opacity="0.9">AI</text>
+              </g>
+
+              <!-- ══════════════════════════════════ -->
+              <!-- 浮动 AI 节点网络（背景装饰） -->
+              <!-- ══════════════════════════════════ -->
+
+              <!-- 节点连线 -->
+              <g opacity="0.25">
+                <line x1="60"  y1="60"  x2="160" y2="130" stroke="#C9973A" stroke-width="1"/>
+                <line x1="160" y1="130" x2="240" y2="80"  stroke="#C9973A" stroke-width="1"/>
+                <line x1="240" y1="80"  x2="340" y2="130" stroke="#C9973A" stroke-width="1"/>
+                <line x1="340" y1="130" x2="420" y2="60"  stroke="#C9973A" stroke-width="1"/>
+                <line x1="60"  y1="60"  x2="80"  y2="160" stroke="#C9973A" stroke-width="1"/>
+                <line x1="420" y1="60"  x2="400" y2="160" stroke="#C9973A" stroke-width="1"/>
+                <line x1="80"  y1="160" x2="160" y2="130" stroke="#C9973A" stroke-width="1"/>
+                <line x1="400" y1="160" x2="340" y2="130" stroke="#C9973A" stroke-width="1"/>
+              </g>
+
+              <!-- 节点圆点 -->
+              <circle cx="60"  cy="60"  r="4" fill="#C9973A" opacity="0.5"/>
+              <circle cx="160" cy="130" r="3" fill="#C9973A" opacity="0.4"/>
+              <circle cx="240" cy="80"  r="5" fill="#F5D97A" opacity="0.6" filter="url(#h-glow-gold)"/>
+              <circle cx="340" cy="130" r="3" fill="#C9973A" opacity="0.4"/>
+              <circle cx="420" cy="60"  r="4" fill="#C9973A" opacity="0.5"/>
+              <circle cx="80"  cy="160" r="3" fill="#C9973A" opacity="0.35"/>
+              <circle cx="400" cy="160" r="3" fill="#C9973A" opacity="0.35"/>
+
+              <!-- 右下角装饰节点 -->
+              <g opacity="0.2">
+                <line x1="60"  y1="400" x2="140" y2="370" stroke="#C9973A" stroke-width="1"/>
+                <line x1="140" y1="370" x2="180" y2="420" stroke="#C9973A" stroke-width="1"/>
+                <line x1="360" y1="400" x2="420" y2="380" stroke="#C9973A" stroke-width="1"/>
+              </g>
+              <circle cx="60"  cy="400" r="3" fill="#C9973A" opacity="0.3"/>
+              <circle cx="140" cy="370" r="2.5" fill="#C9973A" opacity="0.3"/>
+              <circle cx="420" cy="380" r="3" fill="#C9973A" opacity="0.3"/>
+
+              <!-- ══════════════════════════════════ -->
+              <!-- 装饰：右上角六边形蜂窝 -->
+              <!-- ══════════════════════════════════ -->
+              <g transform="translate(370, 30)" opacity="0.18">
+                <polygon points="20,0 40,11 40,33 20,44 0,33 0,11" fill="none" stroke="#C9973A" stroke-width="1"/>
+                <polygon points="20,8 34,16 34,32 20,40 6,32 6,16" fill="none" stroke="#C9973A" stroke-width="0.6"/>
+              </g>
+              <g transform="translate(395, 55)" opacity="0.12">
+                <polygon points="16,0 32,9 32,27 16,36 0,27 0,9" fill="none" stroke="#C9973A" stroke-width="1"/>
+              </g>
+
+              <!-- ══════════════════════════════════ -->
+              <!-- 装饰：左下角圆弧线条 -->
+              <!-- ══════════════════════════════════ -->
+              <g opacity="0.15">
+                <path d="M 20 460 Q 80 380 160 400" fill="none" stroke="#C9973A" stroke-width="1.5" stroke-dasharray="4 4"/>
+                <path d="M 20 440 Q 90 360 180 390" fill="none" stroke="#C9973A" stroke-width="1" stroke-dasharray="3 6"/>
+              </g>
+
+              <!-- ══════════════════════════════════ -->
+              <!-- 顶部光柱 -->
+              <!-- ══════════════════════════════════ -->
+              <rect x="234" y="0" width="12" height="108" rx="6"
+                    fill="url(#h-gold2)" opacity="0.3" filter="url(#h-glow-soft)"/>
+
+              <!-- ══════════════════════════════════ -->
+              <!-- 浮动文字标签 -->
+              <!-- ══════════════════════════════════ -->
+              <!-- 左上：合同审核 -->
+              <g transform="translate(28, 180)">
+                <rect width="76" height="26" rx="13"
+                      fill="hsl(43 72% 58% / 0.12)"
+                      stroke="hsl(43 72% 58% / 0.35)" stroke-width="1"/>
+                <text x="38" y="13" text-anchor="middle" dominant-baseline="middle"
+                      font-size="10" font-family="sans-serif" fill="#E8B84B" opacity="0.85">合同审核</text>
+              </g>
+              <!-- 右上：案例分析 -->
+              <g transform="translate(378, 175)">
+                <rect width="76" height="26" rx="13"
+                      fill="hsl(210 80% 60% / 0.1)"
+                      stroke="hsl(210 80% 60% / 0.3)" stroke-width="1"/>
+                <text x="38" y="13" text-anchor="middle" dominant-baseline="middle"
+                      font-size="10" font-family="sans-serif" fill="#60A5FA" opacity="0.85">案例分析</text>
+              </g>
+              <!-- 左下：法律研究 -->
+              <g transform="translate(22, 310)">
+                <rect width="76" height="26" rx="13"
+                      fill="hsl(43 72% 58% / 0.1)"
+                      stroke="hsl(43 72% 58% / 0.3)" stroke-width="1"/>
+                <text x="38" y="13" text-anchor="middle" dominant-baseline="middle"
+                      font-size="10" font-family="sans-serif" fill="#E8B84B" opacity="0.8">法律研究</text>
+              </g>
+              <!-- 右下：文书起草 -->
+              <g transform="translate(382, 310)">
+                <rect width="76" height="26" rx="13"
+                      fill="hsl(210 80% 60% / 0.1)"
+                      stroke="hsl(210 80% 60% / 0.3)" stroke-width="1"/>
+                <text x="38" y="13" text-anchor="middle" dominant-baseline="middle"
+                      font-size="10" font-family="sans-serif" fill="#60A5FA" opacity="0.8">文书起草</text>
+              </g>
+
+              <!-- 底部渐变遮罩（融入背景） -->
+              <defs>
+                <linearGradient id="h-fade-bottom" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="80%" stop-color="transparent"/>
+                  <stop offset="100%" stop-color="hsl(222 28% 8%)"/>
+                </linearGradient>
+              </defs>
+              <rect width="480" height="480" fill="url(#h-fade-bottom)"/>
+            </svg>
           </div>
 
           <!-- Floating Stats — tools count -->
