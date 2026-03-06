@@ -31,14 +31,34 @@ export default class extends Controller<HTMLElement> {
     // Update selected state
     this.selectedValue = categoryId
     
-    // Update button styles
+    // Update button styles — handle both desktop sidebar and mobile pill tabs
     this.categoryBtnTargets.forEach(btn => {
-      if (btn.dataset.categoryId === categoryId) {
-        btn.classList.remove('border-border', 'hover:border-primary', 'hover:bg-surface-elevated')
-        btn.classList.add('bg-primary/10', 'border-primary')
+      const isSelected = btn.dataset.categoryId === categoryId
+      const isMobilePill = btn.classList.contains('rounded-full')
+
+      if (isMobilePill) {
+        // Mobile pill style
+        if (isSelected) {
+          btn.classList.add('border-primary', 'bg-primary/10', 'text-primary')
+          btn.classList.remove('border-border', 'border-border/60', 'text-secondary', 'text-muted')
+        } else {
+          btn.classList.remove('border-primary', 'bg-primary/10', 'text-primary')
+          // Restore original muted style for sub-category pills
+          if (btn.querySelector('span.rounded-full')) {
+            btn.classList.add('border-border/60', 'text-muted')
+          } else {
+            btn.classList.add('border-border', 'text-secondary')
+          }
+        }
       } else {
-        btn.classList.remove('bg-primary/10', 'border-primary')
-        btn.classList.add('border-border', 'hover:border-primary', 'hover:bg-surface-elevated')
+        // Desktop sidebar style
+        if (isSelected) {
+          btn.classList.remove('border-border', 'hover:border-primary', 'hover:bg-surface-elevated')
+          btn.classList.add('bg-primary/10', 'border-primary')
+        } else {
+          btn.classList.remove('bg-primary/10', 'border-primary')
+          btn.classList.add('border-border', 'hover:border-primary', 'hover:bg-surface-elevated')
+        }
       }
     })
 
@@ -47,6 +67,16 @@ export default class extends Controller<HTMLElement> {
       this.loadAllTools()
     } else {
       this.loadTools(parseInt(categoryId))
+    }
+
+    // 手机端：点击分类后平滑滚动到工具区域
+    if (window.innerWidth < 1024) {
+      const toolsSection = document.getElementById('tools-section')
+      if (toolsSection) {
+        setTimeout(() => {
+          toolsSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }, 100)
+      }
     }
   }
 
