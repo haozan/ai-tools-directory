@@ -2,13 +2,37 @@
 
 <div class="container-xl">
   <!-- Page Title and Actions -->
-  <div class="flex items-center justify-between mb-8">
+  <div class="flex items-center justify-between mb-6">
     <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-50">Tools Management</h1>
     <%= link_to new_admin_tool_path, class: "btn-primary" do %>
       <%= lucide_icon "plus", class: "w-5 h-5 mr-2" %>
       New Tool
     <% end %>
   </div>
+
+  <!-- Search Bar -->
+  <%= form_with url: admin_tools_path, method: :get, class: "mb-6" do |f| %>
+    <div class="flex gap-2">
+      <div class="relative flex-1 max-w-md">
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <%= lucide_icon "search", class: "w-4 h-4 text-gray-400" %>
+        </div>
+        <%= f.text_field :q, value: @q,
+            placeholder: "搜索工具名称、网址、描述…",
+            class: "w-full pl-9 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm",
+            autofocus: @q.present? %>
+      </div>
+      <%= f.submit "搜索", class: "px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors cursor-pointer" %>
+      <% if @q.present? %>
+        <%= link_to "清除", admin_tools_path, class: "px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 text-sm font-medium rounded-lg transition-colors" %>
+      <% end %>
+    </div>
+    <% if @q.present? %>
+      <p class="mt-2 text-sm text-gray-500 dark:text-gray-400">
+        搜索「<span class="font-medium text-gray-700 dark:text-gray-300"><%= @q %></span>」，共找到 <span class="font-medium"><%= @tools.total_count %></span> 条结果
+      </p>
+    <% end %>
+  <% end %>
 
   <!-- Tools Table -->
   <div class="card bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700">

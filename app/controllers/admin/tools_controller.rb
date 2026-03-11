@@ -2,7 +2,16 @@ class Admin::ToolsController < Admin::BaseController
   before_action :set_tool, only: [:show, :edit, :update, :destroy, :refresh_og_image]
 
   def index
-    @tools = Tool.order(updated_at: :desc).page(params[:page]).per(10)
+    @q = params[:q].to_s.strip
+    tools = Tool.order(updated_at: :desc)
+    if @q.present?
+      keyword = "%#{@q}%"
+      tools = tools.where(
+        "name ILIKE :q OR website_url ILIKE :q OR short_description ILIKE :q",
+        q: keyword
+      )
+    end
+    @tools = tools.page(params[:page]).per(20)
   end
 
   def show
