@@ -62,6 +62,7 @@ Rails.application.routes.draw do
     resources :dashboard, only: [:index] do
       collection do
         post :sync_data
+        post :recalculate_counts
       end
     end
 

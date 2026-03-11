@@ -6,6 +6,25 @@ class Admin::DashboardController < Admin::BaseController
     @show_password_change_modal = current_admin&.first_login? && Rails.env.production?
   end
 
+  def recalculate_counts
+    # 先更新所有二级分类（直属工具数）
+    leaf_updated = 0
+    Category.child_categories.each do |category|
+      category.update_tools_count!
+      leaf_updated += 1
+    end
+
+    # 再更新所有一级分类（汇总子分类数）
+    root_updated = 0
+    Category.root_categories.each do |category|
+      category.update_tools_count!
+      root_updated += 1
+    end
+
+    flash[:success] = "分类计数已重新计算！共更新 #{leaf_updated} 个二级分类、#{root_updated} 个一级分类。"
+    redirect_to admin_root_path
+  end
+
   def sync_data
     results = DataSyncService.new.call
     
