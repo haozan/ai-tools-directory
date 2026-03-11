@@ -108,20 +108,14 @@
       : `${CDN_BASE}/${slug}.svg`;
   }
 
-  // 品牌背景色：
-  // - 有 colorGradient 的用渐变
-  // - color 为纯黑 (#000 / #000000) 说明图标是白色/浅色，用深色背景
-  // - 其他用品牌色（加淡化防止太亮）
+  // 图标网格预览背景色：统一白色，仅白色图标（如 kimi）用深色背景
+  const WHITE_ICON_KEYWORDS = ['kimi'];
   function brandBg(icon) {
-    if (icon.colorGradient) return icon.colorGradient;
-    const c = (icon.color || '').toLowerCase().replace(/\s/g, '');
-    if (!c || c === '#000' || c === '#000000' || c === '#0d0d0d' || c === '#111' || c === '#111111') {
-      return '#1a1a2e'; // 深蓝黑，白色图标清晰可见
+    const slug = (icon.title || '').toLowerCase();
+    if (WHITE_ICON_KEYWORDS.some(kw => slug.includes(kw))) {
+      return '#1a1a2e'; // 白色图标用深蓝黑背景，确保可见
     }
-    if (c === '#fff' || c === '#ffffff') {
-      return '#f3f4f6'; // 浅灰
-    }
-    return icon.color;
+    return '#ffffff'; // 其余统一白色背景
   }
 
   // 渲染图标网格，每个格子用品牌色做背景预览
@@ -188,12 +182,11 @@
     const bgInput = document.getElementById('lobe-bg-color-input');
     if (bgInput) bgInput.value = bgValue;
 
-    // 计算预览背景
-    const c = color.toLowerCase().replace(/\s/g,'');
-    let previewBg = bgValue;
-    if (!gradient && (c === '#000' || c === '#000000' || c === '#111' || c === '#111111')) {
-      previewBg = '#1a1a2e';
-    }
+    // 计算预览背景：与图标网格逻辑保持一致
+    const iconSlug = (name || '').toLowerCase();
+    const previewBg = WHITE_ICON_KEYWORDS.some(kw => iconSlug.includes(kw))
+      ? '#1a1a2e'
+      : '#ffffff';
 
     // 更新预览区
     const wrap = document.getElementById('lobe-selected-img-wrap');
