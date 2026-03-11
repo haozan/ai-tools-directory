@@ -32,6 +32,14 @@ class Tool < ApplicationRecord
     true
   end
 
+  # 判断是否为图标类 URL（LobeHub SVG 等正方形图标，不应裁剪）
+  def logo_is_icon?
+    return false unless logo_url.present?
+    logo_url.include?('lobehub/icons') ||
+      logo_url.end_with?('.svg') ||
+      logo_url.include?('icon')
+  end
+
   # Return logo URL (prioritize logo_url field, fallback to ActiveStorage)
   # This ensures static assets in /public/images/logos are used in production
   def logo_image_url
