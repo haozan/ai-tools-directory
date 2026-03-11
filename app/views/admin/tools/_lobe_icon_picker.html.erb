@@ -3,7 +3,7 @@
     <%= render 'lobe_icon_picker', form: form %>
 %>
 
-<div class="mt-4 border border-gray-200 dark:border-gray-600 rounded-lg overflow-hidden" id="lobe-icon-picker">
+<div class="mt-4 border border-gray-200 dark:border-gray-600 rounded-lg" id="lobe-icon-picker">
   <!-- 折叠标题 -->
   <button type="button"
           onclick="toggleLobePicker()"
@@ -43,7 +43,7 @@
 
     <!-- 图标网格 -->
     <div id="lobe-icon-grid"
-         class="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 gap-2 p-4 max-h-64 overflow-y-auto">
+         class="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 gap-1 p-3 max-h-72 overflow-y-auto overflow-x-hidden">
       <!-- 由 JS 动态填充 -->
       <div class="col-span-full text-center py-6 text-sm text-gray-400" id="lobe-icon-loading">
         加载图标库中…
@@ -118,19 +118,23 @@
     }
     grid.innerHTML = icons.map(icon => {
       const url = iconUrl(icon);
-      const slug = icon.title.toLowerCase().replace(/\s+/g, '-');
       return `
         <button type="button"
                 title="${icon.fullTitle}"
                 data-url="${url}"
                 data-name="${icon.fullTitle}"
                 onclick="selectLobeIcon(this)"
-                class="lobe-icon-btn flex flex-col items-center gap-1 p-2 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:ring-2 hover:ring-blue-400 transition-all group">
-          <img src="${url}"
-               class="w-8 h-8 object-contain"
-               alt="${icon.fullTitle}"
-               onerror="this.closest('button').style.display='none'">
-          <span class="text-[10px] text-gray-500 dark:text-gray-400 truncate w-full text-center leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                style="overflow:visible"
+                class="lobe-icon-btn flex flex-col items-center gap-1 py-2 px-1 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors group cursor-pointer">
+          <div class="w-8 h-8 flex items-center justify-center flex-shrink-0">
+            <img src="${url}"
+                 class="max-w-full max-h-full object-contain"
+                 style="width:28px;height:28px;display:block"
+                 alt="${icon.fullTitle}"
+                 onerror="this.closest('button').style.display='none'">
+          </div>
+          <span class="text-[9px] text-gray-500 dark:text-gray-400 truncate w-full text-center leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400"
+                style="max-width:52px">
             ${icon.title}
           </span>
         </button>`;
@@ -168,9 +172,14 @@
     document.getElementById('lobe-selected-url').textContent  = url;
     document.getElementById('lobe-selected-preview').classList.remove('hidden');
 
-    // 高亮选中按钮
-    document.querySelectorAll('.lobe-icon-btn').forEach(b => b.classList.remove('ring-2','ring-blue-500','bg-blue-50','dark:bg-blue-900/20'));
-    btn.classList.add('ring-2','ring-blue-500','bg-blue-50');
+    // 高亮选中按钮（用 outline 不占盒模型空间，不会裁剪）
+    document.querySelectorAll('.lobe-icon-btn').forEach(b => {
+      b.style.outline = '';
+      b.classList.remove('bg-blue-50');
+    });
+    btn.style.outline = '2px solid #3b82f6';
+    btn.style.outlineOffset = '1px';
+    btn.classList.add('bg-blue-50');
   };
 
   // 取消选择
@@ -178,7 +187,10 @@
     const input = document.querySelector('input[name="tool[logo_url]"]');
     if (input) input.value = '';
     document.getElementById('lobe-selected-preview').classList.add('hidden');
-    document.querySelectorAll('.lobe-icon-btn').forEach(b => b.classList.remove('ring-2','ring-blue-500','bg-blue-50'));
+    document.querySelectorAll('.lobe-icon-btn').forEach(b => {
+      b.style.outline = '';
+      b.classList.remove('bg-blue-50');
+    });
   };
 
   // 折叠/展开
