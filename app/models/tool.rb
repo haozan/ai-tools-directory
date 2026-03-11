@@ -21,7 +21,8 @@ class Tool < ApplicationRecord
   
   # Callbacks
   after_create :update_categories_count
-  after_destroy :update_categories_count
+  before_destroy :cache_category_ids   # 在关联被 destroy 前先缓存
+  after_destroy :update_cached_categories_count
   after_save :auto_extract_og_image, if: :should_extract_og_image?
   
   # 异步重新抓取 OG 图（enqueue 后台 job，不阻塞请求）
@@ -47,9 +48,17 @@ class Tool < ApplicationRecord
   end
   
   private
-  
+
+  def cache_category_ids
+    @cached_category_ids = categories.pluck(:id)
+  end
+
   def update_categories_count
     categories.each(&:update_tools_count!)
+  end
+
+  def update_cached_categories_count
+    Category.where(id: @cached_category_ids).each(&:update_tools_count!)
   end
   
   def should_extract_og_image?

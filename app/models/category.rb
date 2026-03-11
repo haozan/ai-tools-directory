@@ -22,7 +22,13 @@ class Category < ApplicationRecord
   scope :child_categories, -> { where.not(parent_id: nil) }
   
   def update_tools_count!
-    update(tools_count: tools.count)
+    # 一级分类汇总所有子分类的工具数；二级分类只统计直属工具数
+    count = if has_children?
+      children.sum { |child| child.tools.count }
+    else
+      tools.count
+    end
+    update_columns(tools_count: count)
   end
   
   # Check if this category is a root category
