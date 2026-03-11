@@ -1,0 +1,194 @@
+<%# LobeHub 图标选择器 partial
+    使用：在 logo_url 字段下方引入
+    <%= render 'lobe_icon_picker', form: form %>
+%>
+
+<div class="mt-4 border border-gray-200 dark:border-gray-600 rounded-lg overflow-hidden" id="lobe-icon-picker">
+  <!-- 折叠标题 -->
+  <button type="button"
+          onclick="toggleLobePicker()"
+          class="w-full flex items-center justify-between px-4 py-3 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-left"
+          id="lobe-picker-toggle">
+    <div class="flex items-center gap-2">
+      <img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg/icons/lobehub-color.svg"
+           class="w-4 h-4" alt="LobeHub" onerror="this.style.display='none'">
+      <span class="text-sm font-medium text-gray-700 dark:text-gray-300">从 LobeHub 图标库选择</span>
+      <span class="text-xs text-gray-400 dark:text-gray-500">1400+ AI 品牌图标</span>
+    </div>
+    <svg id="lobe-picker-chevron" class="w-4 h-4 text-gray-400 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+    </svg>
+  </button>
+
+  <!-- 展开内容 -->
+  <div id="lobe-picker-body" class="hidden">
+    <!-- 搜索框 -->
+    <div class="px-4 py-3 border-b border-gray-200 dark:border-gray-600">
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0"/>
+          </svg>
+        </div>
+        <input type="text"
+               id="lobe-icon-search"
+               placeholder="搜索图标名称，如 openai、claude、gemini…"
+               class="w-full pl-9 pr-4 py-2 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+               oninput="searchLobeIcons(this.value)">
+      </div>
+      <p class="mt-1.5 text-xs text-gray-400 dark:text-gray-500" id="lobe-icon-hint">
+        输入关键词搜索，点击图标即可填入 Logo URL
+      </p>
+    </div>
+
+    <!-- 图标网格 -->
+    <div id="lobe-icon-grid"
+         class="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 gap-2 p-4 max-h-64 overflow-y-auto">
+      <!-- 由 JS 动态填充 -->
+      <div class="col-span-full text-center py-6 text-sm text-gray-400" id="lobe-icon-loading">
+        加载图标库中…
+      </div>
+    </div>
+
+    <!-- 已选预览 -->
+    <div id="lobe-selected-preview" class="hidden px-4 py-3 border-t border-gray-200 dark:border-gray-600 bg-green-50 dark:bg-green-900/20">
+      <div class="flex items-center gap-3">
+        <img id="lobe-selected-img" src="" class="w-10 h-10 object-contain rounded" alt="">
+        <div class="flex-1 min-w-0">
+          <p class="text-sm font-medium text-green-700 dark:text-green-300" id="lobe-selected-name"></p>
+          <p class="text-xs text-green-600 dark:text-green-400 truncate" id="lobe-selected-url"></p>
+        </div>
+        <button type="button"
+                onclick="clearLobeSelection()"
+                class="text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-200">
+          取消
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  // 避免重复初始化
+  if (window.__lobePickerInit) return;
+  window.__lobePickerInit = true;
+
+  const CDN_BASE = 'https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg/icons';
+  const TOC_URL  = 'https://cdn.jsdelivr.net/npm/@lobehub/icons@latest/es/toc.js';
+
+  let allIcons = [];
+  let loaded = false;
+
+  // 解析 toc.js（是一个 var toc = [...] 的 JS 文件，用正则提取 JSON）
+  async function loadToc() {
+    if (loaded) return;
+    try {
+      const res = await fetch(TOC_URL);
+      const text = await res.text();
+      // toc.js 格式: "var toc = [...];\nexport { toc };"
+      const match = text.match(/var toc\s*=\s*(\[[\s\S]*?\]);/);
+      if (match) {
+        allIcons = JSON.parse(match[1]);
+        loaded = true;
+        renderIcons(allIcons.slice(0, 60));
+        document.getElementById('lobe-icon-hint').textContent =
+          `共 ${allIcons.length} 个图标，输入关键词搜索`;
+      }
+    } catch(e) {
+      document.getElementById('lobe-icon-loading').textContent = '加载失败，请检查网络';
+    }
+  }
+
+  // 生成图标 CDN URL（优先 color，否则 mono）
+  function iconUrl(icon) {
+    const slug = icon.title.toLowerCase().replace(/\s+/g, '-');
+    if (icon.param && icon.param.hasColor) {
+      return `${CDN_BASE}/${slug}-color.svg`;
+    }
+    return `${CDN_BASE}/${slug}.svg`;
+  }
+
+  // 渲染图标网格
+  function renderIcons(icons) {
+    const grid = document.getElementById('lobe-icon-grid');
+    if (!icons.length) {
+      grid.innerHTML = '<div class="col-span-full text-center py-6 text-sm text-gray-400">未找到匹配图标</div>';
+      return;
+    }
+    grid.innerHTML = icons.map(icon => {
+      const url = iconUrl(icon);
+      const slug = icon.title.toLowerCase().replace(/\s+/g, '-');
+      return `
+        <button type="button"
+                title="${icon.fullTitle}"
+                data-url="${url}"
+                data-name="${icon.fullTitle}"
+                onclick="selectLobeIcon(this)"
+                class="lobe-icon-btn flex flex-col items-center gap-1 p-2 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:ring-2 hover:ring-blue-400 transition-all group">
+          <img src="${url}"
+               class="w-8 h-8 object-contain"
+               alt="${icon.fullTitle}"
+               onerror="this.closest('button').style.display='none'">
+          <span class="text-[10px] text-gray-500 dark:text-gray-400 truncate w-full text-center leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400">
+            ${icon.title}
+          </span>
+        </button>`;
+    }).join('');
+  }
+
+  // 搜索
+  window.searchLobeIcons = function(q) {
+    if (!loaded) { loadToc(); return; }
+    const keyword = q.trim().toLowerCase();
+    if (!keyword) {
+      renderIcons(allIcons.slice(0, 60));
+      return;
+    }
+    const results = allIcons.filter(icon =>
+      icon.title.toLowerCase().includes(keyword) ||
+      icon.fullTitle.toLowerCase().includes(keyword) ||
+      (icon.desc && icon.desc.toLowerCase().includes(keyword))
+    );
+    renderIcons(results.slice(0, 100));
+  };
+
+  // 点击选中图标
+  window.selectLobeIcon = function(btn) {
+    const url  = btn.dataset.url;
+    const name = btn.dataset.name;
+
+    // 填入 logo_url 输入框（兼容 new/edit 两个页面）
+    const input = document.querySelector('input[name="tool[logo_url]"]');
+    if (input) input.value = url;
+
+    // 更新预览区
+    document.getElementById('lobe-selected-img').src  = url;
+    document.getElementById('lobe-selected-name').textContent = name;
+    document.getElementById('lobe-selected-url').textContent  = url;
+    document.getElementById('lobe-selected-preview').classList.remove('hidden');
+
+    // 高亮选中按钮
+    document.querySelectorAll('.lobe-icon-btn').forEach(b => b.classList.remove('ring-2','ring-blue-500','bg-blue-50','dark:bg-blue-900/20'));
+    btn.classList.add('ring-2','ring-blue-500','bg-blue-50');
+  };
+
+  // 取消选择
+  window.clearLobeSelection = function() {
+    const input = document.querySelector('input[name="tool[logo_url]"]');
+    if (input) input.value = '';
+    document.getElementById('lobe-selected-preview').classList.add('hidden');
+    document.querySelectorAll('.lobe-icon-btn').forEach(b => b.classList.remove('ring-2','ring-blue-500','bg-blue-50'));
+  };
+
+  // 折叠/展开
+  window.toggleLobePicker = function() {
+    const body    = document.getElementById('lobe-picker-body');
+    const chevron = document.getElementById('lobe-picker-chevron');
+    const isHidden = body.classList.contains('hidden');
+    body.classList.toggle('hidden');
+    chevron.style.transform = isHidden ? 'rotate(180deg)' : '';
+    if (isHidden && !loaded) loadToc();
+  };
+})();
+</script>
