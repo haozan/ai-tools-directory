@@ -41,8 +41,13 @@ class Tool < ApplicationRecord
   end
 
   # 图标背景色（有品牌色用品牌色，否则白色）
+  # 品牌色为黑色时（如 Kimi），改用深蓝黑背景，使白色图标可见
+  DARK_BRAND_COLORS = %w[#000 #000000 #0d0d0d #111 #111111 #0a0a0a #1a1a1a].freeze
+
   def logo_display_bg
-    logo_bg_color.presence || '#ffffff'
+    color = logo_bg_color.presence || '#ffffff'
+    return '#1a1a2e' if DARK_BRAND_COLORS.include?(color.downcase.strip)
+    color
   end
 
   # Return logo URL (prioritize logo_url field, fallback to ActiveStorage)
