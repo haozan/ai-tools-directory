@@ -40,6 +40,11 @@ class Tool < ApplicationRecord
       logo_url.include?('icon')
   end
 
+  # 图标背景色（有品牌色用品牌色，否则白色）
+  def logo_display_bg
+    logo_bg_color.presence || '#ffffff'
+  end
+
   # Return logo URL (prioritize logo_url field, fallback to ActiveStorage)
   # This ensures static assets in /public/images/logos are used in production
   def logo_image_url

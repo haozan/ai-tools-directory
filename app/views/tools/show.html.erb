@@ -39,7 +39,7 @@
           <% if @tool.logo_image_url.present? %>
             <% if @tool.logo_is_icon? %>
               <div class="w-full h-full flex items-center justify-center p-3"
-                   style="background: #ffffff;">
+                   style="background: <%= @tool.logo_display_bg %>;">
                 <img src="<%= @tool.logo_image_url %>" alt="<%= @tool.name %>"
                      class="w-full h-full object-contain" fetchpriority="high" decoding="async" />
               </div>

@@ -3,9 +3,9 @@
   <div class="aspect-video relative overflow-hidden" style="background: hsl(var(--color-surface));">
     <% if tool.logo_image_url.present? %>
       <% if tool.logo_is_icon? %>
-        <%# 图标类（SVG/LobeHub）：居中展示，不裁剪 %>
+        <%# 图标类（SVG/LobeHub）：居中展示，品牌色背景，不裁剪 %>
         <div class="w-full h-full flex items-center justify-center"
-             style="background: #ffffff;">
+             style="background: <%= tool.logo_display_bg %>;">
           <img
             src="<%= tool.logo_image_url %>"
             alt="<%= tool.name %>"

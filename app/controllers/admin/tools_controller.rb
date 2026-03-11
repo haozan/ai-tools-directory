@@ -59,6 +59,6 @@ class Admin::ToolsController < Admin::BaseController
   end
 
   def tool_params
-    params.require(:tool).permit(:name, :website_url, :short_description, :long_description, :logo_url, :logo, :featured, :slug, :view_count, category_ids: [])
+    params.require(:tool).permit(:name, :website_url, :short_description, :long_description, :logo_url, :logo_bg_color, :logo, :featured, :slug, :view_count, category_ids: [])
   end
 end
